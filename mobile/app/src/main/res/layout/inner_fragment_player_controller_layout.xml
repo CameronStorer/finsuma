@@ -6,6 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Finsuma: blurred album art behind the player (set in PlayerControllerFragment) -->
+    <ImageView
+        android:id="@+id/player_background_art"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.35"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/player_media_quality_sector"
         android:layout_width="match_parent"
@@ -57,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:background="?attr/colorSurface"
+                android:background="@android:color/transparent"
                 app:layout_constraintTop_toTopOf="@id/player_media_extension"
                 app:layout_constraintBottom_toBottomOf="@id/player_media_extension"
                 app:layout_constraintStart_toEndOf="@id/player_media_extension"

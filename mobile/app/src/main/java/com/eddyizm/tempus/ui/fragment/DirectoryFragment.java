@@ -168,7 +168,7 @@ public class DirectoryFragment extends Fragment implements ClickCallback {
             bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
                 if (bind == null) return;
 
-                if ((bind.directoryInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+                if ((bind.directoryInfoSector.getHeight() + verticalOffset) < bind.directoryInfoSector.getHeight() / 3) {
                     bind.toolbar.setTitle(directory.getName());
                 } else {
                     bind.toolbar.setTitle(R.string.empty_string);

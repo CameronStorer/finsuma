@@ -109,7 +109,7 @@ public class ArtistCatalogueFragment extends Fragment implements ClickCallback {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.artistInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.artistInfoSector.getHeight() + verticalOffset) < bind.artistInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.artist_catalogue_title);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

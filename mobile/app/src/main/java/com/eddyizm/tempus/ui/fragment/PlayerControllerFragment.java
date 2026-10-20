@@ -105,6 +105,7 @@ public class PlayerControllerFragment extends Fragment {
     private ImageButton playerOpenQueueButton;
     private ImageButton playerOpenLyricsButton;
     private ImageButton playerAutoDjButton;
+    private android.widget.ImageView playerBackgroundArt;
     private ImageButton playerTrackInfo;
     private LinearLayout ratingContainer;
     private LinearLayout sleepTimerContainer;
@@ -234,6 +235,13 @@ public class PlayerControllerFragment extends Fragment {
         playerOpenQueueButton = bind.getRoot().findViewById(R.id.player_open_queue_button);
         playerOpenLyricsButton = bind.getRoot().findViewById(R.id.player_open_lyrics_button);
         playerAutoDjButton = bind.getRoot().findViewById(R.id.player_auto_dj_button);
+        playerBackgroundArt = bind.getRoot().findViewById(R.id.player_background_art);
+        if (playerBackgroundArt != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            playerBackgroundArt.setRenderEffect(android.graphics.RenderEffect.createBlurEffect(
+                    90f, 90f, android.graphics.Shader.TileMode.CLAMP));
+        } else if (playerBackgroundArt != null) {
+            playerBackgroundArt.setAlpha(0.15f); // no blur before Android 12: keep it faint
+        }
         playerTrackInfo = bind.getRoot().findViewById(R.id.player_info_track);
         songRatingBar = bind.getRoot().findViewById(R.id.song_rating_bar);
         ratingContainer = bind.getRoot().findViewById(R.id.rating_container);
@@ -380,6 +388,7 @@ public class PlayerControllerFragment extends Fragment {
 
     private void setMetadata(MediaMetadata mediaMetadata) {
         if (bind == null || (com.eddyizm.tempus.lan.LanRemoteSession.isActive() && !renderingRemote)) return;
+        setBackgroundArt(mediaMetadata);
         String type = mediaMetadata.extras != null ? mediaMetadata.extras.getString("type") : null;
 
         if (Objects.equals(type, Constants.MEDIA_TYPE_RADIO)) {
@@ -874,6 +883,24 @@ public class PlayerControllerFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private String backgroundArtId;
+
+    // Finsuma: Symfonium-style blurred cover behind the player.
+    private void setBackgroundArt(MediaMetadata mediaMetadata) {
+        if (playerBackgroundArt == null || mediaMetadata.extras == null) return;
+        String coverArtId = mediaMetadata.extras.getString("coverArtId");
+        if (Objects.equals(coverArtId, backgroundArtId)) return;
+        backgroundArtId = coverArtId;
+        if (coverArtId == null) {
+            playerBackgroundArt.setImageDrawable(null);
+            return;
+        }
+        com.bumptech.glide.Glide.with(this)
+                .load(com.eddyizm.tempus.glide.CustomGlideRequest.createUrl(coverArtId, 200))
+                .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade(400))
+                .into(playerBackgroundArt);
     }
 
     private void updateAutoDjButtonTint() {

@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment implements ClickCallback {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.serverInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.serverInfoSector.getHeight() + verticalOffset) < bind.serverInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.login_title);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

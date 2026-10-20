@@ -104,7 +104,7 @@ public class IndexFragment extends Fragment implements ClickCallback {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.indexInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.indexInfoSector.getHeight() + verticalOffset) < bind.indexInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(indexViewModel.getMusicFolderName());
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

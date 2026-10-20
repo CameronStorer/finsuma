@@ -85,7 +85,7 @@ public class PodcastChannelCatalogueFragment extends Fragment implements ClickCa
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.podcastChannelInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.podcastChannelInfoSector.getHeight() + verticalOffset) < bind.podcastChannelInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.podcast_channel_catalogue_title);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

@@ -774,7 +774,7 @@ object Preferences {
 
     @JvmStatic
     fun isCornerRoundingEnabled(): Boolean {
-        return App.getInstance().preferences.getBoolean(ROUNDED_CORNER, false)
+        return App.getInstance().preferences.getBoolean(ROUNDED_CORNER, true) // Finsuma: rounded covers by default
     }
 
     @JvmStatic

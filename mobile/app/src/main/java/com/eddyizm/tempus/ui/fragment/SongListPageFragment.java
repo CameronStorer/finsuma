@@ -192,7 +192,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.albumInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.albumInfoSector.getHeight() + verticalOffset) < bind.albumInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(songListPageViewModel.toolbarTitle);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

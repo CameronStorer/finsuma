@@ -100,7 +100,7 @@ public class GenreCatalogueFragment extends Fragment implements ClickCallback {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.genreInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.genreInfoSector.getHeight() + verticalOffset) < bind.genreInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.genre_catalogue_title);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);

@@ -25,7 +25,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/album_info_sector"
                 android:layout_width="match_parent"
-                android:layout_height="172dp"
+                android:layout_height="wrap_content"
                 android:background="?attr/colorSurface"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -34,9 +34,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingTop="16dp"
+                    android:paddingTop="8dp"
                     android:paddingEnd="16dp"
-                    android:paddingBottom="24dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/album_catalogue_title_expanded"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -46,9 +46,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="6dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -65,8 +65,8 @@
                     <Button
                         android:id="@+id/album_list_sort_image_view"
                         style="@style/Widget.Material3.Button.TonalButton.Icon"
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:insetLeft="0dp"
                         android:insetTop="0dp"
                         android:insetRight="0dp"
@@ -78,12 +78,12 @@
 
                 <ProgressBar
                     android:id="@+id/album_list_progress_loader"
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="6dp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>

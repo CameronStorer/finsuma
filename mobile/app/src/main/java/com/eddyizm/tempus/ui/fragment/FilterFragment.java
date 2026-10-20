@@ -79,7 +79,7 @@ public class FilterFragment extends Fragment {
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (bind == null) return;
 
-            if ((bind.genreFilterInfoSector.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(bind.toolbar))) {
+            if ((bind.genreFilterInfoSector.getHeight() + verticalOffset) < bind.genreFilterInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.filter_title);
             } else {
                 bind.toolbar.setTitle(R.string.empty_string);
