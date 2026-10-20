@@ -1,0 +1,26 @@
+graphify-out/
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+.opencode/
+graphify-out/
+/.idea/
+.env
+.vscode/settings.json
+# release / debug files
+tempus-release-key.jks
+app/tempus/
+app/degoogled/
+.agents/
+.kotlin
