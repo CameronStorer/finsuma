@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -105,6 +103,23 @@ public final class FinsumaService {
 
     private static SharedPreferences prefs(Context context) {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    }
+
+    /**
+     * Addresses to try, in order: the saved one, the music server's own URL + /finsuma (when the
+     * server is set up behind the same URL), then port 3200 on the music server's machine.
+     */
+    public static List<String> candidateUrls(Context context) {
+        List<String> urls = new java.util.ArrayList<>();
+        String saved = prefs(context).getString(KEY_URL, null);
+        if (saved != null && !saved.isEmpty()) urls.add(saved);
+        String server = Preferences.getServer();
+        if (server != null && !server.isEmpty()) urls.add(server.replaceAll("/+$", "") + "/finsuma");
+        String local = Preferences.getLocalAddress();
+        if (local != null && !local.isEmpty()) urls.add(local.replaceAll("/+$", "") + "/finsuma");
+        String byHost = defaultUrl();
+        if (!urls.contains(byHost)) urls.add(byHost);
+        return urls;
     }
 
     /** Default: port 3200 on the machine the music server runs on (local address first). */
@@ -206,34 +221,41 @@ public final class FinsumaService {
         } catch (Exception e) {
             return;
         }
-        Request request = new Request.Builder()
-                .url(url(context) + "/download")
-                .header("X-Token", token(context))
-                .post(RequestBody.create(body, MediaType.get("application/json")))
-                .build();
-        HTTP.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                main.post(() -> Toast.makeText(context,
-                        "Can't reach the Finsuma server at " + url(context) + ". Are you on your home network?",
-                        Toast.LENGTH_LONG).show());
+        List<String> candidates = candidateUrls(context);
+        new Thread(() -> {
+            for (String base : candidates) {
+                try (Response health = HTTP.newCall(new Request.Builder().url(base + "/health").build()).execute()) {
+                    if (!health.isSuccessful()) continue;
+                } catch (Exception e) {
+                    continue;
+                }
+                // Remember the address that answers.
+                prefs(context).edit().putString(KEY_URL, base).apply();
+                Request request = new Request.Builder()
+                        .url(base + "/download")
+                        .header("X-Token", token(context))
+                        .post(RequestBody.create(body, MediaType.get("application/json")))
+                        .build();
+                try (Response response = HTTP.newCall(request).execute()) {
+                    int code = response.code();
+                    main.post(() -> {
+                        if (code == 202) {
+                            Toast.makeText(context, "Downloading to your music server", Toast.LENGTH_SHORT).show();
+                        } else if (code == 401) {
+                            Toast.makeText(context, "Wrong download token", Toast.LENGTH_LONG).show();
+                            showSettings(context, null);
+                        } else {
+                            Toast.makeText(context, "Download failed (" + code + ")", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (IOException e) {
+                    main.post(() -> Toast.makeText(context, "Download failed: " + e.getMessage(), Toast.LENGTH_LONG).show());
+                }
+                return;
             }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                int code = response.code();
-                response.close();
-                main.post(() -> {
-                    if (code == 202) {
-                        Toast.makeText(context, "Downloading to your music server", Toast.LENGTH_SHORT).show();
-                    } else if (code == 401) {
-                        Toast.makeText(context, "Wrong download token", Toast.LENGTH_LONG).show();
-                        showSettings(context, null);
-                    } else {
-                        Toast.makeText(context, "Download failed (" + code + ")", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
+            main.post(() -> Toast.makeText(context,
+                    "Can't reach the Finsuma server (tried " + candidates.size() + " addresses).",
+                    Toast.LENGTH_LONG).show());
+        }).start();
     }
 }

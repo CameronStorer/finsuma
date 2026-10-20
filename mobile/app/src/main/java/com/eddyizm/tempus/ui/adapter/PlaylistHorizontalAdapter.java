@@ -97,6 +97,11 @@ public class PlaylistHorizontalAdapter extends RecyclerView.Adapter<PlaylistHori
         return playlists.get(id);
     }
 
+    /** Finsuma: the playlists currently shown (after search), for the grid view. */
+    public List<Playlist> getCurrentItems() {
+        return playlists;
+    }
+
     public void setItems(List<Playlist> playlists) {
         this.playlists = playlists;
         this.playlistsFull = new ArrayList<>(playlists);

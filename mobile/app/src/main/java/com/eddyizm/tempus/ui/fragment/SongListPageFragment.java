@@ -26,6 +26,10 @@ import androidx.media3.session.MediaBrowser;
 import androidx.media3.session.SessionToken;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import com.eddyizm.tempus.util.TileSizeManager;
+import com.eddyizm.tempus.util.FinsumaGrid;
+import com.eddyizm.tempus.ui.adapter.SongCardAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.eddyizm.tempus.R;
 import com.eddyizm.tempus.databinding.FragmentSongListPageBinding;
@@ -217,6 +221,11 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
 
         songHorizontalAdapter = new SongHorizontalAdapter(getViewLifecycleOwner(), this, true, false, null);
         bind.songListRecyclerView.setAdapter(songHorizontalAdapter);
+
+        // Finsuma: optional grid of cover tiles that mirrors the list (sort/search included).
+        songCardAdapter = new SongCardAdapter(this);
+        songHorizontalAdapter.addListListener((previous, current) -> songCardAdapter.setItems(current));
+        applyGridMode(FinsumaGrid.isGrid(requireContext(), "songs"));
         setMediaBrowserListenableFuture();
         reapplyPlayback();
         songListPageViewModel.getSongList().observe(getViewLifecycleOwner(), songs -> {
@@ -250,6 +259,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
+        gridToggle = FinsumaGrid.addToggle(menu, FinsumaGrid.isGrid(requireContext(), "songs"));
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
 
@@ -270,6 +280,34 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         });
 
         searchView.setPadding(-32, 0, 0, 0);
+    }
+
+    private SongCardAdapter songCardAdapter;
+    private MenuItem gridToggle;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.finsuma_grid_toggle) {
+            boolean grid = !FinsumaGrid.isGrid(requireContext(), "songs");
+            FinsumaGrid.setGrid(requireContext(), "songs", grid);
+            applyGridMode(grid);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void applyGridMode(boolean grid) {
+        if (bind == null) return;
+        if (grid) {
+            int span = TileSizeManager.getInstance().getTileSpanCount(requireContext());
+            bind.songListRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), span));
+            songCardAdapter.setItems(songHorizontalAdapter.getCurrentItems());
+            bind.songListRecyclerView.setAdapter(songCardAdapter);
+        } else {
+            bind.songListRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+            bind.songListRecyclerView.setAdapter(songHorizontalAdapter);
+        }
+        FinsumaGrid.updateToggle(gridToggle, grid);
     }
 
     private void hideKeyboard(View view) {

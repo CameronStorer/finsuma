@@ -91,7 +91,7 @@
 
         <SwitchPreference
             android:title="@string/settings_song_rating"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:summary="@string/settings_song_rating_summary"
             android:key="song_rating_per_item" />
 

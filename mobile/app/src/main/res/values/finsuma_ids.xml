@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="finsuma_browse_menu" type="id" />
+    <item name="finsuma_grid_toggle" type="id" />
 </resources>

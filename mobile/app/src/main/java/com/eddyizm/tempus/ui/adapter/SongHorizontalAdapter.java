@@ -272,6 +272,15 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
     }
 
 
+    /** Finsuma: lets the grid view mirror this list (including sort and search). */
+    public void addListListener(AsyncListDiffer.ListListener<Child> listener) {
+        differ.addListListener(listener);
+    }
+
+    public List<Child> getCurrentItems() {
+        return differ.getCurrentList();
+    }
+
     public void setItems(List<Child> songs) {
         this.songsFull = songs != null ? songs : Collections.emptyList();
         filtering.filter(currentFilter);

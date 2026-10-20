@@ -223,6 +223,9 @@
     <string name="home_title_genres">Genres</string>
     <string name="home_title_random_albums">Random albums</string>
     <string name="finsuma_nav_playlists">Playlists</string>
+    <string name="finsuma_previous">Previous</string>
+    <string name="finsuma_grid_view">Grid view</string>
+    <string name="finsuma_list_view">List view</string>
     <string name="finsuma_nav_tracks">Tracks</string>
     <string name="finsuma_nav_download">Download</string>
     <string name="finsuma_tracks_title">Tracks</string>

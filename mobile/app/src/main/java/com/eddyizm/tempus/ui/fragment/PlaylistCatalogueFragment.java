@@ -22,6 +22,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.util.UnstableApi;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.ArrayList;
+import com.eddyizm.tempus.util.TileSizeManager;
+import com.eddyizm.tempus.util.FinsumaGrid;
+import com.eddyizm.tempus.ui.adapter.PlaylistCardAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.eddyizm.tempus.R;
 import com.eddyizm.tempus.databinding.FragmentPlaylistCatalogueBinding;
@@ -38,6 +44,34 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
     private PlaylistCatalogueViewModel playlistCatalogueViewModel;
 
     private PlaylistHorizontalAdapter playlistHorizontalAdapter;
+    private PlaylistCardAdapter playlistCardAdapter;
+    private MenuItem gridToggle;
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.finsuma_grid_toggle) {
+            boolean grid = !FinsumaGrid.isGrid(requireContext(), "playlists");
+            FinsumaGrid.setGrid(requireContext(), "playlists", grid);
+            applyGridMode(grid);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void applyGridMode(boolean grid) {
+        if (bind == null) return;
+        if (grid) {
+            int span = TileSizeManager.getInstance().getTileSpanCount(requireContext());
+            bind.playlistCatalogueRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), span));
+            if (playlistHorizontalAdapter.getCurrentItems() != null)
+                playlistCardAdapter.setItems(new ArrayList<>(playlistHorizontalAdapter.getCurrentItems()));
+            bind.playlistCatalogueRecyclerView.setAdapter(playlistCardAdapter);
+        } else {
+            bind.playlistCatalogueRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+            bind.playlistCatalogueRecyclerView.setAdapter(playlistHorizontalAdapter);
+        }
+        FinsumaGrid.updateToggle(gridToggle, grid);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,6 +162,17 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
         playlistHorizontalAdapter = new PlaylistHorizontalAdapter(this);
         bind.playlistCatalogueRecyclerView.setAdapter(playlistHorizontalAdapter);
 
+        // Finsuma: optional grid of cover tiles that mirrors the list (search included).
+        playlistCardAdapter = new PlaylistCardAdapter(this);
+        playlistHorizontalAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                if (playlistHorizontalAdapter.getCurrentItems() != null)
+                    playlistCardAdapter.setItems(new ArrayList<>(playlistHorizontalAdapter.getCurrentItems()));
+            }
+        });
+        applyGridMode(FinsumaGrid.isGrid(requireContext(), "playlists"));
+
         playlistCatalogueViewModel.getPlaylistList(getViewLifecycleOwner());
 
         bind.playlistCatalogueRecyclerView.setOnTouchListener((v, event) -> {
@@ -141,6 +186,7 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
+        gridToggle = FinsumaGrid.addToggle(menu, FinsumaGrid.isGrid(requireContext(), "playlists"));
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
 

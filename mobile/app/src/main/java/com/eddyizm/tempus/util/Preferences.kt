@@ -960,7 +960,7 @@ object Preferences {
 
     @JvmStatic
     fun showItemStarRating(): Boolean {
-        return App.getInstance().preferences.getBoolean(SONG_RATING_PER_ITEM, false)
+        return App.getInstance().preferences.getBoolean(SONG_RATING_PER_ITEM, true) // Finsuma: like desktop
     }
 
     @JvmStatic
