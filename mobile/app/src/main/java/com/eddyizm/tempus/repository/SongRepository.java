@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.eddyizm.tempus.App;
+import com.eddyizm.tempus.util.Preferences;
 import com.eddyizm.tempus.subsonic.base.ApiResponse;
 import com.eddyizm.tempus.subsonic.models.Child;
 import com.eddyizm.tempus.subsonic.models.SubsonicResponse;
@@ -33,13 +34,34 @@ public class SongRepository {
     // Finsuma: every song in the library, a page at a time (search3 with an empty query).
     private static final int ALL_SONGS_PAGE = 500;
 
-    public MutableLiveData<List<Child>> getAllSongs() {
-        MutableLiveData<List<Child>> all = new MutableLiveData<>();
-        loadAllSongsPage(all, new ArrayList<>(), 0);
-        return all;
+    // Finsuma: the Tracks tab keeps the whole library in memory, so reopening it is instant.
+    // The first load fills in page by page; later refreshes (after ALL_SONGS_FRESH_MS, or pull to
+    // refresh) load quietly and swap the list in once complete.
+    private static MutableLiveData<List<Child>> allSongsCache;
+    private static String allSongsServer;
+    private static long allSongsLoadedAt = 0;
+    private static boolean allSongsLoading = false;
+    private static final long ALL_SONGS_FRESH_MS = 10 * 60 * 1000;
+
+    public static void invalidateAllSongs() {
+        allSongsLoadedAt = 0;
     }
 
-    private void loadAllSongsPage(MutableLiveData<List<Child>> target, List<Child> acc, int offset) {
+    public MutableLiveData<List<Child>> getAllSongs() {
+        String server = Preferences.getInUseServerAddress();
+        if (allSongsCache == null || !java.util.Objects.equals(server, allSongsServer)) {
+            allSongsCache = new MutableLiveData<>();
+            allSongsServer = server;
+            allSongsLoading = true;
+            loadAllSongsPage(allSongsCache, new ArrayList<>(), 0, true);
+        } else if (!allSongsLoading && System.currentTimeMillis() - allSongsLoadedAt > ALL_SONGS_FRESH_MS) {
+            allSongsLoading = true;
+            loadAllSongsPage(allSongsCache, new ArrayList<>(), 0, false);
+        }
+        return allSongsCache;
+    }
+
+    private void loadAllSongsPage(MutableLiveData<List<Child>> target, List<Child> acc, int offset, boolean progressive) {
         App.getSubsonicClientInstance(false)
                 .getSearchingClient()
                 .search3("", ALL_SONGS_PAGE, offset, 0, 0, 0, 0)
@@ -52,15 +74,20 @@ public class SongRepository {
                             page = response.body().getSubsonicResponse().getSearchResult3().getSongs();
                         }
                         if (page != null) acc.addAll(page);
-                        target.setValue(new ArrayList<>(acc)); // show what we have so far
-                        if (page != null && page.size() == ALL_SONGS_PAGE) {
-                            loadAllSongsPage(target, acc, offset + ALL_SONGS_PAGE);
+                        boolean more = page != null && page.size() == ALL_SONGS_PAGE;
+                        if (progressive || !more) target.setValue(new ArrayList<>(acc));
+                        if (more) {
+                            loadAllSongsPage(target, acc, offset + ALL_SONGS_PAGE, progressive);
+                        } else {
+                            allSongsLoadedAt = System.currentTimeMillis();
+                            allSongsLoading = false;
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
-                        target.setValue(new ArrayList<>(acc));
+                        if (progressive) target.setValue(new ArrayList<>(acc));
+                        allSongsLoading = false;
                     }
                 });
     }

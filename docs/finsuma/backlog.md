@@ -21,9 +21,7 @@ Small items noted while building the main plan. Newest first.
 
 ## Android
 
-- [ ] **Tracks page: the track number seems to count up when a song is tapped.** Probably the
-  now-playing indicator in the song row (`SongHorizontalAdapter` playback state); the all-tracks
-  list also shows album track numbers, which mean little there.
+- [x] **Tracks page reloaded the whole library on every visit** (the count climbed as pages arrived). The library now stays in memory: reopening is instant, with a quiet refresh after 10 minutes or on pull to refresh.
 - [ ] **Local database cache** for the library (Tempus already uses Room): keep the Tracks list
   and home rows on the device so they open instantly and refresh in the background.
 - [ ] **Sign in to YouTube/SoundCloud from Settings**, so the in-app browsers are ready. Google

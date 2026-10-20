@@ -451,6 +451,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
     }
 
     private void pullToRefresh() {
+        com.eddyizm.tempus.repository.SongRepository.invalidateAllSongs();
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
         songListPageViewModel.getSongList().observe(lifecycleOwner, songs -> {
             isLoading = false;
