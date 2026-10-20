@@ -1028,7 +1028,9 @@ export enum SidebarItem {
     RADIO = 'Radio',
     SEARCH = 'Search',
     SETTINGS = 'Settings',
+    SOUNDCLOUD = 'SoundCloud',
     TRACKS = 'Tracks',
+    YOUTUBE = 'YouTube',
 }
 
 export type DataGridProps = {
@@ -1176,7 +1178,31 @@ export const sidebarItems: SidebarItemType[] = [
         label: i18n.t('page.sidebar.search'),
         route: generatePath(AppRoute.SEARCH, { itemType: LibraryItem.SONG }),
     },
+    {
+        disabled: false,
+        id: 'Playlists',
+        label: i18n.t('page.sidebar.playlists'),
+        route: AppRoute.PLAYLISTS,
+    },
+    {
+        disabled: false,
+        id: 'Tracks',
+        label: i18n.t('page.sidebar.tracks'),
+        route: AppRoute.LIBRARY_SONGS,
+    },
     { disabled: false, id: 'Home', label: i18n.t('page.sidebar.home'), route: AppRoute.HOME },
+    {
+        disabled: false,
+        id: 'YouTube',
+        label: i18n.t('page.sidebar.youtube'),
+        route: AppRoute.YOUTUBE,
+    },
+    {
+        disabled: false,
+        id: 'SoundCloud',
+        label: i18n.t('page.sidebar.soundcloud'),
+        route: AppRoute.SOUNDCLOUD,
+    },
     {
         disabled: false,
         id: 'Favorites',
@@ -1190,49 +1216,37 @@ export const sidebarItems: SidebarItemType[] = [
         route: AppRoute.LIBRARY_ALBUMS,
     },
     {
-        disabled: false,
-        id: 'Tracks',
-        label: i18n.t('page.sidebar.tracks'),
-        route: AppRoute.LIBRARY_SONGS,
-    },
-    {
-        disabled: false,
+        disabled: true,
         id: 'Artists',
         label: i18n.t('page.sidebar.albumArtists'),
         route: AppRoute.LIBRARY_ALBUM_ARTISTS,
     },
     {
-        disabled: false,
+        disabled: true,
         id: 'Artists-all',
         label: i18n.t('page.sidebar.artists'),
         route: AppRoute.LIBRARY_ARTISTS,
     },
     {
-        disabled: false,
+        disabled: true,
         id: 'Genres',
         label: i18n.t('page.sidebar.genres'),
         route: AppRoute.LIBRARY_GENRES,
     },
     {
-        disabled: false,
+        disabled: true,
         id: 'Folders',
         label: i18n.t('page.sidebar.folders'),
         route: AppRoute.LIBRARY_FOLDERS,
     },
     {
         disabled: true,
-        id: 'Playlists',
-        label: i18n.t('page.sidebar.playlists'),
-        route: AppRoute.PLAYLISTS,
-    },
-    {
-        disabled: false,
         id: 'Collections',
         label: i18n.t('page.sidebar.collections'),
         route: '',
     },
     {
-        disabled: false,
+        disabled: true,
         id: 'Radio',
         label: i18n.t('page.sidebar.radio'),
         route: AppRoute.RADIO,
@@ -1246,13 +1260,13 @@ export const sidebarItems: SidebarItemType[] = [
 ];
 
 const defaultHomeItemOrder: HomeItem[] = [
+    HomeItem.PLAYLISTS,
     HomeItem.GENRES,
     HomeItem.RANDOM,
     HomeItem.RECENTLY_ADDED,
     HomeItem.RECENTLY_RELEASED,
     HomeItem.RECENTLY_PLAYED,
     HomeItem.MOST_PLAYED,
-    HomeItem.PLAYLISTS,
 ];
 
 const homeItems = defaultHomeItemOrder.map((id) => ({
@@ -2933,10 +2947,62 @@ export const useSettingsStore = createWithEqualityFn<SettingsSlice>()(
                     });
                 }
 
+                if (version < 35) {
+                    const items = state.general.sidebarItems;
+                    if (!items.some((item) => item.id === 'YouTube')) {
+                        const playlistsIndex = items.findIndex((item) => item.id === 'Playlists');
+                        items.splice(playlistsIndex + 1, 0, {
+                            disabled: false,
+                            id: 'YouTube',
+                            label: i18n.t('page.sidebar.youtube'),
+                            route: AppRoute.YOUTUBE,
+                        });
+                    }
+                }
+
+                if (version < 36) {
+                    // Finsuma layout: Tracks above Home, YouTube + SoundCloud under it,
+                    // Album Artists hidden.
+                    const items = state.general.sidebarItems;
+                    if (!items.some((item) => item.id === 'SoundCloud')) {
+                        items.push({
+                            disabled: false,
+                            id: 'SoundCloud',
+                            label: i18n.t('page.sidebar.soundcloud'),
+                            route: AppRoute.SOUNDCLOUD,
+                        });
+                    }
+                    const artists = items.find((item) => item.id === 'Artists');
+                    if (artists) artists.disabled = true;
+                    const order = [
+                        'Now Playing',
+                        'Search',
+                        'Playlists',
+                        'Tracks',
+                        'Home',
+                        'YouTube',
+                        'SoundCloud',
+                        'Favorites',
+                        'Albums',
+                        'Artists',
+                        'Artists-all',
+                        'Genres',
+                        'Folders',
+                        'Collections',
+                        'Radio',
+                        'Settings',
+                    ];
+                    const rank = (id: string) => {
+                        const index = order.indexOf(id);
+                        return index === -1 ? order.length : index;
+                    };
+                    items.sort((a, b) => rank(a.id) - rank(b.id));
+                }
+
                 return persistedState;
             },
             name: 'store_settings',
-            version: 34,
+            version: 36,
         },
     ),
 );

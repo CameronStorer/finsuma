@@ -8,3 +8,5 @@ release
 .idea
 .scratch
 tsconfig.*.tsbuildinfo
+# Personal settings (service address etc.)
+.env.local

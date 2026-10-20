@@ -924,12 +924,22 @@ const PLAYLIST_LIST_FILTERS: Partial<
             name: i18n.t('filter.recentlyUpdated'),
             value: PlaylistListSort.UPDATED_AT,
         },
+        {
+            defaultOrder: SortOrder.DESC,
+            name: i18n.t('filter.rating'),
+            value: PlaylistListSort.RATING,
+        },
     ],
     [ServerType.SUBSONIC]: [
         {
             defaultOrder: SortOrder.ASC,
             name: i18n.t('filter.name'),
             value: PlaylistListSort.NAME,
+        },
+        {
+            defaultOrder: SortOrder.DESC,
+            name: i18n.t('filter.rating'),
+            value: PlaylistListSort.RATING,
         },
     ],
 };

@@ -36,6 +36,10 @@ const InvalidRoute = lazy(
     () => import('/@/renderer/features/action-required/routes/invalid-route'),
 );
 
+const SoundcloudRoute = lazy(() => import('/@/renderer/features/youtube/routes/soundcloud-route'));
+
+const YoutubeRoute = lazy(() => import('/@/renderer/features/youtube/routes/youtube-route'));
+
 const LoginRoute = lazy(() => import('/@/renderer/features/login/routes/login-route'));
 
 const NoNetworkRoute = lazy(
@@ -301,6 +305,11 @@ export const AppRouter = () => {
                                             path={AppRoute.PLAYLISTS}
                                         />
                                         <Route element={<RadioListRoute />} path={AppRoute.RADIO} />
+                                        <Route element={<YoutubeRoute />} path={AppRoute.YOUTUBE} />
+                                        <Route
+                                            element={<SoundcloudRoute />}
+                                            path={AppRoute.SOUNDCLOUD}
+                                        />
                                         <Route
                                             element={<PlaylistDetailSongListRoute />}
                                             path={AppRoute.PLAYLISTS_DETAIL_SONGS}

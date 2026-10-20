@@ -371,6 +371,7 @@ export type Playlist = {
     name: string;
     owner: null | string;
     ownerId: null | string;
+    pinned?: boolean; // Finsuma playlist prefs
     public: boolean | null;
     rules?: null | PlaylistRules;
     size: null | number;
@@ -378,6 +379,7 @@ export type Playlist = {
     sync?: boolean | null;
     thumbHash: null | string;
     uploadedImage?: string;
+    userRating?: null | number; // Finsuma playlist prefs
 };
 
 export type RelatedAlbumArtist = {
@@ -971,6 +973,7 @@ export enum PlaylistListSort {
     NAME = 'name',
     OWNER = 'owner',
     PUBLIC = 'public',
+    RATING = 'rating', // Finsuma: sorted client-side, servers can't rate playlists
     SONG_COUNT = 'songCount',
     UPDATED_AT = 'updatedAt',
 }
@@ -1271,6 +1274,7 @@ export const playlistListSortMap: PlaylistListSortMap = {
         name: JFPlaylistListSort.NAME,
         owner: undefined,
         public: undefined,
+        rating: undefined,
         songCount: JFPlaylistListSort.SONG_COUNT,
         updatedAt: undefined,
     },
@@ -1279,6 +1283,7 @@ export const playlistListSortMap: PlaylistListSortMap = {
         name: NDPlaylistListSort.NAME,
         owner: NDPlaylistListSort.OWNER,
         public: NDPlaylistListSort.PUBLIC,
+        rating: undefined,
         songCount: NDPlaylistListSort.SONG_COUNT,
         updatedAt: NDPlaylistListSort.UPDATED_AT,
     },
@@ -1287,6 +1292,7 @@ export const playlistListSortMap: PlaylistListSortMap = {
         name: undefined,
         owner: undefined,
         public: undefined,
+        rating: undefined,
         songCount: undefined,
         updatedAt: undefined,
     },

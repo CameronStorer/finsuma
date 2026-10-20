@@ -1,0 +1,35 @@
+# Finsuma server side: the YouTube/SoundCloud download service, plus (optionally) Navidrome.
+#
+#   cp .env.example .env                       # then edit it
+#   docker compose up -d                       # download service only
+#   docker compose --profile navidrome up -d   # download service + Navidrome
+#
+# Downloads go to $MUSIC_DIR/YouTube; point Navidrome at the same $MUSIC_DIR.
+
+services:
+  yt-download:
+    build: ./yt-download
+    container_name: finsuma-yt-download
+    restart: unless-stopped
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      YT_TOKEN: ${YT_TOKEN:?set YT_TOKEN in .env}
+      YT_AUTO_UPDATE: ${YT_AUTO_UPDATE:-1}
+    ports:
+      - "${YT_PORT:-3200}:3200"
+    volumes:
+      - ${MUSIC_DIR:?set MUSIC_DIR in .env}:/music
+
+  navidrome:
+    profiles: [navidrome]
+    image: deluan/navidrome:latest
+    container_name: finsuma-navidrome
+    restart: unless-stopped
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      ND_SCANSCHEDULE: 1h
+    ports:
+      - "4533:4533"
+    volumes:
+      - ./navidrome-data:/data
+      - ${MUSIC_DIR:?set MUSIC_DIR in .env}:/music:ro

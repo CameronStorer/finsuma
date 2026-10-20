@@ -21,8 +21,12 @@ import {
     RiSearchLine,
     RiSettings2Fill,
     RiSettings2Line,
+    RiSoundcloudFill,
+    RiSoundcloudLine,
     RiUserVoiceFill,
     RiUserVoiceLine,
+    RiYoutubeFill,
+    RiYoutubeLine,
 } from 'react-icons/ri';
 import { generatePath, useLocation } from 'react-router';
 
@@ -75,6 +79,12 @@ export const SidebarIcon = ({ active, route, size }: SidebarIconProps) => {
             case AppRoute.SETTINGS:
                 if (isActive) return <RiSettings2Fill size={size} />;
                 return <RiSettings2Line size={size} />;
+            case AppRoute.SOUNDCLOUD:
+                if (isActive) return <RiSoundcloudFill size={size} />;
+                return <RiSoundcloudLine size={size} />;
+            case AppRoute.YOUTUBE:
+                if (isActive) return <RiYoutubeFill size={size} />;
+                return <RiYoutubeLine size={size} />;
             case generatePath(AppRoute.SEARCH, { itemType: LibraryItem.SONG }):
                 if (isActive) return <RiSearchFill size={size} />;
                 return <RiSearchLine size={size} />;

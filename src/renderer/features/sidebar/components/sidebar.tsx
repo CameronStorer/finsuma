@@ -83,7 +83,9 @@ export const Sidebar = () => {
             Radio: t('page.sidebar.radio'),
             Search: t('page.sidebar.search'),
             Settings: t('page.sidebar.settings'),
+            SoundCloud: t('page.sidebar.soundcloud'),
             Tracks: t('page.sidebar.tracks'),
+            YouTube: t('page.sidebar.youtube'),
         }),
         [t],
     );

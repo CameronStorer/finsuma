@@ -63,6 +63,8 @@ export default defineConfig({
             '@tanstack/react-query-persist-client',
             'idb-keyval',
         ],
+        // CommonJS dep of an excluded package; must be pre-bundled or the dev page crashes.
+        include: ['@atlaskit/pragmatic-drag-and-drop > bind-event-listener'],
     },
     plugins: [
         createReactPlugin(),

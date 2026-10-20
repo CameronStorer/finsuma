@@ -58,6 +58,12 @@ export const useSetRatingMutation = (args: MutationHookArgs) => {
             return applyRatingOptimisticUpdates(queryClient, variables, variables.query.rating);
         },
         onSuccess: (_data, variables) => {
+            // Finsuma: playlist ratings live in playlist prefs; reload lists so sort/pins update.
+            if (variables.query.type === LibraryItem.PLAYLIST) {
+                queryClient.invalidateQueries({
+                    queryKey: queryKeys.playlists.root(variables.apiClientProps.serverId),
+                });
+            }
             if (
                 variables.query.type === LibraryItem.SONG ||
                 variables.query.type === LibraryItem.PLAYLIST_SONG ||

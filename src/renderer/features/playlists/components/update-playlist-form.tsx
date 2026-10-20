@@ -5,6 +5,7 @@ import { type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ItemImage } from '/@/renderer/components/item-image/item-image';
+import { GradientCoverControls } from '/@/renderer/features/playlists/components/gradient-cover-controls';
 import { useDeletePlaylistImage } from '/@/renderer/features/playlists/mutations/delete-playlist-image-mutation';
 import { useUpdatePlaylist } from '/@/renderer/features/playlists/mutations/update-playlist-mutation';
 import { useUploadPlaylistImage } from '/@/renderer/features/playlists/mutations/upload-playlist-image-mutation';
@@ -198,20 +199,34 @@ export const UpdatePlaylistContextModal = ({
         <form onSubmit={handleSubmit}>
             {isCoverImageDisplayed ? (
                 <Flex align="flex-start" gap="lg" wrap="wrap">
-                    <PlaylistCoverField
-                        hadUploadedCover={hadUploadedCover}
-                        onClearPending={() => setPendingFile(null)}
-                        onFileSelect={(file) => {
-                            if (!file) return;
-                            setRemoveCustomCover(false);
-                            setPendingFile(file);
-                        }}
-                        onToggleRemoveCover={() => setRemoveCustomCover((v) => !v)}
-                        pendingFile={pendingFile}
-                        pendingPreviewUrl={pendingPreviewUrl}
-                        playlistImage={playlistImage}
-                        removeCustomCover={removeCustomCover}
-                    />
+                    <Stack gap="xs">
+                        <PlaylistCoverField
+                            hadUploadedCover={hadUploadedCover}
+                            onClearPending={() => setPendingFile(null)}
+                            onFileSelect={(file) => {
+                                if (!file) return;
+                                setRemoveCustomCover(false);
+                                setPendingFile(file);
+                            }}
+                            onToggleRemoveCover={() => setRemoveCustomCover((v) => !v)}
+                            pendingFile={pendingFile}
+                            pendingPreviewUrl={pendingPreviewUrl}
+                            playlistImage={playlistImage}
+                            removeCustomCover={removeCustomCover}
+                        />
+                        <GradientCoverControls
+                            onGenerated={(file) => {
+                                setRemoveCustomCover(false);
+                                setPendingFile(file);
+                            }}
+                            onUseDefault={() => {
+                                setPendingFile(null);
+                                setRemoveCustomCover(true);
+                            }}
+                            playlistId={query.id}
+                            playlistName={form.values.name || body?.name || ''}
+                        />
+                    </Stack>
                     <Stack gap="md" style={{ flex: '1 1 220px', minWidth: 0 }}>
                         {fieldNodes}
                     </Stack>

@@ -599,7 +599,7 @@ const createTray = () => {
         });
     }
 
-    tray.setToolTip('Feishin');
+    tray.setToolTip('Finsuma');
     tray.setContextMenu(contextMenu);
 };
 
@@ -673,6 +673,7 @@ async function createWindow(first = true): Promise<void> {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: true,
             webSecurity: !store.get('ignore_cors'),
+            webviewTag: true,
         },
         ...(nativeFrame && isLinux() && nativeFrameConfig.linux),
         ...(nativeFrame && isMacOS() && nativeFrameConfig.macOS),
@@ -840,7 +841,7 @@ async function createWindow(first = true): Promise<void> {
     });
 
     if (isWindows()) {
-        app.setAppUserModelId('org.jeffvli.feishin');
+        app.setAppUserModelId('com.finsuma.app');
     }
 
     menuBuilder = new MenuBuilder(mainWindow, showMainWindow);
@@ -852,6 +853,96 @@ async function createWindow(first = true): Promise<void> {
             shell.openExternal(edata.url);
         }
         return { action: 'deny' };
+    });
+
+    // YouTube/SoundCloud tabs: <webview> may only show those sites (plus Google sign-in),
+    // with no Node or preload.
+    const isYoutubeTabUrl = (url: string) => {
+        try {
+            const { hostname, protocol } = new URL(url);
+            if (protocol !== 'https:') return false;
+            return ['youtube.com', 'youtu.be', 'google.com', 'soundcloud.com'].some(
+                (host) => hostname === host || hostname.endsWith(`.${host}`),
+            );
+        } catch {
+            return false;
+        }
+    };
+
+    mainWindow.webContents.on('will-attach-webview', (event, webPreferences, params) => {
+        delete webPreferences.preload;
+        webPreferences.nodeIntegration = false;
+        webPreferences.contextIsolation = true;
+        webPreferences.sandbox = true;
+        if (!isYoutubeTabUrl(params.src)) {
+            event.preventDefault();
+        }
+    });
+
+    // Look like a normal Chrome from the very first request. Setting this per page
+    // (after it starts loading) made the first request say "Electron", which bot
+    // protection (SoundCloud) flags.
+    const cleanUserAgent = (ua: string) =>
+        ua.replace(/\s(Electron|finsuma|Finsuma|feishin)\/\S+/g, '');
+    for (const partition of ['persist:youtube', 'persist:soundcloud-v2']) {
+        const siteSession = session.fromPartition(partition);
+        siteSession.setUserAgent(cleanUserAgent(siteSession.getUserAgent()));
+    }
+
+    // Sign-in popups ("Continue with Google" etc.) must open as real windows so
+    // they can report back to the page that opened them.
+    const isSignInPopupUrl = (url: string) => {
+        try {
+            const { hostname, protocol } = new URL(url);
+            if (protocol !== 'https:') return false;
+            return [
+                'accounts.google.com',
+                'api-auth.soundcloud.com',
+                'appleid.apple.com',
+                'secure.soundcloud.com',
+                'www.facebook.com',
+            ].includes(hostname);
+        } catch {
+            return false;
+        }
+    };
+
+    const signInWindowOptions: BrowserWindowConstructorOptions = {
+        autoHideMenuBar: true,
+        height: 720,
+        parent: mainWindow,
+        webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
+        width: 520,
+    };
+
+    mainWindow.webContents.on('did-attach-webview', (_event, contents) => {
+        contents.setWindowOpenHandler(({ url }) => {
+            // Sign-in flows often open a blank window first, then send it to the provider.
+            if (isSignInPopupUrl(url) || url === 'about:blank' || url === '') {
+                return { action: 'allow', overrideBrowserWindowOptions: signInWindowOptions };
+            }
+            if (isYoutubeTabUrl(url)) {
+                contents.loadURL(url);
+            } else if (validateUrl(url)) {
+                shell.openExternal(url);
+            }
+            return { action: 'deny' };
+        });
+        contents.on('did-create-window', (popup) => {
+            popup.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+            // Keep sign-in windows on sign-in pages (and the sites themselves, for the redirect back).
+            const guard = (navEvent: { preventDefault: () => void }, url: string) => {
+                if (!isSignInPopupUrl(url) && !isYoutubeTabUrl(url)) navEvent.preventDefault();
+            };
+            popup.webContents.on('will-navigate', guard);
+            popup.webContents.on('will-redirect', guard);
+        });
+        contents.on('will-navigate', (navEvent, url) => {
+            if (!isYoutubeTabUrl(url)) {
+                navEvent.preventDefault();
+                if (validateUrl(url)) shell.openExternal(url);
+            }
+        });
     });
 
     mainWindow.webContents.session.setDisplayMediaRequestHandler((_request, callback) => {
@@ -1187,7 +1278,7 @@ if (!singleInstance) {
                     responseHeaders: {
                         ...details.responseHeaders,
                         'Content-Security-Policy': [
-                            "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://umami.jeffvli.org; style-src 'self' 'unsafe-inline'; media-src 'self' http: https: data: blob:; img-src 'self' http: https: data: blob:; connect-src 'self' http: https: ws: wss:; default-src 'self';",
+                            "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://umami.jeffvli.org; style-src 'self' 'unsafe-inline'; media-src 'self' http: https: data: blob:; img-src 'self' http: https: data: blob:; connect-src 'self' http: https: ws: wss: blob: data:; default-src 'self';",
                         ],
                     },
                 });

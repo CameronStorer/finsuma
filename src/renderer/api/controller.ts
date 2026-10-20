@@ -3,12 +3,17 @@ import { JellyfinController } from '/@/renderer/api/jellyfin/jellyfin-controller
 import { NavidromeController } from '/@/renderer/api/navidrome/navidrome-controller';
 import { SubsonicController } from '/@/renderer/api/subsonic/subsonic-controller';
 import { mergeMusicFolderId } from '/@/renderer/api/utils-music-folder';
+import {
+    getPlaylistListWithPrefs,
+    setPlaylistPref,
+} from '/@/renderer/features/playlists/utils/playlist-prefs';
 import { getServerById, useAuthStore, useSettingsStore } from '/@/renderer/store';
 import { logger } from '/@/renderer/utils/logger';
 import { toast } from '/@/shared/components/toast/toast';
 import {
     ControllerEndpoint,
     InternalControllerEndpoint,
+    LibraryItem,
     ServerType,
     SetPlaylistSongsArgs,
     SetPlaylistSongsResponse,
@@ -666,10 +671,15 @@ export const controller = {
             throw new Error(`${i18n.t('error.apiRouteError')}: getPlaylistList`);
         }
 
-        return apiController(
-            'getPlaylistList',
-            server.type,
-        )?.(addContext({ ...args, apiClientProps: { ...args.apiClientProps, server } }));
+        // Finsuma: attach playlist ratings/pins, pinned first, client-side rating sort.
+        return getPlaylistListWithPrefs(args, (listArgs) =>
+            apiController(
+                'getPlaylistList',
+                server.type,
+            )?.(
+                addContext({ ...listArgs, apiClientProps: { ...listArgs.apiClientProps, server } }),
+            ),
+        );
     },
     getPlaylistListCount(args) {
         const server = getServerById(args.apiClientProps.serverId);
@@ -1030,6 +1040,13 @@ export const controller = {
 
         if (!server) {
             throw new Error(`${i18n.t('error.apiRouteError')}: setRating`);
+        }
+
+        // Finsuma: servers can't store playlist ratings, so keep them in playlist prefs.
+        if (args.query.type === LibraryItem.PLAYLIST) {
+            return Promise.all(
+                args.query.id.map((id) => setPlaylistPref(id, { rating: args.query.rating })),
+            ).then(() => null);
         }
 
         return apiController(
