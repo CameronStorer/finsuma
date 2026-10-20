@@ -104,6 +104,7 @@ public class PlayerControllerFragment extends Fragment {
     private ConstraintLayout playerQuickActionView;
     private ImageButton playerOpenQueueButton;
     private ImageButton playerOpenLyricsButton;
+    private ImageButton playerAutoDjButton;
     private ImageButton playerTrackInfo;
     private LinearLayout ratingContainer;
     private LinearLayout sleepTimerContainer;
@@ -231,6 +232,7 @@ public class PlayerControllerFragment extends Fragment {
         playerQuickActionView = bind.getRoot().findViewById(R.id.player_quick_action_view);
         playerOpenQueueButton = bind.getRoot().findViewById(R.id.player_open_queue_button);
         playerOpenLyricsButton = bind.getRoot().findViewById(R.id.player_open_lyrics_button);
+        playerAutoDjButton = bind.getRoot().findViewById(R.id.player_auto_dj_button);
         playerTrackInfo = bind.getRoot().findViewById(R.id.player_info_track);
         songRatingBar = bind.getRoot().findViewById(R.id.song_rating_bar);
         ratingContainer = bind.getRoot().findViewById(R.id.rating_container);
@@ -290,6 +292,15 @@ public class PlayerControllerFragment extends Fragment {
                 playerBottomSheetFragment.goToQueuePage();
             }
         });
+        if (playerAutoDjButton != null) {
+            updateAutoDjButtonTint();
+            playerAutoDjButton.setOnClickListener(view -> {
+                boolean enabled = !Preferences.isAutoDjEnabled();
+                Preferences.setAutoDjEnabled(enabled);
+                updateAutoDjButtonTint();
+                Toast.makeText(requireContext(), enabled ? R.string.auto_dj_on : R.string.auto_dj_off, Toast.LENGTH_SHORT).show();
+            });
+        }
         playerOpenLyricsButton.setOnClickListener(view -> {
             int currentItem = playerMediaCoverViewPager.getCurrentItem();
             if (currentItem == 0) {
@@ -862,6 +873,18 @@ public class PlayerControllerFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void updateAutoDjButtonTint() {
+        if (playerAutoDjButton == null)
+            return;
+        boolean enabled = Preferences.isAutoDjEnabled();
+        int colorAttr = enabled
+                ? com.google.android.material.R.attr.colorPrimary
+                : com.google.android.material.R.attr.colorOnSurface;
+        int color = com.google.android.material.color.MaterialColors.getColor(playerAutoDjButton, colorAttr);
+        ImageViewCompat.setImageTintList(playerAutoDjButton, ColorStateList.valueOf(color));
+        playerAutoDjButton.setAlpha(enabled ? 1f : 0.6f);
     }
 
     private void updateLyricsButtonTint(boolean isLyricsActive) {

@@ -45,4 +45,4 @@ Small items noted while building the main plan. Newest first.
   Finsuma server); Radio/Podcasts from a toolbar button; compact icon-only bar
 - [x] Desktop dark colour scheme and blue accent
 - [x] Feishin-style song menu, previous button on the mini player, ratings shown, grid views
-- [ ] **Next: queue logic and Auto DJ** like desktop (then the Auto DJ button on the player)
+- [x] Auto DJ like desktop: similar songs, then genre, artist and random; toggle on the player, options in Settings

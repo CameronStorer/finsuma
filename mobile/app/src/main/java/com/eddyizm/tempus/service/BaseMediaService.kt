@@ -397,6 +397,7 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
 
                 updateWidget(player)
                 QueuePreloader.preload(this@BaseMediaService, player)
+                AutoDj.check(this@BaseMediaService, this@BaseMediaService)
             }
 
             override fun onTimelineChanged(timeline: Timeline, reason: Int) {
@@ -409,6 +410,7 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
                 }
                 QueuePreloader.preload(this@BaseMediaService, player)
                 if (timeline.isEmpty) return
+                AutoDj.check(this@BaseMediaService, this@BaseMediaService)
                 val window = Timeline.Window()
                 for (i in 0 until timeline.windowCount) {
                     timeline.getWindow(i, window)
@@ -430,7 +432,7 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
                         ?: false
 
                     if (player.nextMediaItemIndex == C.INDEX_UNSET) {
-                        if (!handled && Preferences.isContinuousPlayEnabled()) {
+                        if (!handled && Preferences.isContinuousPlayEnabled() && !Preferences.isAutoDjEnabled()) {
                             MediaManager.continuousPlay(currentMediaItem, this@BaseMediaService)
                         }
                     }
@@ -754,6 +756,9 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
 
     // The UPnP switch is read at start and on every change, so turning it off takes effect without a restart.
     private val upnpSwitchListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == Preferences.AUTO_DJ_ENABLED && !serviceDestroyed) {
+            AutoDj.check(this, this)
+        }
         if (key == Preferences.UPNP_ENABLED) applyUpnpSwitch()
     }
 

@@ -227,6 +227,54 @@
         </PreferenceCategory>
     </com.eddyizm.tempus.util.ClickablePreferenceCategory>
 
+    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/auto_dj">
+        <SwitchPreference
+            android:title="@string/auto_dj"
+            android:defaultValue="false"
+            android:summary="@string/settings_auto_dj_enabled_summary"
+            android:key="auto_dj_enabled" />
+
+        <ListPreference
+            app:defaultValue="similar"
+            app:dialogTitle="@string/settings_auto_dj_strategy"
+            app:entries="@array/auto_dj_strategy_titles"
+            app:entryValues="@array/auto_dj_strategy_values"
+            app:key="auto_dj_strategy"
+            app:title="@string/settings_auto_dj_strategy"
+            app:useSimpleSummaryProvider="true" />
+
+        <SeekBarPreference
+            android:defaultValue="5"
+            android:key="auto_dj_item_count"
+            android:title="@string/settings_auto_dj_item_count"
+            android:max="25"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:adjustable="true" />
+
+        <SeekBarPreference
+            android:defaultValue="1"
+            android:key="auto_dj_timing"
+            android:title="@string/settings_auto_dj_timing"
+            android:summary="@string/settings_auto_dj_timing_summary"
+            android:max="10"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:adjustable="true" />
+
+        <SwitchPreference
+            android:title="@string/settings_auto_dj_only_similar"
+            android:defaultValue="false"
+            android:summary="@string/settings_auto_dj_only_similar_summary"
+            android:key="auto_dj_only_similar" />
+
+        <SwitchPreference
+            android:title="@string/settings_auto_dj_allow_duplicates"
+            android:defaultValue="false"
+            android:summary="@string/settings_auto_dj_allow_duplicates_summary"
+            android:key="auto_dj_allow_duplicates" />
+    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+
     <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_players">
         <SwitchPreference
             android:title="@string/settings_continuous_play_title"

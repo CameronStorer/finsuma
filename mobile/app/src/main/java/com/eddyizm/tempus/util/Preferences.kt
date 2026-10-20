@@ -997,6 +997,38 @@ object Preferences {
         return App.getInstance().preferences.getBoolean(LAN_REMOTE_ENABLED, false)
     }
 
+    // Finsuma Auto DJ (see service/AutoDj.kt)
+    const val AUTO_DJ_ENABLED = "auto_dj_enabled"
+
+    @JvmStatic
+    fun isAutoDjEnabled(): Boolean =
+        App.getInstance().preferences.getBoolean(AUTO_DJ_ENABLED, false)
+
+    @JvmStatic
+    fun setAutoDjEnabled(enabled: Boolean) {
+        App.getInstance().preferences.edit().putBoolean(AUTO_DJ_ENABLED, enabled).apply()
+    }
+
+    @JvmStatic
+    fun getAutoDjStrategy(): String =
+        App.getInstance().preferences.getString("auto_dj_strategy", "similar") ?: "similar"
+
+    @JvmStatic
+    fun getAutoDjItemCount(): Int =
+        App.getInstance().preferences.getInt("auto_dj_item_count", 5).coerceAtLeast(1)
+
+    @JvmStatic
+    fun getAutoDjTiming(): Int =
+        App.getInstance().preferences.getInt("auto_dj_timing", 1).coerceAtLeast(1)
+
+    @JvmStatic
+    fun isAutoDjOnlySimilar(): Boolean =
+        App.getInstance().preferences.getBoolean("auto_dj_only_similar", false)
+
+    @JvmStatic
+    fun isAutoDjAllowDuplicates(): Boolean =
+        App.getInstance().preferences.getBoolean("auto_dj_allow_duplicates", false)
+
     @JvmStatic
     fun isContinuousPlayEnabled(): Boolean {
         return App.getInstance().preferences.getBoolean(CONTINUOUS_PLAY, true)

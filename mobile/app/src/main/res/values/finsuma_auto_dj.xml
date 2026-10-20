@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auto_dj">Auto DJ</string>
+    <string name="auto_dj_on">Auto DJ on: similar songs are added before the queue runs out</string>
+    <string name="auto_dj_off">Auto DJ off</string>
+    <plurals name="auto_dj_added">
+        <item quantity="one">Auto DJ added %d song</item>
+        <item quantity="other">Auto DJ added %d songs</item>
+    </plurals>
+    <string name="settings_auto_dj_enabled_summary">Keep the queue going with songs like the one playing. Replaces continuous play while on. Also on the player screen.</string>
+    <string name="settings_auto_dj_strategy">Pick songs from</string>
+    <string name="settings_auto_dj_item_count">Songs to add each time</string>
+    <string name="settings_auto_dj_timing">Add when this many songs are left</string>
+    <string name="settings_auto_dj_timing_summary">1 means while the last song plays</string>
+    <string name="settings_auto_dj_only_similar">Only similar songs</string>
+    <string name="settings_auto_dj_only_similar_summary">Stop at the first source that finds songs instead of filling up with genre, artist and random songs</string>
+    <string name="settings_auto_dj_allow_duplicates">Allow repeats</string>
+    <string name="settings_auto_dj_allow_duplicates_summary">Add songs that are already in the queue</string>
+    <string-array name="auto_dj_strategy_titles">
+        <item>Similar songs, then genre, artist and random</item>
+        <item>Random songs from the library</item>
+    </string-array>
+    <string-array name="auto_dj_strategy_values" translatable="false">
+        <item>similar</item>
+        <item>library_random</item>
+    </string-array>
+</resources>
