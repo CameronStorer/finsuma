@@ -23,6 +23,10 @@ Small items noted while building the main plan. Newest first.
 
 ## Android
 
+- [ ] **Playlist cover choices on Android** (gradient + initials, top artist, top song, pick a
+  song, default), like desktop: port the gradient generator to Android and upload through the
+  same Navidrome playlist image API.
+- [ ] **Faster cold start.** The app does a lot on the main thread before the first screen.
 - [ ] **Download manager (opt-in only).** Finsuma stays cloud-first: nothing downloads to the
   phone automatically. Let the user pick playlists/albums to keep offline, download them in the
   background with progress, and manage/remove them in one place.
