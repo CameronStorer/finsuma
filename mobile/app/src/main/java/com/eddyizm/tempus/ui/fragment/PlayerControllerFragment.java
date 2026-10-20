@@ -157,6 +157,7 @@ public class PlayerControllerFragment extends Fragment {
         super.onStart();
         initializeBrowser();
         bindMediaController();
+        updateAutoDjButtonTint(); // may have changed in Settings
     }
 
     @Override
