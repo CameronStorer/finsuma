@@ -19,16 +19,19 @@ import com.eddyizm.tempus.repository.AlbumRepository;
 import com.eddyizm.tempus.repository.ArtistRepository;
 import com.eddyizm.tempus.repository.ChronologyRepository;
 import com.eddyizm.tempus.repository.FavoriteRepository;
+import com.eddyizm.tempus.repository.GenreRepository;
 import com.eddyizm.tempus.repository.PlaylistRepository;
 import com.eddyizm.tempus.repository.SharingRepository;
 import com.eddyizm.tempus.repository.SongRepository;
 import com.eddyizm.tempus.subsonic.models.AlbumID3;
+import com.eddyizm.tempus.subsonic.models.Genre;
 import com.eddyizm.tempus.subsonic.models.ArtistID3;
 import com.eddyizm.tempus.subsonic.models.Child;
 import com.eddyizm.tempus.subsonic.models.Playlist;
 import com.eddyizm.tempus.subsonic.models.Share;
 import com.eddyizm.tempus.util.Constants;
 import com.eddyizm.tempus.util.Constants.SeedType;
+import com.eddyizm.tempus.util.HomeSectorDefaults;
 import com.eddyizm.tempus.util.Preferences;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -67,6 +70,11 @@ public class HomeViewModel extends AndroidViewModel {
     private final MutableLiveData<List<AlbumID3>> recentlyPlayedAlbumSample = new MutableLiveData<>(null);
     private final MutableLiveData<List<Integer>> years = new MutableLiveData<>(null);
     private final MutableLiveData<List<AlbumID3>> recentlyAddedAlbumSample = new MutableLiveData<>(null);
+    // Finsuma home sections
+    private final GenreRepository genreRepository = new GenreRepository();
+    private final MutableLiveData<List<Playlist>> allPlaylists = new MutableLiveData<>(null);
+    private final MutableLiveData<List<Genre>> genreSample = new MutableLiveData<>(null);
+    private final MutableLiveData<List<AlbumID3>> randomAlbumSample = new MutableLiveData<>(null);
 
     private final MutableLiveData<List<Chronology>> thisGridTopSong = new MutableLiveData<>(null);
     private final MutableLiveData<List<Child>> mediaInstantMix = new MutableLiveData<>(null);
@@ -222,6 +230,39 @@ public class HomeViewModel extends AndroidViewModel {
         }
 
         return mostPlayedAlbumSample;
+    }
+
+    public LiveData<List<Playlist>> getAllPlaylists(LifecycleOwner owner) {
+        if (allPlaylists.getValue() == null) refreshAllPlaylists(owner);
+        return allPlaylists;
+    }
+
+    public void refreshAllPlaylists(LifecycleOwner owner) {
+        playlistRepository.getPlaylists(false, -1).observe(owner, playlists -> {
+            if (playlists == null) return;
+            List<Playlist> sorted = new ArrayList<>(playlists);
+            sorted.sort((a, b) -> String.CASE_INSENSITIVE_ORDER.compare(
+                    a.getName() == null ? "" : a.getName(), b.getName() == null ? "" : b.getName()));
+            allPlaylists.setValue(sorted);
+        });
+    }
+
+    public LiveData<List<Genre>> getGenreSample(LifecycleOwner owner) {
+        if (genreSample.getValue() == null) refreshGenreSample(owner);
+        return genreSample;
+    }
+
+    public void refreshGenreSample(LifecycleOwner owner) {
+        genreRepository.getGenres(true, 20).observe(owner, setIfCurrentGeneration(genreSample));
+    }
+
+    public LiveData<List<AlbumID3>> getRandomAlbumSample(LifecycleOwner owner) {
+        if (randomAlbumSample.getValue() == null) refreshRandomAlbumSample(owner);
+        return randomAlbumSample;
+    }
+
+    public void refreshRandomAlbumSample(LifecycleOwner owner) {
+        albumRepository.getAlbums("random", 20, null, null).observe(owner, setIfCurrentGeneration(randomAlbumSample));
     }
 
     public LiveData<List<AlbumID3>> getMostRecentlyAddedAlbums(LifecycleOwner owner) {
@@ -446,11 +487,14 @@ public class HomeViewModel extends AndroidViewModel {
                     new TypeToken<List<HomeSector>>() {
                     }.getType()
             );
-            // Migrate saved layouts that predate the Continue listening sector.
-            if (sectors != null && sectors.stream().noneMatch(s -> Constants.HOME_SECTOR_CONTINUE_LISTENING.equals(s.getId()))) {
-                sectors.add(new HomeSector(Constants.HOME_SECTOR_CONTINUE_LISTENING, getApplication().getString(R.string.home_title_continue_listening), true, 2));
+            // Saved layouts from before a section existed get it appended (hidden).
+            if (sectors != null && HomeSectorDefaults.addMissing(getApplication(), sectors)) {
                 Preferences.setHomeSectorList(sectors);
             }
+        }
+        if (sectors == null) {
+            // Fresh install: Finsuma's layout instead of Tempus's raw layout order.
+            sectors = HomeSectorDefaults.build(getApplication());
         }
     }
 

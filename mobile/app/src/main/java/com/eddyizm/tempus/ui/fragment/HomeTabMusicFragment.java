@@ -48,6 +48,8 @@ import com.eddyizm.tempus.subsonic.models.Child;
 import com.eddyizm.tempus.subsonic.models.Share;
 import com.eddyizm.tempus.ui.activity.MainActivity;
 import com.eddyizm.tempus.ui.adapter.AlbumAdapter;
+import com.eddyizm.tempus.ui.adapter.GenreAdapter;
+import com.eddyizm.tempus.ui.adapter.PlaylistCardAdapter;
 import com.eddyizm.tempus.ui.adapter.AlbumHorizontalAdapter;
 import com.eddyizm.tempus.ui.adapter.ArtistAdapter;
 import com.eddyizm.tempus.ui.adapter.ArtistHorizontalAdapter;
@@ -148,6 +150,9 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
         initRecentAddedAlbumView();
         initTopSongsView();
         initPinnedPlaylistsView();
+        initFinsumaPlaylistsView();
+        initFinsumaGenresView();
+        initFinsumaRandomAlbumsView();
         initSharesView();
         initHomeReorganizer();
         initMusicFolderChangeListener();
@@ -1092,6 +1097,75 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
         recentAddedAlbumSnapHelper.attachToRecyclerView(bind.recentlyAddedAlbumsRecyclerView);
     }
 
+    // ---------------------------------------------------------------- Finsuma home sections
+
+    private void initFinsumaPlaylistsView() {
+        if (homeViewModel.checkHomeSectorVisibility(Constants.HOME_SECTOR_PLAYLISTS)) return;
+
+        bind.homePlaylistsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        bind.homePlaylistsRecyclerView.setHasFixedSize(true);
+
+        PlaylistCardAdapter adapter = new PlaylistCardAdapter(this);
+        bind.homePlaylistsRecyclerView.setAdapter(adapter);
+        homeViewModel.getAllPlaylists(getViewLifecycleOwner()).observe(getViewLifecycleOwner(), playlists -> {
+            if (bind == null) return;
+            bind.homePlaylistsSector.setVisibility(playlists != null && !playlists.isEmpty() ? View.VISIBLE : View.GONE);
+            if (playlists != null) adapter.setItems(playlists);
+        });
+
+        bind.homePlaylistsSectorTitle.setOnLongClickListener(v -> {
+            homeViewModel.refreshAllPlaylists(getViewLifecycleOwner());
+            return true;
+        });
+        bind.homePlaylistsSeeAll.setOnClickListener(v ->
+                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_playlistCatalogueFragment));
+
+        new CustomLinearSnapHelper().attachToRecyclerView(bind.homePlaylistsRecyclerView);
+    }
+
+    private void initFinsumaGenresView() {
+        if (homeViewModel.checkHomeSectorVisibility(Constants.HOME_SECTOR_GENRES)) return;
+
+        bind.homeGenresRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false));
+        bind.homeGenresRecyclerView.setHasFixedSize(true);
+
+        GenreAdapter adapter = new GenreAdapter(this);
+        bind.homeGenresRecyclerView.setAdapter(adapter);
+        homeViewModel.getGenreSample(getViewLifecycleOwner()).observe(getViewLifecycleOwner(), genres -> {
+            if (bind == null) return;
+            bind.homeGenresSector.setVisibility(genres != null && !genres.isEmpty() ? View.VISIBLE : View.GONE);
+            if (genres != null) adapter.setItems(genres);
+        });
+
+        bind.homeGenresSectorTitle.setOnLongClickListener(v -> {
+            homeViewModel.refreshGenreSample(getViewLifecycleOwner());
+            return true;
+        });
+    }
+
+    private void initFinsumaRandomAlbumsView() {
+        if (homeViewModel.checkHomeSectorVisibility(Constants.HOME_SECTOR_RANDOM_ALBUMS)) return;
+
+        bind.homeRandomAlbumsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        bind.homeRandomAlbumsRecyclerView.setHasFixedSize(true);
+
+        AlbumAdapter adapter = new AlbumAdapter(this);
+        bind.homeRandomAlbumsRecyclerView.setAdapter(adapter);
+        homeViewModel.getRandomAlbumSample(getViewLifecycleOwner()).observe(getViewLifecycleOwner(), albums -> {
+            if (bind == null) return;
+            bind.homeRandomAlbumsSector.setVisibility(albums != null && !albums.isEmpty() ? View.VISIBLE : View.GONE);
+            if (albums != null) adapter.setItems(albums);
+        });
+
+        // Long-press the title for a new random set, like Discovery.
+        bind.homeRandomAlbumsSectorTitle.setOnLongClickListener(v -> {
+            homeViewModel.refreshRandomAlbumSample(getViewLifecycleOwner());
+            return true;
+        });
+
+        new CustomLinearSnapHelper().attachToRecyclerView(bind.homeRandomAlbumsRecyclerView);
+    }
+
     private void initPinnedPlaylistsView() {
         if (homeViewModel.checkHomeSectorVisibility(Constants.HOME_SECTOR_PINNED_PLAYLISTS)) return;
 
@@ -1274,6 +1348,15 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
             switch (sector.getId()) {
                 case Constants.HOME_SECTOR_DISCOVERY:
                     desired.add(bind.homeDiscoverSector);
+                    break;
+                case Constants.HOME_SECTOR_PLAYLISTS:
+                    desired.add(bind.homePlaylistsSector);
+                    break;
+                case Constants.HOME_SECTOR_GENRES:
+                    desired.add(bind.homeGenresSector);
+                    break;
+                case Constants.HOME_SECTOR_RANDOM_ALBUMS:
+                    desired.add(bind.homeRandomAlbumsSector);
                     break;
                 case Constants.HOME_SECTOR_CONTINUE_LISTENING:
                     desired.add(bind.homeContinueListeningSector);
@@ -1467,6 +1550,11 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
         Share share = bundle.getParcelable(Constants.SHARE_OBJECT);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(share.getUrl())).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void onGenreClick(Bundle bundle) {
+        Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_songListPageFragment, bundle);
     }
 
     @Override

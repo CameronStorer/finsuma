@@ -218,7 +218,10 @@
     <string name="home_title_most_played_see_all_button">See all</string>
     <string name="home_title_new_releases">New releases</string>
     <string name="home_title_newest_podcasts">Newest podcasts</string>
-    <string name="home_title_pinned_playlists">Playlists</string>
+    <string name="home_title_pinned_playlists">Pinned playlists</string>
+    <string name="home_title_playlists">Playlists</string>
+    <string name="home_title_genres">Genres</string>
+    <string name="home_title_random_albums">Random albums</string>
     <string name="home_title_podcast_channels">Channels</string>
     <string name="home_title_podcast_channels_see_all_button">See all</string>
     <string name="home_title_radio_station">Radio stations</string>
@@ -926,4 +929,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <plurals name="finsuma_song_count">
+        <item quantity="one">%d song</item>
+        <item quantity="other">%d songs</item>
+    </plurals>
 </resources>
