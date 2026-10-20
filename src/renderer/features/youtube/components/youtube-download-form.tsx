@@ -7,6 +7,7 @@ import {
     getYoutubeConfig,
     guessMode,
     hasPlaylistParam,
+    hasServerLogin,
     isSupportedUrl,
     saveYoutubeConfig,
     youtubeApi,
@@ -32,7 +33,9 @@ export const YoutubeDownloadForm = ({ onQueued }: YoutubeDownloadFormProps) => {
     const [url, setUrl] = useState('');
     const [mode, setMode] = useState<YoutubeMode>('single');
     const [submitting, setSubmitting] = useState(false);
-    const [needsToken, setNeedsToken] = useState(() => !getYoutubeConfig().token);
+    const [needsToken, setNeedsToken] = useState(
+        () => !getYoutubeConfig().token && !hasServerLogin(),
+    );
 
     const trimmed = url.trim();
     const valid = isSupportedUrl(trimmed);

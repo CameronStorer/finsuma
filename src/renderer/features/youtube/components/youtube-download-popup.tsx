@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import {
     getDownloadTarget,
     getYoutubeConfig,
+    hasServerLogin,
     isSoundcloudUrl,
     youtubeApi,
     YoutubeMode,
@@ -26,7 +27,9 @@ const YoutubeDownloadPopup = ({ url }: { url: string }) => {
     const queryClient = useQueryClient();
     const target = getDownloadTarget(url);
     const singleLabel = isSoundcloudUrl(url) ? 'Track' : 'Video';
-    const [hasToken, setHasToken] = useState(() => Boolean(getYoutubeConfig().token));
+    const [hasToken, setHasToken] = useState(
+        () => Boolean(getYoutubeConfig().token) || hasServerLogin(),
+    );
     const [mode, setMode] = useState<YoutubeMode>(
         target.isPlaylistPage || !target.hasVideo ? 'playlist' : 'single',
     );

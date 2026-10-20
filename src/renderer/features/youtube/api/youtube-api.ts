@@ -122,14 +122,22 @@ const resolveServiceUrl = async () => {
     );
 };
 
+// The music server sign-in ("u=..&s=..&t=.."); the Finsuma server checks it with Navidrome,
+// so no download token is needed.
+const subsonicAuth = () => useAuthStore.getState().currentServer?.credential || '';
+
+export const hasServerLogin = () => Boolean(subsonicAuth());
+
 const request = async <T>(path: string, init?: RequestInit): Promise<T> => {
     const { token } = getYoutubeConfig();
+    const authHeaders: Record<string, string> = { 'X-Subsonic-Auth': subsonicAuth() };
+    if (token) authHeaders['X-Token'] = token;
     const url = await resolveServiceUrl();
     let res: Response;
     try {
         res = await fetch(`${url}${path}`, {
             ...init,
-            headers: { 'Content-Type': 'application/json', 'X-Token': token, ...init?.headers },
+            headers: { 'Content-Type': 'application/json', ...authHeaders, ...init?.headers },
         });
     } catch {
         resolvedServiceUrl = null; // try the candidates again next time
@@ -137,7 +145,11 @@ const request = async <T>(path: string, init?: RequestInit): Promise<T> => {
     }
     const body = await res.json().catch(() => ({}));
     if (!res.ok) {
-        if (res.status === 401) throw new Error('Wrong download token. Check YouTube settings.');
+        if (res.status === 401) {
+            throw new Error(
+                "The download service didn't accept your sign-in. Enter its token in YouTube settings.",
+            );
+        }
         throw new Error(body.error || `Download service error (${res.status})`);
     }
     return body as T;
