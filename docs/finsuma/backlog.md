@@ -14,9 +14,19 @@ Small items noted while building the main plan. Newest first.
   like ratings and pins (`src/renderer/features/playlists/utils/playlist-prefs.ts` and the
   server's `/prefs`).
 
-## Android (main plan)
+## Android
 
-- [x] Home layout like desktop (Discovery, Playlists, Genres, Random albums, Recently added,
-  New releases, Recently played, Most played)
-- [ ] Navigation trimmed to Home, Playlists, Library (tracks/artists with sort, filter, search)
+- [ ] **Settings parity with desktop, where reasonable.** Bring over the desktop settings that
+  make sense on a phone (playback/Auto DJ options, home sections, playlist behaviour, theme) and
+  leave out desktop-only ones (window, MPV, global shortcuts, Discord).
+- [ ] Download screen: show cover/artist/title preview and allow editing, like desktop.
+- [ ] Show Finsuma playlist ratings, pins and favorites (from the Finsuma server's `/prefs`).
+
+### Main plan
+
+- [x] Home layout like desktop (Discovery, shuffled Playlists, Genres, Random albums, Recently
+  added, New releases, Recently played, Most played); pull to refresh
+- [x] Navigation: Home, Playlists, Tracks, Download (YouTube/SoundCloud in-app, saves to the
+  Finsuma server); Radio/Podcasts from a toolbar button; compact icon-only bar
+- [x] Desktop dark colour scheme and blue accent
 - [ ] Player logic parity with desktop (Auto DJ, queue behaviour)

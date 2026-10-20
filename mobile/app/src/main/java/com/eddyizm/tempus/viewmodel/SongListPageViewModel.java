@@ -65,6 +65,9 @@ public class SongListPageViewModel extends AndroidViewModel {
             case Constants.MEDIA_STARRED:
                 songList = songRepository.getStarredSongs(false, -1);
                 break;
+            case Constants.MEDIA_ALL_SONGS:
+                songList = songRepository.getAllSongs();
+                break;
         }
 
         return songList;

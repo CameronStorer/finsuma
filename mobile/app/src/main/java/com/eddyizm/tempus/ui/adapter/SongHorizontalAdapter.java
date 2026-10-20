@@ -406,6 +406,25 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
             case Constants.MEDIA_LEAST_RECENTLY_STARRED:
                 sortedList.sort(Comparator.comparing(Child::getStarred, Comparator.nullsLast(Comparator.naturalOrder())));
                 break;
+            case Constants.SORT_SONG_ARTIST:
+                sortedList.sort(Comparator.comparing(Child::getArtist, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                        .thenComparing(Child::getAlbum, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
+                break;
+            case Constants.SORT_SONG_ALBUM:
+                sortedList.sort(Comparator.comparing(Child::getAlbum, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
+                break;
+            case Constants.SORT_SONG_YEAR:
+                sortedList.sort(Comparator.comparing(Child::getYear, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
+            case Constants.SORT_SONG_RECENTLY_ADDED:
+                sortedList.sort(Comparator.comparing(Child::getCreated, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
+            case Constants.SORT_SONG_MOST_PLAYED:
+                sortedList.sort(Comparator.comparing(Child::getPlayCount, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
+            case Constants.SORT_SONG_RATING:
+                sortedList.sort(Comparator.comparing(Child::getUserRating, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
         }
 
         differ.submitList(sortedList);

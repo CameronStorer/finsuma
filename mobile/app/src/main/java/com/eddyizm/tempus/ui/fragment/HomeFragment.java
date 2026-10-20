@@ -5,7 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
+
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuProvider;
+import androidx.lifecycle.Lifecycle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.media3.common.util.UnstableApi;
@@ -35,6 +42,37 @@ public class HomeFragment extends Fragment {
     private MaterialToolbar materialToolbar;
     private AppBarLayout appBarLayout;
     private TabLayout tabLayout;
+    private int radioPage = -1;
+    private int podcastPage = -1;
+
+    /** Toolbar button (next to search) that switches the home page between Music, Radio and Podcasts. */
+    private void addBrowseMenu() {
+        requireActivity().addMenuProvider(new MenuProvider() {
+            @Override
+            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+                MenuItem item = menu.add(Menu.NONE, R.id.finsuma_browse_menu, Menu.NONE, R.string.finsuma_browse);
+                item.setIcon(R.drawable.ic_finsuma_radio);
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            }
+
+            @Override
+            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() != R.id.finsuma_browse_menu) return false;
+                View anchor = requireActivity().findViewById(R.id.finsuma_browse_menu);
+                PopupMenu popup = new PopupMenu(requireContext(), anchor != null ? anchor : bind.getRoot());
+                popup.getMenu().add(Menu.NONE, 0, 0, R.string.finsuma_browse_music);
+                popup.getMenu().add(Menu.NONE, 1, 1, R.string.finsuma_browse_radio);
+                if (podcastPage >= 0) popup.getMenu().add(Menu.NONE, 2, 2, R.string.finsuma_browse_podcasts);
+                popup.setOnMenuItemClickListener(choice -> {
+                    int page = choice.getItemId() == 1 ? radioPage : choice.getItemId() == 2 ? podcastPage : 0;
+                    if (bind != null && page >= 0) bind.homeViewPager.setCurrentItem(page, false);
+                    return true;
+                });
+                popup.show();
+                return true;
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+    }
 
     @Nullable
     @Override
@@ -86,13 +124,16 @@ public class HomeFragment extends Fragment {
     private void initHomePager() {
         HomePager pager = new HomePager(this);
 
+        // Finsuma: Music is the home page; Radio (and Podcasts, if enabled) open from the toolbar
+        // button instead of a tab bar.
         pager.addFragment(new HomeTabMusicFragment(), getString(R.string.home_section_music), R.drawable.ic_home);
-
-        if (Preferences.isPodcastSectionVisible())
+        radioPage = pager.getItemCount();
+        pager.addFragment(new HomeTabRadioFragment(), getString(R.string.home_section_radio), R.drawable.ic_play_for_work);
+        podcastPage = -1;
+        if (Preferences.isPodcastSectionVisible()) {
+            podcastPage = pager.getItemCount();
             pager.addFragment(new HomeTabPodcastFragment(), getString(R.string.home_section_podcast), R.drawable.ic_graphic_eq);
-
-        if (Preferences.isRadioSectionVisible())
-            pager.addFragment(new HomeTabRadioFragment(), getString(R.string.home_section_radio), R.drawable.ic_play_for_work);
+        }
 
         bind.homeViewPager.setAdapter(pager);
         bind.homeViewPager.setOffscreenPageLimit(3);
@@ -105,7 +146,8 @@ public class HomeFragment extends Fragment {
                 }
         ).attach();
 
-        tabLayout.setVisibility(Preferences.isPodcastSectionVisible() || Preferences.isRadioSectionVisible() ? View.VISIBLE : View.GONE);
+        tabLayout.setVisibility(View.GONE);
+        addBrowseMenu();
 
         bind.homeViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

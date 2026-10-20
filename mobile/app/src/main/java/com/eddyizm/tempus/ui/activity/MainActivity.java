@@ -432,7 +432,7 @@ public class MainActivity extends BaseActivity {
 
         if (!isLandscape) {
             // Show app navbar + show system bars
-            bottomSheetController.setPeekHeight(136, displayDensity);
+            bottomSheetController.setPeekHeight(112, displayDensity); // Finsuma: 56dp player + 56dp bar
             navigationController.setNavbarVisibility(true);
             navigationController.setSystemBarsVisibility(this, true);
         } else {

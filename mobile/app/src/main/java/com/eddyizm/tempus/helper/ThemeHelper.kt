@@ -149,6 +149,10 @@ object ThemeHelper {
             activity.theme.applyStyle(R.style.AppTheme_Amoled_SurfacesOnly, true)
             activity.window.setBackgroundDrawable(Color.BLACK.toDrawable())
         } else {
+            // Finsuma: dark mode uses the desktop app's near-black surfaces.
+            if (theme == DARK_MODE || isSystemDark) {
+                activity.theme.applyStyle(R.style.AppTheme_Finsuma_DarkSurfaces, true)
+            }
             val typedValue = TypedValue()
             activity.theme.resolveAttribute(com.google.android.material.R.attr.colorSurface, typedValue, true)
             activity.window.setBackgroundDrawable(typedValue.data.toDrawable())

@@ -48,7 +48,7 @@
             android:key="always_on_display" />
 
         <ListPreference
-            app:defaultValue="2"
+            app:defaultValue="3"
             app:dialogTitle="@string/settings_tile_size"
             app:entries="@array/tile_size_titles"
             app:entryValues="@array/tile_size_divisor"

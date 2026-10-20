@@ -39,6 +39,10 @@
             android:paddingEnd="24dp"
             android:elevation="0dp"
             android:background="?attr/colorSurface"
+            android:minHeight="@dimen/finsuma_bottom_nav_height"
+            app:itemPaddingTop="8dp"
+            app:itemPaddingBottom="8dp"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />
 
         <TextView

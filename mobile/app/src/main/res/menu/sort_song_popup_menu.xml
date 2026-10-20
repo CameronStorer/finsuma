@@ -9,4 +9,22 @@
     <item
         android:id="@+id/menu_song_sort_least_recently_starred"
         android:title="@string/menu_sort_least_recently_starred" />
+    <item
+        android:id="@+id/menu_song_sort_artist"
+        android:title="@string/finsuma_sort_artist" />
+    <item
+        android:id="@+id/menu_song_sort_album"
+        android:title="@string/finsuma_sort_album" />
+    <item
+        android:id="@+id/menu_song_sort_year"
+        android:title="@string/finsuma_sort_year" />
+    <item
+        android:id="@+id/menu_song_sort_recently_added"
+        android:title="@string/finsuma_sort_recently_added" />
+    <item
+        android:id="@+id/menu_song_sort_most_played"
+        android:title="@string/finsuma_sort_most_played" />
+    <item
+        android:id="@+id/menu_song_sort_rating"
+        android:title="@string/finsuma_sort_rating" />
 </menu>

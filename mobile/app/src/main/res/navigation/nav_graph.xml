@@ -224,6 +224,11 @@
             android:name="playlist_all"
             app:argType="string"
             android:defaultValue="ALL" />
+        <!-- Finsuma: opened from the bottom bar (true) or from a "See all" link (false) -->
+        <argument
+            android:name="finsuma_tab"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
 
     <fragment
@@ -252,6 +257,28 @@
         android:name="com.eddyizm.tempus.ui.fragment.SongListPageFragment"
         android:label="SongListPageFragment"
         tools:layout="@layout/fragment_song_list_page" />
+    <!-- Finsuma: all tracks (bottom bar), same screen as other song lists -->
+    <fragment
+        android:id="@+id/tracksFragment"
+        android:name="com.eddyizm.tempus.ui.fragment.SongListPageFragment"
+        android:label="TracksFragment"
+        tools:layout="@layout/fragment_song_list_page">
+        <argument
+            android:name="MEDIA_ALL_SONGS"
+            app:argType="string"
+            android:defaultValue="MEDIA_ALL_SONGS" />
+    </fragment>
+    <!-- Finsuma: YouTube / SoundCloud in a WebView with a download button -->
+    <fragment
+        android:id="@+id/finsumaWebFragment"
+        android:name="com.eddyizm.tempus.ui.fragment.FinsumaWebFragment"
+        android:label="FinsumaWebFragment"
+        tools:layout="@layout/fragment_finsuma_web">
+        <argument
+            android:name="finsuma_site_url"
+            app:argType="string"
+            android:defaultValue="https://m.youtube.com/" />
+    </fragment>
     <fragment
         android:id="@+id/albumListPageFragment"
         android:name="com.eddyizm.tempus.ui.fragment.AlbumListPageFragment"

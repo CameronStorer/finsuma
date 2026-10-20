@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/discover_song_cover_image_view"
         android:layout_width="344dp"
-        android:layout_height="172dp"
+        android:layout_height="140dp"
         android:scaleType="centerCrop"
         android:pivotX="50%"
         android:pivotY="50%"

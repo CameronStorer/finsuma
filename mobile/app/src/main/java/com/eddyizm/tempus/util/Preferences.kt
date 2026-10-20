@@ -1153,8 +1153,16 @@ object Preferences {
 
     @JvmStatic
     fun getTileSize(): Int {
-        val parsed = App.getInstance().preferences.getString(TILE_SIZE, "2")?.toIntOrNull()
-        return parsed?.takeIf { it in 2..6 } ?: 2
+        // Finsuma: default "Large" (3) so more of the home page fits on screen. Installs that
+        // stored Tempus's old default (2) before the user ever chose a size move to 3 once.
+        val prefs = App.getInstance().preferences
+        if (!prefs.getBoolean("finsuma_tile_default_v1", false)) {
+            val edit = prefs.edit().putBoolean("finsuma_tile_default_v1", true)
+            if (prefs.getString(TILE_SIZE, "2") == "2") edit.putString(TILE_SIZE, "3")
+            edit.apply()
+        }
+        val parsed = prefs.getString(TILE_SIZE, "3")?.toIntOrNull()
+        return parsed?.takeIf { it in 2..6 } ?: 3
     }
 
     @JvmStatic
@@ -1264,7 +1272,7 @@ object Preferences {
 
     @JvmStatic
     fun isDynamicColorAccent(): Boolean {
-        return App.getInstance().preferences.getBoolean(DYNAMIC_COLOR_ACCENT, true)
+        return App.getInstance().preferences.getBoolean(DYNAMIC_COLOR_ACCENT, false) // Finsuma: desktop blue
     }
 
     @JvmStatic
@@ -1284,7 +1292,8 @@ object Preferences {
 
     @JvmStatic
     fun getColorAccent(): String {
-        return App.getInstance().preferences.getString(COLOR_ACCENT, "DYNAMIC") ?: "DYNAMIC"
+        // Finsuma: default accent is the desktop app's blue.
+        return App.getInstance().preferences.getString(COLOR_ACCENT, "HEX:#3574FC") ?: "HEX:#3574FC"
     }
 
     @JvmStatic

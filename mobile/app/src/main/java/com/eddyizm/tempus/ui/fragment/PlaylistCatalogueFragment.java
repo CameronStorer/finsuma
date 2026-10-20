@@ -84,8 +84,10 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
         activity.setSupportActionBar(bind.toolbar);
 
         if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+            // Finsuma: no back arrow when this is the bottom-bar Playlists tab.
+            boolean isTab = getArguments() != null && getArguments().getBoolean("finsuma_tab", false);
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(!isTab);
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(!isTab);
         }
 
         bind.toolbar.setNavigationOnClickListener(v -> {

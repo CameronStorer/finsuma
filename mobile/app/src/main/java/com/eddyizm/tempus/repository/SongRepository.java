@@ -30,6 +30,41 @@ public class SongRepository {
         void onSongsAvailable(List<Child> songs);
     }
 
+    // Finsuma: every song in the library, a page at a time (search3 with an empty query).
+    private static final int ALL_SONGS_PAGE = 500;
+
+    public MutableLiveData<List<Child>> getAllSongs() {
+        MutableLiveData<List<Child>> all = new MutableLiveData<>();
+        loadAllSongsPage(all, new ArrayList<>(), 0);
+        return all;
+    }
+
+    private void loadAllSongsPage(MutableLiveData<List<Child>> target, List<Child> acc, int offset) {
+        App.getSubsonicClientInstance(false)
+                .getSearchingClient()
+                .search3("", ALL_SONGS_PAGE, offset, 0, 0, 0, 0)
+                .enqueue(new Callback<ApiResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ApiResponse> call, @NonNull Response<ApiResponse> response) {
+                        List<Child> page = null;
+                        if (response.isSuccessful() && response.body() != null
+                                && response.body().getSubsonicResponse().getSearchResult3() != null) {
+                            page = response.body().getSubsonicResponse().getSearchResult3().getSongs();
+                        }
+                        if (page != null) acc.addAll(page);
+                        target.setValue(new ArrayList<>(acc)); // show what we have so far
+                        if (page != null && page.size() == ALL_SONGS_PAGE) {
+                            loadAllSongsPage(target, acc, offset + ALL_SONGS_PAGE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
+                        target.setValue(new ArrayList<>(acc));
+                    }
+                });
+    }
+
     public MutableLiveData<List<Child>> getStarredSongs(boolean random, int size) {
         MutableLiveData<List<Child>> starredSongs = new MutableLiveData<>(Collections.emptyList());
 

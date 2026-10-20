@@ -168,7 +168,8 @@ public class TileSizeManager {
         }
 
         discoverWidthPx = Math.round(Math.min(screenWidth, screenHeight) / discoverDivisor) - 50;
-        discoverHeightPx = Math.round((float)discoverWidthPx * 0.6f);
+        // Finsuma: a shorter Discovery card so the next rows peek onto the screen.
+        discoverHeightPx = Math.round((float)discoverWidthPx * 0.45f);
         discoverIsInitialized = true;
     }
 }

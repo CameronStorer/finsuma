@@ -21,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.eddyizm.tempus.R;
+import com.eddyizm.tempus.util.FinsumaService;
 import com.eddyizm.tempus.util.Preferences;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -73,6 +74,15 @@ public class NavigationHelper {
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // Finsuma: "Download" isn't a screen; it asks which site to open.
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.finsumaDownloadChooser) {
+                FinsumaService.showSiteChooser(bottomNavigationView.getContext(), navController);
+                return false;
+            }
+            return NavigationUI.onNavDestinationSelected(item, navController);
+        });
     }
 
     @Contract(pure = true)
@@ -84,7 +94,9 @@ public class NavigationHelper {
                 destId == R.id.albumCatalogueFragment ||
                 destId == R.id.artistCatalogueFragment ||
                 destId == R.id.genreCatalogueFragment ||
-                destId == R.id.playlistCatalogueFragment;
+                destId == R.id.playlistCatalogueFragment ||
+                destId == R.id.tracksFragment ||
+                destId == R.id.finsumaWebFragment;
     }
 
     /*

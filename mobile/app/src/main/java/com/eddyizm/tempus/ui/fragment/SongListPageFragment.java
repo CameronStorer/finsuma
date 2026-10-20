@@ -117,7 +117,11 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
     }
 
     private void init(Bundle args) {
-        if (args.getString(Constants.MEDIA_RECENTLY_PLAYED) != null) {
+        if (args.getString(Constants.MEDIA_ALL_SONGS) != null) {
+            songListPageViewModel.title = Constants.MEDIA_ALL_SONGS;
+            songListPageViewModel.toolbarTitle = getString(R.string.finsuma_tracks_title);
+            bind.pageTitleLabel.setText(R.string.finsuma_tracks_title);
+        } else if (args.getString(Constants.MEDIA_RECENTLY_PLAYED) != null) {
             songListPageViewModel.title = Constants.MEDIA_RECENTLY_PLAYED;
             songListPageViewModel.toolbarTitle = getString(R.string.song_list_page_recently_played);
             bind.pageTitleLabel.setText(R.string.song_list_page_recently_played);
@@ -170,8 +174,10 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         activity.setSupportActionBar(bind.toolbar);
 
         if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+            // Tracks is a bottom-bar tab, so it has no back arrow.
+            boolean isTab = Constants.MEDIA_ALL_SONGS.equals(songListPageViewModel.title);
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(!isTab);
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(!isTab);
         }
 
         bind.toolbar.setNavigationOnClickListener(v -> {
@@ -285,6 +291,24 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
             } else if (menuItem.getItemId() == R.id.menu_song_sort_least_recently_starred) {
                 songHorizontalAdapter.sort(Constants.MEDIA_LEAST_RECENTLY_STARRED);
                 return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_artist) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_ARTIST);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_album) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_ALBUM);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_year) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_YEAR);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_recently_added) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_RECENTLY_ADDED);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_most_played) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_MOST_PLAYED);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_rating) {
+                songHorizontalAdapter.sort(Constants.SORT_SONG_RATING);
+                return true;
             }
 
             return false;
@@ -296,6 +320,9 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
     private void setSongListPageSubtitle(List<Child> children) {
         if (children == null) return;
         switch (songListPageViewModel.title) {
+            case Constants.MEDIA_ALL_SONGS:
+                bind.pageSubtitleLabel.setText(getString(R.string.generic_list_page_count, children.size()));
+                break;
             case Constants.MEDIA_BY_GENRE:
                 bind.pageSubtitleLabel.setText(children.size() < songListPageViewModel.maxNumberByGenre ?
                         getString(R.string.generic_list_page_count, children.size()) :
@@ -325,6 +352,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
             case Constants.MEDIA_BY_ARTIST:
             case Constants.MEDIA_BY_GENRES:
             case Constants.MEDIA_STARRED:
+            case Constants.MEDIA_ALL_SONGS:
                 bind.songListSortImageView.setVisibility(View.VISIBLE);
                 break;
         }

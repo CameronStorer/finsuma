@@ -240,10 +240,10 @@ public class HomeViewModel extends AndroidViewModel {
     public void refreshAllPlaylists(LifecycleOwner owner) {
         playlistRepository.getPlaylists(false, -1).observe(owner, playlists -> {
             if (playlists == null) return;
-            List<Playlist> sorted = new ArrayList<>(playlists);
-            sorted.sort((a, b) -> String.CASE_INSENSITIVE_ORDER.compare(
-                    a.getName() == null ? "" : a.getName(), b.getName() == null ? "" : b.getName()));
-            allPlaylists.setValue(sorted);
+            // Like the desktop home row, a new random order each time.
+            List<Playlist> shuffled = new ArrayList<>(playlists);
+            Collections.shuffle(shuffled);
+            allPlaylists.setValue(shuffled);
         });
     }
 

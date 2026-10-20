@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Finsuma: Home, Playlists, Tracks, Download (Download opens a YouTube/SoundCloud chooser). -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/menu_home_label" />
-
     <item
-        android:id="@+id/libraryFragment"
-        android:icon="@drawable/ic_graphic_eq"
-        android:title="@string/menu_library_label" />
+        android:id="@+id/playlistCatalogueFragment"
+        android:icon="@drawable/ic_playlist"
+        android:title="@string/finsuma_nav_playlists" />
     <item
-        android:id="@+id/downloadFragment"
-        android:icon="@drawable/ic_play_for_work"
-        android:title="@string/menu_download_label" />
+        android:id="@+id/tracksFragment"
+        android:icon="@drawable/ic_finsuma_tracks"
+        android:title="@string/finsuma_nav_tracks" />
+    <item
+        android:id="@+id/finsumaDownloadChooser"
+        android:icon="@drawable/ic_download"
+        android:title="@string/finsuma_nav_download" />
 </menu>

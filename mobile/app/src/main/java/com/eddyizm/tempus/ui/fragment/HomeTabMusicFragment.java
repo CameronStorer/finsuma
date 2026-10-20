@@ -14,6 +14,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -197,6 +198,22 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
     }
 
     private void init() {
+        // Pull down: new random picks and fresh lists for every Finsuma home row.
+        bind.homeSwipeRefresh.setOnRefreshListener(() -> {
+            LifecycleOwner owner = getViewLifecycleOwner();
+            homeViewModel.refreshDiscoverySongSample(owner);
+            homeViewModel.refreshAllPlaylists(owner);
+            homeViewModel.refreshGenreSample(owner);
+            homeViewModel.refreshRandomAlbumSample(owner);
+            homeViewModel.refreshMostRecentlyAddedAlbums(owner);
+            homeViewModel.refreshRecentlyReleasedAlbums(owner);
+            homeViewModel.refreshRecentlyPlayedAlbumList(owner);
+            homeViewModel.refreshMostPlayedAlbums(owner);
+            bind.homeSwipeRefresh.postDelayed(() -> {
+                if (bind != null) bind.homeSwipeRefresh.setRefreshing(false);
+            }, 1200);
+        });
+
         bind.discoveryTextViewRefreshable.setOnLongClickListener(v -> {
             homeViewModel.refreshDiscoverySongSample(getViewLifecycleOwner());
             return true;
@@ -1117,8 +1134,12 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
             homeViewModel.refreshAllPlaylists(getViewLifecycleOwner());
             return true;
         });
-        bind.homePlaylistsSeeAll.setOnClickListener(v ->
-                Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_playlistCatalogueFragment));
+        bind.homePlaylistsSeeAll.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString(Constants.PLAYLIST_ALL, Constants.PLAYLIST_ALL);
+            args.putBoolean("finsuma_tab", false);
+            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_playlistCatalogueFragment, args);
+        });
 
         new CustomLinearSnapHelper().attachToRecyclerView(bind.homePlaylistsRecyclerView);
     }
