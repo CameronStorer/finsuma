@@ -54,7 +54,7 @@
     <string name="album_page_release_dates_label">Veröffentlicht %1$s, ursprünglich %2$s</string>
     <string name="album_page_shuffle_button">Zufall</string>
     <string name="album_page_tracks_count_and_duration">%1$d Lieder  •  %2$d Minuten</string>
-    <string name="app_name">Tempus</string>
+    <string name="app_name">Finsuma</string>
     <string name="artist_adapter_radio_station_starting">Suchen…</string>
     <string name="artist_bottom_sheet_add_to_playlist">Zu Wiedergabeliste hinzufügen</string>
     <string name="artist_bottom_sheet_loading_tracks">Lade Titel\u2026</string>
@@ -423,7 +423,7 @@
     <string name="server_unreachable_dialog_positive_button">Trotzdem fortfahren</string>
     <string name="server_unreachable_dialog_summary">Der angeforderte Server ist nicht verfügbar. Wenn du fortfahren möchtest, wird dieser Dialog für eine Stunde nicht mehr angezeigt.</string>
     <string name="server_unreachable_dialog_title">Server nicht erreichbar</string>
-    <string name="settings_about_summary">Tempus ist ein quelloffener und schlanker Musik-Client für Subsonic, der speziell für Android entwickelt wurde.</string>
+    <string name="settings_about_summary">Finsuma ist ein quelloffener und schlanker Musik-Client für Subsonic, der speziell für Android entwickelt wurde.</string>
     <string name="settings_about_title">Über</string>
     <string name="settings_always_on_display">Bildschirmsperre aussetzen</string>
     <string name="settings_allow_playlist_duplicates">Duplikate in Wiedergabelisten erlauben</string>
@@ -609,7 +609,7 @@
     <string name="toolbar_navigation_drawer_open">Navigationsleiste geöffnet</string>
     <string name="toolbar_navigation_drawer_closed">Navigationsleiste geschlossen</string>
     <string name="favorite_icon_description">Favorit</string>
-    <string name="asset_link_clipboard_label">Tempus-Inhaltslink</string>
+    <string name="asset_link_clipboard_label">Finsuma-Inhaltslink</string>
     <string name="asset_link_label_song">Lied UID</string>
     <string name="asset_link_label_album">Album UID</string>
     <string name="asset_link_label_artist">Interpret UID</string>
@@ -697,9 +697,9 @@
     <string name="undraw_page">unDraw</string>
     <string name="undraw_thanks">Besonderer Dank gilt unDraw, ohne deren Illustrationen diese App nur halb so schön aussehen würde.</string>
     <string name="undraw_url" translatable="false">https://undraw.co/</string>
-    <string name="widget_label">Tempus Widget</string>
+    <string name="widget_label">Finsuma Widget</string>
     <string name="widget_not_playing">Angehalten</string>
-    <string name="widget_placeholder_subtitle">Tempus öffnen</string>
+    <string name="widget_placeholder_subtitle">Finsuma öffnen</string>
     <string name="widget_time_elapsed_placeholder">0:00</string>
     <string name="widget_time_duration_placeholder">0:00</string>
     <string name="widget_content_desc_album_art">Albumcover</string>
@@ -766,12 +766,12 @@
     <string name="search_title_empty_response">Keine Ergebnisse.</string>
     <string name="search_description_empty_response">Wir haben Ihre Serverantwort überprüft, aber sie war leer.</string>
 
-    <string name="customactivityoncrash_error_activity_error_occurred_explanation">Tempus ist abgestürzt.</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">Finsuma ist abgestürzt.</string>
     <string name="playlist_error_not_found_title">Wiedergabeliste nicht gefunden</string>
     <string name="playlist_error_not_found_message">Diese Wiedergabeliste wurde auf dem Server nicht gefunden. Sie wird aus dem lokalen Zwischenspeicher entfernt.</string>
     <string name="playlist_error_not_found_toast">Wiedergabeliste aus dem Zwischenspeicher entfernt</string>
     <string name="ca_info_label">Info</string>
-    <string name="ca_info_title">Tempus abgestürzt</string>
+    <string name="ca_info_title">Finsuma abgestürzt</string>
     <string name="ca_info_description">\n        Bitte erstelle ein Issue auf GitHub und füge eine Kopie des Crash-Reports hinzu, um das Problem zu beheben.\n    </string>
     <string name="ca_info_button_close">App schließen</string>
     <string name="ca_info_button_restart">App neu starten</string>
@@ -792,7 +792,7 @@
     <string name="la_appbar_permission_title">Berechtigungen verwalten</string>
     <string name="la_appbar_themes_title">Design-Editor</string>
     <string name="la_appbar_server_title">Server-Editor</string>
-    <string name="la_greeting_description">Willkommen bei Tempus, einem Open-Source-Musikclient für Subsonic, der nativ für Android gestaltet und entwickelt wurde.</string>
+    <string name="la_greeting_description">Willkommen bei Finsuma, einem Open-Source-Musikclient für Subsonic, der nativ für Android gestaltet und entwickelt wurde.</string>
     <string name="la_server_title">Server einrichten</string>
     <string name="la_server_field_server_empty_error">Pflichtfeld</string>
     <string name="la_server_field_server_url_error">URL ungültig</string>

@@ -27,7 +27,7 @@
     <string name="album_page_release_dates_label">%1$s에 발매, %2$s에 최초 발매됨</string>
     <string name="album_page_shuffle_button">셔플</string>
     <string name="album_page_tracks_count_and_duration">%1$d 곡  •  %2$d 분</string>
-    <string name="app_name">Tempus</string>
+    <string name="app_name">Finsuma</string>
     <string name="artist_adapter_radio_station_starting">탐색 중…</string>
     <string name="artist_bottom_sheet_instant_mix">인스턴트 믹스</string>
     <string name="artist_bottom_sheet_shuffle">셔플</string>

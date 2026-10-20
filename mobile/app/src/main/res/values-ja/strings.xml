@@ -53,7 +53,7 @@
     <string name="album_page_release_dates_label">%1$s にリリース（オリジナル: %2$s）</string>
     <string name="album_page_shuffle_button">シャッフル再生</string>
     <string name="album_page_tracks_count_and_duration">%1$d 曲 • %2$d 分</string>
-    <string name="app_name">Tempus</string>
+    <string name="app_name">Finsuma</string>
     <string name="artist_adapter_radio_station_starting">検索中…</string>
     <string name="artist_bottom_sheet_instant_mix">インスタントミックス</string>
     <string name="artist_bottom_sheet_shuffle">シャッフル</string>

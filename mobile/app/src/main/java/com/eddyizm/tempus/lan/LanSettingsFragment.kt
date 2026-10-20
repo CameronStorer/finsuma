@@ -361,7 +361,7 @@ class LanSettingsFragment : PreferenceFragmentCompat() {
         devices.isVisible = discovered.isNotEmpty()
         discovered.values.forEach { found ->
             devices.addPreference(Preference(requireContext()).apply {
-                title = found.info.serviceName.removePrefix("Tempus ")
+                title = found.info.serviceName.removePrefix("Finsuma ")
                 summary = getString(R.string.lan_select_receiver)
                 setIcon(R.drawable.ic_navigate_next)
                 isPersistent = false

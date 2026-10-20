@@ -113,7 +113,7 @@ class LanReceiverService : Service() {
                 server = listener
                 if (!alive) { listener.close(); return@Thread }
                 nsd.registerService(NsdServiceInfo().apply {
-                    serviceName = "Tempus ${name(this@LanReceiverService)}"
+                    serviceName = "Finsuma ${name(this@LanReceiverService)}"
                     serviceType = LanWire.TYPE
                     port = listener.localPort
                 }, NsdManager.PROTOCOL_DNS_SD, registration)

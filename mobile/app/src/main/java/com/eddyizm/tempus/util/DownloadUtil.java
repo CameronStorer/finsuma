@@ -123,7 +123,7 @@ public final class DownloadUtil {
         // Create a factory with ICY metadata support for radio streams
         Map<String, String> defaultRequestProperties = new HashMap<>();
         defaultRequestProperties.put("Icy-MetaData", "1");
-        defaultRequestProperties.put("User-Agent", "Tempus/1.0");
+        defaultRequestProperties.put("User-Agent", "Finsuma/1.0");
         
         return new DefaultHttpDataSource
                 .Factory()

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorSurface"
-            android:title="Tempus Crashed"
+            android:title="Finsuma Crashed"
             android:titleTextColor="@color/material_dynamic_primary0"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 

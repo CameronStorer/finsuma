@@ -31,7 +31,7 @@ object LanRemoteVolume {
             release()
             return
         }
-        val mediaSession = session ?: MediaSession(context.applicationContext, "Tempus LAN").also {
+        val mediaSession = session ?: MediaSession(context.applicationContext, "Finsuma LAN").also {
             it.setCallback(object : MediaSession.Callback() {
                 override fun onPlay() { if (session === it) LanRemoteSession.command("play") }
                 override fun onPause() { if (session === it) LanRemoteSession.command("pause") }
