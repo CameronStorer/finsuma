@@ -43,6 +43,7 @@ public final class FinsumaTabBar {
 
     /** Adds the requested actions; call before inflating the page's own menu so they come first. */
     public static void addActions(Menu menu, int actions) {
+        if (!com.eddyizm.tempus.BuildConfig.FINSUMA_DOWNLOADS) actions &= ~DOWNLOAD; // Google Play build
         if ((actions & TO_GENRES) != 0) add(menu, R.id.finsuma_action_genres, R.string.genre_catalogue_title, R.drawable.ic_genres);
         if ((actions & TO_ALBUMS) != 0) add(menu, R.id.finsuma_action_albums, R.string.album_catalogue_title, R.drawable.ic_albums);
         if ((actions & NEW_PLAYLIST) != 0) add(menu, R.id.finsuma_action_new_playlist, R.string.finsuma_new_playlist, R.drawable.ic_add);

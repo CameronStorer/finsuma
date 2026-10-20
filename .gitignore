@@ -18,6 +18,7 @@ CLAUDE.local.md
 
 # Android release signing (local only)
 mobile/keystore.properties
+mobile/keystore-play.properties
 *.jks
 *.keystore
 

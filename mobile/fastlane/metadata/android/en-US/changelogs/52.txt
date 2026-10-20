@@ -1,0 +1,1 @@
+First Finsuma release: Auto DJ, desktop-style queue and shuffle, play on Bluetooth connect, Library tab, search filters and a cleaner design.

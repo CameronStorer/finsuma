@@ -15,8 +15,12 @@ android {
         //noinspection OldTargetApi
         targetSdk = 37
 
-        versionCode 51
-        versionName '4.30.0'
+        versionCode 52
+        versionName '1.0.0'
+
+        // Finsuma: the Google Play build (-PfinsumaPlay) leaves out the YouTube/SoundCloud
+        // downloader, which Play policy does not allow.
+        buildConfigField "boolean", "FINSUMA_DOWNLOADS", project.hasProperty("finsumaPlay") ? "false" : "true"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         javaCompileOptions {
@@ -64,7 +68,8 @@ android {
     }
 
     // Finsuma: release signing from mobile/keystore.properties (never committed).
-    def keystorePropsFile = rootProject.file("keystore.properties")
+    // The Google Play build is signed with its own upload key (keystore-play.properties).
+    def keystorePropsFile = rootProject.file(project.hasProperty("finsumaPlay") ? "keystore-play.properties" : "keystore.properties")
     def keystoreProps = new Properties()
     if (keystorePropsFile.exists()) {
         keystorePropsFile.withInputStream { keystoreProps.load(it) }
