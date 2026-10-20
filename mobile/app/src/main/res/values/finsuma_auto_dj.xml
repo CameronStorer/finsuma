@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="auto_dj">Auto DJ</string>
+    <string name="settings_bluetooth_auto_play">Play when a car or headphones connect</string>
+    <string name="settings_bluetooth_auto_play_summary">Resume your queue when Bluetooth audio connects, even with the app closed</string>
     <string name="auto_dj_on">Auto DJ on: similar songs are added before the queue runs out</string>
     <string name="auto_dj_off">Auto DJ off</string>
     <plurals name="auto_dj_added">

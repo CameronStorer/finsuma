@@ -214,6 +214,40 @@ open class BaseSessionCallback(
     // ─────────────────────────────────────────────────────────────
 
     @OptIn(UnstableApi::class)
+    // Finsuma: Play from a car, headphones or the system media controls with the app closed
+    // starts the service with an empty player; reload the saved queue where it left off.
+    override fun onPlaybackResumption(
+        mediaSession: MediaSession,
+        controller: MediaSession.ControllerInfo
+    ): ListenableFuture<MediaSession.MediaItemsWithStartPosition> {
+        val future = SettableFuture.create<MediaSession.MediaItemsWithStartPosition>()
+        Thread {
+            try {
+                val repository = com.eddyizm.tempus.repository.QueueRepository()
+                val stored = repository.media
+                if (stored.isNullOrEmpty()) {
+                    future.setException(UnsupportedOperationException("No saved queue"))
+                    return@Thread
+                }
+                val items = com.eddyizm.tempus.util.MappingUtil.mapMediaItems(stored)
+                val last = try { repository.lastPlayedMedia } catch (_: Exception) { null }
+                var index = 0
+                var position = 0L
+                if (last != null) {
+                    val found = com.eddyizm.tempus.util.MappingUtil.indexOfMediaId(items, last.id)
+                    if (found >= 0) {
+                        index = found
+                        position = MediaManager.resumePosition(last)
+                    }
+                }
+                future.set(MediaSession.MediaItemsWithStartPosition(items, index, position))
+            } catch (t: Throwable) {
+                future.setException(t)
+            }
+        }.start()
+        return future
+    }
+
     override fun onConnect(
         session: MediaSession,
         controller: MediaSession.ControllerInfo

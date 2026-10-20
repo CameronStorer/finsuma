@@ -287,6 +287,12 @@
 
     <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_players">
         <SwitchPreference
+            android:title="@string/settings_bluetooth_auto_play"
+            android:defaultValue="true"
+            android:summary="@string/settings_bluetooth_auto_play_summary"
+            android:key="bluetooth_auto_play" />
+
+        <SwitchPreference
             android:title="@string/settings_continuous_play_title"
             android:defaultValue="true"
             android:summary="@string/settings_continuous_play_summary"

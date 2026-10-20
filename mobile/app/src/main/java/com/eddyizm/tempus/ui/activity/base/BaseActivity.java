@@ -94,6 +94,13 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
 
+        // Finsuma: needed to notice a car or headphones connecting (Bluetooth auto-play).
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && Preferences.isBluetoothAutoPlay()) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                missing.add(Manifest.permission.BLUETOOTH_CONNECT);
+            }
+        }
+
         if (!missing.isEmpty()) {
             ActivityCompat.requestPermissions(this, missing.toArray(new String[0]), 101);
             // Set after the call, since a recreate's repeat request is refused inside it with empty arrays while the first is still open.

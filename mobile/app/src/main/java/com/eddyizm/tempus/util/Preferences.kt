@@ -997,6 +997,11 @@ object Preferences {
         return App.getInstance().preferences.getBoolean(LAN_REMOTE_ENABLED, false)
     }
 
+    // Finsuma: start playing when a car or headphones connect (BluetoothAutoPlayReceiver)
+    @JvmStatic
+    fun isBluetoothAutoPlay(): Boolean =
+        App.getInstance().preferences.getBoolean("bluetooth_auto_play", true)
+
     // Finsuma Auto DJ (see service/AutoDj.kt)
     const val AUTO_DJ_ENABLED = "auto_dj_enabled"
 
