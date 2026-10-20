@@ -379,6 +379,7 @@ export type Playlist = {
     sync?: boolean | null;
     thumbHash: null | string;
     uploadedImage?: string;
+    userFavorite?: boolean; // Finsuma playlist prefs
     userRating?: null | number; // Finsuma playlist prefs
 };
 

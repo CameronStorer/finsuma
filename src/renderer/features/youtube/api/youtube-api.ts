@@ -161,10 +161,15 @@ export const youtubeApi = {
         }),
     jobs: () => request<{ jobs: YoutubeJob[] }>('/jobs').then((r) => r.jobs),
     prefs: () =>
-        request<{ playlists: Record<string, { pinned?: boolean; rating?: number }> }>('/prefs'),
+        request<{
+            playlists: Record<string, { favorite?: boolean; pinned?: boolean; rating?: number }>;
+        }>('/prefs'),
     preview: (url: string) => request<YoutubePreview>(`/preview?url=${encodeURIComponent(url)}`),
-    setPlaylistPref: (id: string, changes: { pinned?: boolean; rating?: number }) =>
-        request<{ pinned?: boolean; rating?: number }>(
+    setPlaylistPref: (
+        id: string,
+        changes: { favorite?: boolean; pinned?: boolean; rating?: number },
+    ) =>
+        request<{ favorite?: boolean; pinned?: boolean; rating?: number }>(
             `/prefs/playlists/${encodeURIComponent(id)}`,
             { body: JSON.stringify(changes), method: 'PUT' },
         ),

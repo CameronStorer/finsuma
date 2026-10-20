@@ -61,6 +61,11 @@ export const useDeleteFavorite = (args: MutationHookArgs) => {
             return applyFavoriteOptimisticUpdates(queryClient, variables, false);
         },
         onSuccess: (_data, variables) => {
+            if (variables.query.type === LibraryItem.PLAYLIST) {
+                queryClient.invalidateQueries({
+                    queryKey: [variables.apiClientProps.serverId, 'playlists'],
+                });
+            }
             if (variables.query.type === LibraryItem.SONG) {
                 remote?.updateFavorite(
                     false,

@@ -1,4 +1,4 @@
-// Playlist ratings and pins. Navidrome can't store or return either for playlists, so
+// Playlist ratings, pins and favorites. Navidrome can't store or return either for playlists, so
 // Finsuma keeps them itself: on the Finsuma server (shared by every Finsuma install)
 // with a local copy for when the server can't be reached.
 
@@ -11,7 +11,7 @@ import {
     SortOrder,
 } from '/@/shared/types/domain-types';
 
-export type PlaylistPref = { pinned?: boolean; rating?: number };
+export type PlaylistPref = { favorite?: boolean; pinned?: boolean; rating?: number };
 type PrefMap = Record<string, PlaylistPref>;
 
 const LOCAL_KEY = 'finsuma_playlist_prefs';
@@ -62,11 +62,13 @@ export const setPlaylistPref = async (id: string, changes: Partial<PlaylistPref>
     const next = { ...prefs[id], ...changes };
     if (!next.rating) delete next.rating;
     if (!next.pinned) delete next.pinned;
+    if (!next.favorite) delete next.favorite;
     if (Object.keys(next).length) prefs[id] = next;
     else delete prefs[id];
     writeLocal();
     try {
         await youtubeApi.setPlaylistPref(id, {
+            favorite: Boolean(changes.favorite ?? next.favorite),
             pinned: Boolean(changes.pinned ?? next.pinned),
             rating: changes.rating ?? next.rating ?? 0,
         });
@@ -77,7 +79,12 @@ export const setPlaylistPref = async (id: string, changes: Partial<PlaylistPref>
 
 const withPrefs = (playlist: Playlist): Playlist => {
     const pref = prefs[playlist.id];
-    return { ...playlist, pinned: Boolean(pref?.pinned), userRating: pref?.rating ?? null };
+    return {
+        ...playlist,
+        pinned: Boolean(pref?.pinned),
+        userFavorite: Boolean(pref?.favorite),
+        userRating: pref?.rating ?? null,
+    };
 };
 
 // Wraps the server's playlist list: adds ratings and pins, puts pinned playlists first,

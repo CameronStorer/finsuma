@@ -17,10 +17,7 @@ Small items noted while building the main plan. Newest first.
   right-click menu. The sidebar already loads playlists through the shared API wrapper, so pinned
   playlists should already appear first there; this item is about controls in the sidebar itself.
   (`src/renderer/features/sidebar/components/sidebar-playlist-list.tsx`)
-- [ ] **Favoriting a playlist fails** with "required id parameter missing". Navidrome's star API
-  only covers songs, albums and artists, so store playlist favorites in Finsuma playlist prefs,
-  like ratings and pins (`src/renderer/features/playlists/utils/playlist-prefs.ts` and the
-  server's `/prefs`).
+- [x] **Favoriting a playlist** works: stored in Finsuma playlist prefs, like ratings and pins.
 
 ## Android
 

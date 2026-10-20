@@ -5,7 +5,7 @@ Endpoints (all JSON, CORS open; the token is the guard):
   GET  /jobs             (X-Token)      -> {"jobs": [...]}  newest first
   GET  /preview?url=...  (X-Token)      -> {"artist", "title", "album", "thumbnail"}
   GET  /prefs            (X-Token)      -> {"playlists": {id: {"rating"?, "pinned"?}}}
-  PUT  /prefs/playlists/<id> (X-Token)  {"rating"?: 0-5, "pinned"?: bool}
+  PUT  /prefs/playlists/<id> (X-Token)  {"rating"?: 0-5, "pinned"?: bool, "favorite"?: bool}
   POST /download         (X-Token)      {"url", "mode": "single"|"playlist", "artist"?, "title"?, "album"?}
 
 Each song gets a cleaned-up artist/title/album tag and square cover art.
@@ -211,6 +211,11 @@ def update_playlist_pref(playlist_id, changes):
                 entry["pinned"] = True
             else:
                 entry.pop("pinned", None)
+        if "favorite" in changes:
+            if changes["favorite"]:
+                entry["favorite"] = True
+            else:
+                entry.pop("favorite", None)
         if entry:
             playlists[playlist_id] = entry
         else:

@@ -238,6 +238,13 @@ export const controller = {
             throw new Error(`${i18n.t('error.apiRouteError')}: createFavorite`);
         }
 
+        // Finsuma: servers can't star playlists, so keep playlist favorites in playlist prefs.
+        if (args.query.type === LibraryItem.PLAYLIST) {
+            return Promise.all(
+                args.query.id.map((id) => setPlaylistPref(id, { favorite: true })),
+            ).then(() => null);
+        }
+
         return apiController(
             'createFavorite',
             server.type,
@@ -284,6 +291,13 @@ export const controller = {
 
         if (!server) {
             throw new Error(`${i18n.t('error.apiRouteError')}: deleteFavorite`);
+        }
+
+        // Finsuma: servers can't star playlists, so keep playlist favorites in playlist prefs.
+        if (args.query.type === LibraryItem.PLAYLIST) {
+            return Promise.all(
+                args.query.id.map((id) => setPlaylistPref(id, { favorite: false })),
+            ).then(() => null);
         }
 
         return apiController(
