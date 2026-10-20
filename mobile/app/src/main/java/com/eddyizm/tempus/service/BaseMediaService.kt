@@ -221,37 +221,7 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
                 playNextQueue.removeFirst()
                 continue
             }
-            if (!player.shuffleModeEnabled) {                // timeline == play order; nothing to fix
-                playNextQueue.removeFirst()
-                continue
-            }
-            val current = player.currentMediaItemIndex
-            if (current == C.INDEX_UNSET || req.insertPos + req.count > req.target) {
-                playNextQueue.removeFirst()
-                continue
-            }
-
-            // Build the current shuffle order minus the new items, then splice them in after current.
-            val timeline = player.currentTimeline
-            val base = ArrayList<Int>(req.target)
-            var w = timeline.getFirstWindowIndex(true)
-            while (w != C.INDEX_UNSET) {
-                if (w < req.insertPos || w >= req.insertPos + req.count) base.add(w)
-                w = timeline.getNextWindowIndex(w, Player.REPEAT_MODE_OFF, true)
-            }
-            val curPos = base.indexOf(current)
-            if (curPos < 0) {
-                playNextQueue.removeFirst()
-                continue
-            }
-
-            val newOrder = ArrayList<Int>(req.target)
-            newOrder.addAll(base)
-            for (j in 0 until req.count) {
-                newOrder.add(curPos + 1 + j, req.insertPos + j)
-            }
-            player.shuffleOrder = DefaultShuffleOrder(newOrder.toIntArray(), Random.nextLong())
-            Log.d(TAG, "playNextFixup: ${req.count} item(s) moved to shuffle position ${curPos + 1}")
+            QueueOrder.applyPlayNext(player, req.insertPos, req.count)
             playNextQueue.removeFirst()
         }
     }
@@ -396,13 +366,18 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
                 }
 
                 updateWidget(player)
+                QueueOrder.onMediaItemTransition(player)
                 QueuePreloader.preload(this@BaseMediaService, player)
                 AutoDj.check(this@BaseMediaService, this@BaseMediaService)
             }
 
             override fun onTimelineChanged(timeline: Timeline, reason: Int) {
                 Log.d(TAG, "onTimelineChanged reason=$reason")
+                if (reason == Player.TIMELINE_CHANGE_REASON_PLAYLIST_CHANGED) {
+                    QueueOrder.onTimelineChanged(player)
+                }
                 tryApplyPlayNextFixup()
+                if (reason == Player.TIMELINE_CHANGE_REASON_PLAYLIST_CHANGED) QueueOrder.logPlayOrder(player, "timeline")
                 try {
                     ReplayGainUtil.prefetchQueueGains(player)
                 } catch (t: Throwable) {
@@ -441,19 +416,9 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
                 if (player is ExoPlayer) {
                     // https://stackoverflow.com/questions/56937283/exoplayer-shuffle-doesnt-reproduce-all-the-songs
                     if (MediaManager.justStarted.get()) {
-                        Log.d(TAG, "update shuffle order")
+                        // New queue: started song first, the rest shuffled (QueueOrder).
                         MediaManager.justStarted.set(false)
-                        val shuffledList = IntArray(player.mediaItemCount) { i -> i }
-                        shuffledList.shuffle()
-                        val index = shuffledList.indexOf(player.currentMediaItemIndex)
-                        // swap current media index to the first index
-                        if (index > -1 && shuffledList.isNotEmpty()) {
-                            val tmp = shuffledList[0]
-                            shuffledList[0] = shuffledList[index]
-                            shuffledList[index] = tmp
-                        }
-                        player.shuffleOrder =
-                            DefaultShuffleOrder(shuffledList, Random.nextLong())
+                        if (player.shuffleModeEnabled) QueueOrder.onShuffleModeChanged(player, true)
                     }
                 }
             }
@@ -648,6 +613,9 @@ open class BaseMediaService : MediaLibraryService(), MediaManager.QueueTarget {
 
             override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
                 Preferences.setShuffleModeEnabled(shuffleModeEnabled)
+                QueueOrder.onShuffleModeChanged(player, shuffleModeEnabled)
+                QueueOrder.logPlayOrder(player, "shuffle")
+                AutoDj.check(this@BaseMediaService, this@BaseMediaService)
             }
 
             override fun onRepeatModeChanged(repeatMode: Int) {

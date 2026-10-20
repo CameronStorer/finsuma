@@ -30,6 +30,12 @@ public class AlbumSongListClient {
         return albumSongListService.getAlbumList2(subsonic.getParams(), type, size, offset, fromYear, toYear, Preferences.getActiveMusicFolderId());
     }
 
+    // Finsuma Auto DJ (albums mode): random albums of one genre.
+    public Call<ApiResponse> getAlbumList2ByGenre(String genre, int size) {
+        Log.d(TAG, "getAlbumList2ByGenre()");
+        return albumSongListService.getAlbumList2ByGenre(subsonic.getParams(), "byGenre", size, genre, Preferences.getActiveMusicFolderId());
+    }
+
     public Call<ApiResponse> getRandomSongs(int size, Integer fromYear, Integer toYear) {
         Log.d(TAG, "getRandomSongs()");
         return albumSongListService.getRandomSongs(subsonic.getParams(), size, fromYear, toYear, Preferences.getActiveMusicFolderId());

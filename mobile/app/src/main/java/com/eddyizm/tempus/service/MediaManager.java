@@ -430,7 +430,7 @@ public class MediaManager {
         Log.d(TAG, "enqueue");
         int current = player.getCurrentMediaItemIndex();
         if (playImmediatelyAfter && current != C.INDEX_UNSET) {
-            enqueueDatabase(media, false, current + 1);
+            enqueueDatabase(media, false, playNextPosition(player));
             insertPlayNext(queueTarget, player, MappingUtil.mapMediaItems(media));
         } else {
             enqueueDatabase(media, false, player.getMediaItemCount());
@@ -449,7 +449,7 @@ public class MediaManager {
                         MediaBrowser browser = mediaBrowserListenableFuture.get();
                         int current = browser.getCurrentMediaItemIndex();
                         if (playImmediatelyAfter && current != C.INDEX_UNSET) {
-                            enqueueDatabase(media, false, current + 1);
+                            enqueueDatabase(media, false, playNextPosition(browser));
                             insertPlayNext(queueTargetFor(browser), browser, Collections.singletonList(MappingUtil.mapMediaItem(media)));
                         } else {
                             enqueueDatabase(media, false, mediaBrowserListenableFuture.get().getMediaItemCount());
@@ -474,10 +474,18 @@ public class MediaManager {
     // is a no-op when shuffle is off.
     private static void insertPlayNext(QueueTarget queueTarget, Player player, List<MediaItem> items) {
         if (items.isEmpty()) return;
-        int insertPos = player.getCurrentMediaItemIndex() + 1;
+        int insertPos = playNextPosition(player);
         int targetCount = player.getMediaItemCount() + items.size();
         queueTarget.requestPlayNextFixup(insertPos, items.size(), targetCount);
         player.addMediaItems(insertPos, items);
+    }
+
+    // Finsuma: like desktop, "play next" songs queue up after earlier ones (the Up Next block)
+    // instead of jumping ahead of them. With shuffle on, the service orders them in the play order.
+    private static int playNextPosition(Player player) {
+        int pos = player.getCurrentMediaItemIndex() + 1;
+        if (!player.getShuffleModeEnabled()) pos += QueueOrder.upNextCount();
+        return Math.min(pos, player.getMediaItemCount());
     }
 
     public static void requestPlayNextFixup(MediaBrowser browser, int insertPos, int count, int targetCount) {

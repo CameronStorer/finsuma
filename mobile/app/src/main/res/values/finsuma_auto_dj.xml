@@ -8,8 +8,18 @@
         <item quantity="other">Auto DJ added %d songs</item>
     </plurals>
     <string name="settings_auto_dj_enabled_summary">Keep the queue going with songs like the one playing. Replaces continuous play while on. Also on the player screen.</string>
+    <string name="settings_auto_dj_mode">Add</string>
+    <string name="settings_auto_dj_item_count_summary">Songs, or whole albums in albums mode</string>
+    <string-array name="auto_dj_mode_titles">
+        <item>Songs</item>
+        <item>Whole albums</item>
+    </string-array>
+    <string-array name="auto_dj_mode_values" translatable="false">
+        <item>songs</item>
+        <item>albums</item>
+    </string-array>
     <string name="settings_auto_dj_strategy">Pick songs from</string>
-    <string name="settings_auto_dj_item_count">Songs to add each time</string>
+    <string name="settings_auto_dj_item_count">How many to add each time</string>
     <string name="settings_auto_dj_timing">Add when this many songs are left</string>
     <string name="settings_auto_dj_timing_summary">1 means while the last song plays</string>
     <string name="settings_auto_dj_only_similar">Only similar songs</string>

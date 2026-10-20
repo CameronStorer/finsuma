@@ -29,6 +29,7 @@ object AutoDj {
     private const val TAG = "AutoDj"
     const val STRATEGY_SIMILAR = "similar"
     const val STRATEGY_LIBRARY_RANDOM = "library_random"
+    const val MODE_ALBUMS = "albums"
 
     private val running = AtomicBoolean(false)
     private val executor = Executors.newSingleThreadExecutor()
@@ -39,9 +40,11 @@ object AutoDj {
         val artistId: String?,
         val genre: String?,
         val queueIds: Set<String>,
+        val queueAlbumIds: Set<String>,
     )
 
     private data class Settings(
+        val albums: Boolean,
         val strategy: String,
         val itemCount: Int,
         val onlySimilar: Boolean,
@@ -76,14 +79,21 @@ object AutoDj {
         if (!running.compareAndSet(false, true)) return
 
         val queueIds = HashSet<String>()
-        for (i in 0 until player.mediaItemCount) queueIds.add(player.getMediaItemAt(i).mediaId)
+        val queueAlbumIds = HashSet<String>()
+        for (i in 0 until player.mediaItemCount) {
+            val item = player.getMediaItemAt(i)
+            queueIds.add(item.mediaId)
+            item.mediaMetadata.extras?.getString("albumId")?.let { queueAlbumIds.add(it) }
+        }
         val seed = Seed(
             songId = current.mediaId,
             artistId = extras.getString("artistId"),
             genre = extras.getString("genre"),
             queueIds = queueIds,
+            queueAlbumIds = queueAlbumIds,
         )
         val settings = Settings(
+            albums = Preferences.getAutoDjMode() == MODE_ALBUMS,
             strategy = Preferences.getAutoDjStrategy(),
             itemCount = Preferences.getAutoDjItemCount(),
             onlySimilar = Preferences.isAutoDjOnlySimilar(),
@@ -94,7 +104,7 @@ object AutoDj {
         Log.d(TAG, "triggered for ${seed.songId}")
         executor.execute {
             val songs = try {
-                collect(seed, settings)
+                if (settings.albums) collectAlbums(seed, settings) else collect(seed, settings)
             } catch (t: Throwable) {
                 Log.e(TAG, "failed", t)
                 emptyList()
@@ -118,8 +128,8 @@ object AutoDj {
 
     private fun collect(seed: Seed, s: Settings): List<Child> {
         val selected = LinkedHashMap<String, Child>()
-        fun available(song: Child) =
-            s.allowDuplicates || (song.id !in seed.queueIds && song.id !in selected)
+        fun available(song: Child) = song.id != seed.songId &&
+            (s.allowDuplicates || (song.id !in seed.queueIds && song.id !in selected))
         fun remaining() = s.itemCount - selected.size
         fun take(pool: List<Child>) {
             pool.filter(::available).shuffled().take(remaining().coerceAtLeast(0))
@@ -154,6 +164,52 @@ object AutoDj {
         take(random(50, null))
         return selected.values.toList()
     }
+
+    /** Albums mode (desktop auto-dj-albums.ts): picks whole albums, added in track order. */
+    private fun collectAlbums(seed: Seed, s: Settings): List<Child> {
+        val picked = LinkedHashSet<String>()
+        fun available(id: String) = s.allowDuplicates || (id !in seed.queueAlbumIds && id !in picked)
+        fun remaining() = s.itemCount - picked.size
+        fun take(ids: List<String>) {
+            ids.distinct().filter(::available).shuffled().take(remaining().coerceAtLeast(0))
+                .forEach { picked.add(it) }
+        }
+        fun done() = remaining() <= 0 || (s.onlySimilar && picked.isNotEmpty())
+
+        run {
+            if (s.strategy == STRATEGY_LIBRARY_RANDOM) {
+                take(randomAlbums(maxOf(s.itemCount, 1)))
+                return@run
+            }
+            // 1. Albums of similar songs
+            take(songs(client().browsingClient.getSimilarSongs(seed.songId, s.itemCount * 4)) {
+                it.similarSongs?.songs
+            }.mapNotNull { it.albumId })
+            if (done()) return@run
+            // 2. Albums of the same genre
+            if (!seed.genre.isNullOrBlank()) {
+                val genreAlbums = body(client().albumSongListClient.getAlbumList2ByGenre(seed.genre, 200))
+                    ?.albumList2?.albums.orEmpty().mapNotNull { it.id }
+                take(genreAlbums)
+                if (done()) return@run
+            }
+            // 3. Albums by the same artist
+            if (!seed.artistId.isNullOrBlank()) {
+                take(body(client().browsingClient.getArtist(seed.artistId))?.artist?.albums.orEmpty().mapNotNull { it.id })
+                if (done()) return@run
+            }
+            // 4. Random albums
+            take(randomAlbums(50))
+        }
+
+        return picked.flatMap { albumId ->
+            songs(client().browsingClient.getAlbum(albumId)) { it.album?.songs }
+        }
+    }
+
+    private fun randomAlbums(size: Int): List<String> =
+        body(client().albumSongListClient.getAlbumList2("random", size, 0, null, null))
+            ?.albumList2?.albums.orEmpty().mapNotNull { it.id }
 
     private fun client() = App.getSubsonicClientInstance(false)
 

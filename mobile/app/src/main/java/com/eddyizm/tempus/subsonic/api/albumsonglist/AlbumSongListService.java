@@ -16,6 +16,9 @@ public interface AlbumSongListService {
     @GET("getAlbumList2")
     Call<ApiResponse> getAlbumList2(@QueryMap Map<String, String> params, @Query("type") String type, @Query("size") int size, @Query("offset") int offset, @Query("fromYear") Integer fromYear, @Query("toYear") Integer toYear, @Query("musicFolderId") String musicFolderId);
 
+    @GET("getAlbumList2")
+    Call<ApiResponse> getAlbumList2ByGenre(@QueryMap Map<String, String> params, @Query("type") String type, @Query("size") int size, @Query("genre") String genre, @Query("musicFolderId") String musicFolderId);
+
     @GET("getRandomSongs")
     Call<ApiResponse> getRandomSongs(@QueryMap Map<String, String> params, @Query("size") int size, @Query("fromYear") Integer fromYear, @Query("toYear") Integer toYear, @Query("musicFolderId") String musicFolderId);
 

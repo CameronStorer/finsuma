@@ -235,6 +235,15 @@
             android:key="auto_dj_enabled" />
 
         <ListPreference
+            app:defaultValue="songs"
+            app:dialogTitle="@string/settings_auto_dj_mode"
+            app:entries="@array/auto_dj_mode_titles"
+            app:entryValues="@array/auto_dj_mode_values"
+            app:key="auto_dj_mode"
+            app:title="@string/settings_auto_dj_mode"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
             app:defaultValue="similar"
             app:dialogTitle="@string/settings_auto_dj_strategy"
             app:entries="@array/auto_dj_strategy_titles"
@@ -247,6 +256,7 @@
             android:defaultValue="5"
             android:key="auto_dj_item_count"
             android:title="@string/settings_auto_dj_item_count"
+            android:summary="@string/settings_auto_dj_item_count_summary"
             android:max="25"
             app:min="1"
             app:showSeekBarValue="true"

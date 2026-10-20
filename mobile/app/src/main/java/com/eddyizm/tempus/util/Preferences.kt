@@ -1010,6 +1010,10 @@ object Preferences {
     }
 
     @JvmStatic
+    fun getAutoDjMode(): String =
+        App.getInstance().preferences.getString("auto_dj_mode", "songs") ?: "songs"
+
+    @JvmStatic
     fun getAutoDjStrategy(): String =
         App.getInstance().preferences.getString("auto_dj_strategy", "similar") ?: "similar"
 

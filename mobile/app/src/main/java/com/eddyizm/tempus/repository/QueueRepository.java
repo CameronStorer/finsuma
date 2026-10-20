@@ -317,6 +317,21 @@ public class QueueRepository {
         });
     }
 
+    // Finsuma: put the saved queue in the player's order (after the service moves songs),
+    // keeping each row's play/resume data. Rows are matched by song id.
+    public void reorder(List<String> idsInOrder) {
+        dbExecutor.execute(() -> {
+            List<Queue> rows = queueDao.getAllSimple();
+            java.util.Map<String, Integer> position = new java.util.HashMap<>();
+            for (int i = 0; i < idsInOrder.size(); i++) position.putIfAbsent(idsInOrder.get(i), i);
+            rows.sort((a, b) -> Integer.compare(
+                    position.getOrDefault(a.getId(), Integer.MAX_VALUE),
+                    position.getOrDefault(b.getId(), Integer.MAX_VALUE)));
+            for (int i = 0; i < rows.size(); i++) rows.get(i).setTrackOrder(i);
+            queueDao.replaceQueue(rows);
+        });
+    }
+
     public void delete(int position) {
         dbExecutor.execute(() -> queueDao.delete(position));
     }
