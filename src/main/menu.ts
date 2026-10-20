@@ -309,27 +309,27 @@ export default class MenuBuilder {
             submenu: [
                 {
                     click() {
-                        shell.openExternal('https://github.com/jeffvli/feishin');
+                        shell.openExternal('https://github.com/CameronStorer/finsuma');
                     },
                     label: 'Learn More',
                 },
                 {
                     click() {
                         shell.openExternal(
-                            'https://github.com/jeffvli/feishin?tab=readme-ov-file#getting-started',
+                            'https://github.com/CameronStorer/finsuma?tab=readme-ov-file#getting-started',
                         );
                     },
                     label: 'Documentation',
                 },
                 {
                     click() {
-                        shell.openExternal('https://github.com/jeffvli/feishin/discussions');
+                        shell.openExternal('https://github.com/CameronStorer/finsuma/discussions');
                     },
                     label: 'Community Discussions',
                 },
                 {
                     click() {
-                        shell.openExternal('https://github.com/jeffvli/feishin/issues');
+                        shell.openExternal('https://github.com/CameronStorer/finsuma/issues');
                     },
                     label: 'Search Issues',
                 },
@@ -426,27 +426,27 @@ export default class MenuBuilder {
                 submenu: [
                     {
                         click() {
-                            shell.openExternal('https://github.com/jeffvli/feishin');
+                            shell.openExternal('https://github.com/CameronStorer/finsuma');
                         },
                         label: 'Learn More',
                     },
                     {
                         click() {
                             shell.openExternal(
-                                'https://github.com/jeffvli/feishin?tab=readme-ov-file#getting-started',
+                                'https://github.com/CameronStorer/finsuma?tab=readme-ov-file#getting-started',
                             );
                         },
                         label: 'Documentation',
                     },
                     {
                         click() {
-                            shell.openExternal('https://github.com/jeffvli/feishin/discussions');
+                            shell.openExternal('https://github.com/CameronStorer/finsuma/discussions');
                         },
                         label: 'Community Discussions',
                     },
                     {
                         click() {
-                            shell.openExternal('https://github.com/jeffvli/feishin/issues');
+                            shell.openExternal('https://github.com/CameronStorer/finsuma/issues');
                         },
                         label: 'Search Issues',
                     },

@@ -68,7 +68,7 @@ toolsets:
 npmRebuild: false
 publish:
     provider: github
-    owner: jeffvli
-    repo: feishin
+    owner: CameronStorer
+    repo: finsuma
     channel: beta
     releaseType: draft
