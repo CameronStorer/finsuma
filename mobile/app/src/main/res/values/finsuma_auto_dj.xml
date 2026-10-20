@@ -3,6 +3,10 @@
     <string name="auto_dj">Auto DJ</string>
     <string name="finsuma_new_playlist">New playlist</string>
     <string name="finsuma_sort">Sort</string>
+    <string name="finsuma_search_all">All</string>
+    <string name="finsuma_search_songs">Songs</string>
+    <string name="finsuma_search_albums">Albums</string>
+    <string name="finsuma_search_artists">Artists</string>
     <string name="finsuma_servers">Servers…</string>
     <string name="finsuma_shuffle">Shuffle</string>
     <string name="finsuma_nav_library">Library</string>

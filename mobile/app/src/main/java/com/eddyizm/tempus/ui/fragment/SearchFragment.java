@@ -69,6 +69,7 @@ public class SearchFragment extends Fragment implements ClickCallback {
 
         initSearchResultView();
         initSearchView();
+        initSearchFilter();
         inputFocus();
 
         return view;
@@ -244,6 +245,23 @@ public class SearchFragment extends Fragment implements ClickCallback {
             playlistHorizontalAdapter.setItems(Collections.emptyList());
         }
     }
+    // Finsuma: All / Songs / Albums / Artists chips above the results.
+    private void initSearchFilter() {
+        bind.searchFilterChips.setOnCheckedStateChangeListener((group, checked) -> applySearchFilter());
+    }
+
+    private void applySearchFilter() {
+        if (bind == null) return;
+        int checked = bind.searchFilterChips.getCheckedChipId();
+        boolean all = checked == View.NO_ID || checked == R.id.search_filter_all;
+        bind.searchArtistSector.setVisibility((all || checked == R.id.search_filter_artists)
+                && artistAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+        bind.searchAlbumSector.setVisibility((all || checked == R.id.search_filter_albums)
+                && albumAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+        bind.searchSongSector.setVisibility((all || checked == R.id.search_filter_songs)
+                && songHorizontalAdapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+    }
+
     private void performSearch(String query) {
         searchViewModel.search3(this, query).observe(getViewLifecycleOwner(), result -> {
             int sectionsThatMatchedTheQuery = 0;
@@ -280,6 +298,7 @@ public class SearchFragment extends Fragment implements ClickCallback {
                 } else {
                     bind.emptyResponseContainer.setVisibility(View.GONE);
                 }
+                applySearchFilter();
             }
         });
 

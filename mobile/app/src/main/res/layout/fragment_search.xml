@@ -21,6 +21,53 @@
             android:paddingTop="64dp"
             android:paddingBottom="@dimen/global_padding_bottom">
 
+            <!-- Finsuma: show only one kind of result -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/search_filter_chips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:checkedChip="@id/search_filter_all"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/search_filter_all"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finsuma_search_all" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/search_filter_songs"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finsuma_search_songs" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/search_filter_albums"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finsuma_search_albums" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/search_filter_artists"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finsuma_search_artists" />
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
             <!--  Artist  -->
             <LinearLayout
                 android:id="@+id/search_artist_sector"
