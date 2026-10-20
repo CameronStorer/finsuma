@@ -12,6 +12,8 @@ Small items noted while building the main plan. Newest first.
 
 ## Desktop
 
+- [ ] **Playlist download manager.** Pick playlists to save locally (for offline use), with
+  progress and a list of what is saved.
 - [ ] **Sidebar playlists: sort, filter and pinning.** Add sort options (name, rating, recently
   updated, song count) and a quick filter box to the sidebar playlist list, plus pin/unpin from its
   right-click menu. The sidebar already loads playlists through the shared API wrapper, so pinned
@@ -21,6 +23,9 @@ Small items noted while building the main plan. Newest first.
 
 ## Android
 
+- [ ] **Download manager (opt-in only).** Finsuma stays cloud-first: nothing downloads to the
+  phone automatically. Let the user pick playlists/albums to keep offline, download them in the
+  background with progress, and manage/remove them in one place.
 - [x] **Tracks page reloaded the whole library on every visit** (the count climbed as pages arrived). The library now stays in memory: reopening is instant, with a quiet refresh after 10 minutes or on pull to refresh.
 - [ ] **Local database cache** for the library (Tempus already uses Room): keep the Tracks list
   and home rows on the device so they open instantly and refresh in the background.
