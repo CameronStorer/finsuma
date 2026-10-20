@@ -355,6 +355,7 @@ public class PlayerBottomSheetFragment extends Fragment {
                 com.eddyizm.tempus.lan.LanRemoteSession.command(com.eddyizm.tempus.lan.LanRemoteSession.current().getPlayWhenReady() ? "pause" : "play");
             else bind.getRoot().findViewById(R.id.exo_play_pause).performClick();
         });
+        com.eddyizm.tempus.ui.view.AutoDjButton.bind(bind.playerHeaderLayout.playerHeaderAutoDjButton);
         bind.playerHeaderLayout.playerHeaderPreviousMediaButton.setOnClickListener(view -> {
             if (com.eddyizm.tempus.lan.LanRemoteSession.isActive()) com.eddyizm.tempus.lan.LanRemoteSession.command("previous");
             else bind.getRoot().findViewById(R.id.exo_prev).performClick();

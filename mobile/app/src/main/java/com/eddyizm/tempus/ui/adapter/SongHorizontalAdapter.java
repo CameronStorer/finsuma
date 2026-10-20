@@ -348,9 +348,6 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
 
             this.item = item;
 
-            item.searchResultSongTitleTextView.setSelected(true);
-            item.searchResultSongSubtitleTextView.setSelected(true);
-
             itemView.setOnClickListener(v -> onClick());
             itemView.setOnLongClickListener(v -> onLongClick());
 
@@ -404,6 +401,11 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
     }
 
     public void sort(String order) {
+        sort(order, null);
+    }
+
+    /** Finsuma: {@code onApplied} runs once the new order is on screen (e.g. scroll to top). */
+    public void sort(String order, Runnable onApplied) {
         List<Child> sortedList = new ArrayList<>(differ.getCurrentList());
         switch (order) {
             case Constants.MEDIA_BY_TITLE:
@@ -436,7 +438,7 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
                 break;
         }
 
-        differ.submitList(sortedList);
+        differ.submitList(sortedList, onApplied);
     }
 
     public void setMediaBrowserListenableFuture(ListenableFuture<MediaBrowser> mediaBrowserListenableFuture) {

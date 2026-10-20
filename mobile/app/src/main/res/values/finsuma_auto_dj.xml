@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="auto_dj">Auto DJ</string>
+    <string name="finsuma_new_playlist">New playlist</string>
+    <string name="finsuma_sort">Sort</string>
+    <string name="finsuma_servers">Servers…</string>
+    <string name="finsuma_shuffle">Shuffle</string>
+    <string name="finsuma_nav_library">Library</string>
+    <string name="finsuma_delete_playlist_title">Delete playlist?</string>
+    <string name="finsuma_delete_playlist_message">\"%1$s\" will be removed from your server. This can\'t be undone.</string>
+    <string name="finsuma_next">Next</string>
     <string name="settings_bluetooth_auto_play">Play when a car or headphones connect</string>
     <string name="settings_bluetooth_auto_play_summary">Resume your queue when Bluetooth audio connects, even with the app closed</string>
     <string name="auto_dj_on">Auto DJ on: similar songs are added before the queue runs out</string>

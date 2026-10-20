@@ -70,7 +70,6 @@ public class SongCardAdapter extends RecyclerView.Adapter<SongCardAdapter.ViewHo
         ViewHolder(ItemLibraryAlbumBinding item) {
             super(item.getRoot());
             this.item = item;
-            item.albumNameLabel.setSelected(true);
             itemView.setOnClickListener(v -> {
                 int pos = getBindingAdapterPosition();
                 Bundle bundle = new Bundle();

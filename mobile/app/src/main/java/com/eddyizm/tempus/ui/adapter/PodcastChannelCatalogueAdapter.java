@@ -113,8 +113,6 @@ public class PodcastChannelCatalogueAdapter extends RecyclerView.Adapter<Podcast
 
             this.item = item;
 
-            item.podcastChannelTitleLabel.setSelected(true);
-
             itemView.setOnClickListener(v -> onClick());
             itemView.setOnLongClickListener(v -> onLongClick());
         }

@@ -121,7 +121,9 @@ public class DiscoverSongAdapter extends RecyclerView.Adapter<DiscoverSongAdapte
         }
     }
 
+    // Finsuma: no slow zoom on the Discovery covers (constant redraws for little benefit).
     private void startAnimation(ViewHolder holder) {
+        if (holder != null) return;
         holder.item.discoverSongCoverImageView.animate()
                 .setDuration(20000)
                 .setStartDelay(10)

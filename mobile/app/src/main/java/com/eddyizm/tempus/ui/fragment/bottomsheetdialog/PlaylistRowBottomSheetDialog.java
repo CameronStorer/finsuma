@@ -143,8 +143,8 @@ public class PlaylistRowBottomSheetDialog extends BottomSheetDialogFragment {
         unpin.setOnClickListener(v -> setPinned(false));
 
         view.findViewById(R.id.delete_row).setOnClickListener(v -> deleteDialog = new MaterialAlertDialogBuilder(requireActivity())
-                .setTitle(R.string.playlist_editor_dialog_neutral_button)
-                .setMessage(playlist.getName())
+                .setTitle(R.string.finsuma_delete_playlist_title)
+                .setMessage(getString(R.string.finsuma_delete_playlist_message, playlist.getName()))
                 .setPositiveButton(R.string.playlist_editor_dialog_neutral_button, (dialog, which) -> {
                     // The sheet is dismissed at the confirmation, so the request's result is
                     // reported on the application context.

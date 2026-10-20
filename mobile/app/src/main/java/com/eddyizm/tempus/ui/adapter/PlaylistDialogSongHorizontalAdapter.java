@@ -79,8 +79,6 @@ public class PlaylistDialogSongHorizontalAdapter extends RecyclerView.Adapter<Pl
 
             this.item = item;
 
-            item.playlistDialogSongTitleTextView.setSelected(true);
-
             item.playlistDialogSongRemoveButton.setOnClickListener(v -> {
                 int position = getBindingAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) listener.onRemove(position);

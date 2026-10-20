@@ -28,6 +28,41 @@ from urllib.parse import parse_qs, urlparse
 MUSIC_ROOT = os.environ.get("YT_MUSIC_ROOT", "/mnt/data/nextcloud_files/cam/files/Music/YouTube")
 YT_DLP = os.environ.get("YT_DLP", os.path.expanduser("~/.local/bin/yt-dlp"))
 TOKEN = os.environ.get("YT_TOKEN", "")
+# Finsuma apps can sign in with their Navidrome login instead of the token: the service asks
+# Navidrome to confirm it (X-Subsonic-Auth: "u=...&t=...&s=..." or "u=...&p=...").
+NAVIDROME_URL = os.environ.get("NAVIDROME_URL", "http://127.0.0.1:4533").rstrip("/")
+_subsonic_ok = {}  # auth string -> time it was confirmed
+_subsonic_lock = threading.Lock()
+SUBSONIC_CACHE_SECONDS = 600
+
+
+def subsonic_auth_ok(auth):
+    """True if Navidrome accepts these Subsonic credentials (cached for 10 minutes)."""
+    if not auth or len(auth) > 1000:
+        return False
+    params = parse_qs(auth)
+    user = (params.get("u") or [""])[0]
+    if not user or not (params.get("t") and params.get("s") or params.get("p")):
+        return False
+    now = time.time()
+    with _subsonic_lock:
+        if now - _subsonic_ok.get(auth, 0) < SUBSONIC_CACHE_SECONDS:
+            return True
+    query = {"u": user, "v": "1.16.1", "c": "finsuma-server", "f": "json"}
+    for key in ("t", "s", "p"):
+        if params.get(key):
+            query[key] = params[key][0]
+    try:
+        from urllib.parse import urlencode
+        from urllib.request import urlopen
+        with urlopen(NAVIDROME_URL + "/rest/ping?" + urlencode(query), timeout=5) as res:
+            ok = json.load(res).get("subsonic-response", {}).get("status") == "ok"
+    except Exception:
+        ok = False
+    if ok:
+        with _subsonic_lock:
+            _subsonic_ok[auth] = now
+    return ok
 PORT = int(os.environ.get("YT_PORT", "3200"))
 MAX_JOBS_KEPT = 50
 # Finsuma playlist ratings and pins (Navidrome can't store or return these for playlists).
@@ -325,10 +360,12 @@ class Handler(BaseHTTPRequestHandler):
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Token")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Token, X-Subsonic-Auth")
 
     def _authed(self):
-        return bool(TOKEN) and self.headers.get("X-Token") == TOKEN
+        if TOKEN and self.headers.get("X-Token") == TOKEN:
+            return True
+        return subsonic_auth_ok(self.headers.get("X-Subsonic-Auth", ""))
 
     def do_OPTIONS(self):
         self.send_response(204)

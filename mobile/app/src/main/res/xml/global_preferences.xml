@@ -402,7 +402,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="-1"
+            app:defaultValue="500"
             app:dialogTitle="@string/settings_image_size"
             app:entries="@array/pref_image_size_titles"
             app:entryValues="@array/pref_image_size_values"

@@ -92,8 +92,6 @@ public class ArtistSimilarAdapter extends RecyclerView.Adapter<ArtistSimilarAdap
 
             itemView.setOnClickListener(v -> onClick());
             itemView.setOnLongClickListener(v -> onLongClick());
-
-            item.artistNameLabel.setSelected(true);
         }
 
         public void onClick() {

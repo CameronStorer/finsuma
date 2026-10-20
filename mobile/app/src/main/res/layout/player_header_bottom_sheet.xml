@@ -54,7 +54,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/lan_play_on"
         app:srcCompat="@drawable/ic_lan_remote"
-        app:layout_constraintEnd_toStartOf="@id/player_header_previous_media_button"
+        app:layout_constraintEnd_toStartOf="@id/player_header_controls"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/player_header_seek_bar" />
     <View
@@ -103,46 +103,65 @@
         app:layout_constraintEnd_toStartOf="@+id/player_header_remote_button"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Finsuma: previous track -->
-    <ImageButton
-        android:id="@+id/player_header_previous_media_button"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/ic_skip_previous"
-        android:contentDescription="@string/finsuma_previous"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toTopOf="@+id/player_header_seek_bar"
-        app:layout_constraintEnd_toStartOf="@+id/player_header_button"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ToggleButton
-        android:id="@+id/player_header_button"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/button_play_pause_selector"
-        android:checked="false"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:text=""
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toTopOf="@+id/player_header_seek_bar"
-        app:layout_constraintEnd_toStartOf="@+id/placeholder_right_view"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/player_header_next_media_button"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/ic_skip_next"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+    <!-- Finsuma: Auto DJ, previous, play/pause, next, evenly spaced -->
+    <LinearLayout
+        android:id="@+id/player_header_controls"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/player_header_seek_bar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/player_header_auto_dj_button"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/auto_dj"
+            app:srcCompat="@drawable/ic_dj" />
+
+        <ImageButton
+            android:id="@+id/player_header_previous_media_button"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/finsuma_previous"
+            app:srcCompat="@drawable/ic_skip_previous" />
+
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp">
+
+            <ToggleButton
+                android:id="@+id/player_header_button"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_play_pause_selector"
+                android:checked="false"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/player_header_next_media_button"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/finsuma_next"
+            app:srcCompat="@drawable/ic_skip_next" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/player_header_fast_forward_media_button"

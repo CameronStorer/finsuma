@@ -301,15 +301,7 @@ public class PlayerControllerFragment extends Fragment {
                 playerBottomSheetFragment.goToQueuePage();
             }
         });
-        if (playerAutoDjButton != null) {
-            updateAutoDjButtonTint();
-            playerAutoDjButton.setOnClickListener(view -> {
-                boolean enabled = !Preferences.isAutoDjEnabled();
-                Preferences.setAutoDjEnabled(enabled);
-                updateAutoDjButtonTint();
-                Toast.makeText(requireContext(), enabled ? R.string.auto_dj_on : R.string.auto_dj_off, Toast.LENGTH_SHORT).show();
-            });
-        }
+        com.eddyizm.tempus.ui.view.AutoDjButton.bind(playerAutoDjButton);
         playerOpenLyricsButton.setOnClickListener(view -> {
             int currentItem = playerMediaCoverViewPager.getCurrentItem();
             if (currentItem == 0) {

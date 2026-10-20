@@ -13,7 +13,9 @@ docker compose up -d                       # download service only
 docker compose --profile navidrome up -d   # also run Navidrome
 ```
 
-The first time you press the download button in Finsuma, it asks for the token: paste `YT_TOKEN`.
+Finsuma apps sign in with your Navidrome login (the server checks it with Navidrome at
+`NAVIDROME_URL`), so normally there is nothing to enter. `YT_TOKEN` still works as an
+alternative, e.g. for scripts.
 Finsuma looks for the service on port 3200 of the machine your Navidrome server is on, then
 on the address saved in the YouTube page settings.
 
@@ -30,7 +32,7 @@ nobody has to type an address. Two ways to set it up:
   (`NAVIDROME_UPSTREAM`, default the `navidrome` service). Point your domain at it.
 
 The service accepts requests with or without the `/finsuma` prefix. When it is reachable from the
-internet, the token is what protects it, so use a long random one.
+internet, the Navidrome login (or the token) is what protects it; keep the token long and random.
 
 ## What it does
 
@@ -40,7 +42,8 @@ internet, the token is what protects it, so use a long random one.
 - Singles go to `YouTube/<artist>/<title>.mp3`, playlists to `YouTube/<playlist>/NN <title>.mp3`
 - yt-dlp updates itself when the container starts (set `YT_AUTO_UPDATE=0` to turn that off)
 
-It only accepts YouTube and SoundCloud links, and every request except `/health` needs the token.
+It only accepts YouTube and SoundCloud links, and every request except `/health` needs a
+Navidrome login or the token.
 Without the URL setup above, keep port 3200 on your home network.
 
 ## Without Docker

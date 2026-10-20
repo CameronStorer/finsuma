@@ -52,6 +52,10 @@ public class PlaylistCatalogueViewModel extends AndroidViewModel {
         sortOrder.setValue(order);
     }
 
+    public String getSortOrderValue() {
+        return sortOrder.getValue();
+    }
+
     public LiveData<List<Playlist>> getSortedPlaylistList() {
         return sortedPlaylistList;
     }

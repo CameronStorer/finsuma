@@ -16,6 +16,8 @@ services:
     environment:
       YT_TOKEN: ${YT_TOKEN:?set YT_TOKEN in .env}
       YT_AUTO_UPDATE: ${YT_AUTO_UPDATE:-1}
+      # Lets Finsuma apps sign in with their Navidrome login instead of the token.
+      NAVIDROME_URL: ${NAVIDROME_URL:-http://navidrome:4533}
     ports:
       - "${YT_PORT:-3200}:3200"
     volumes:

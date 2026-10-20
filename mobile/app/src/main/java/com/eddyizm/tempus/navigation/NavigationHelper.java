@@ -75,11 +75,11 @@ public class NavigationHelper {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        // Finsuma: "Download" isn't a screen; it asks which site to open.
+        // Finsuma: "Library" opens albums or genres (whichever was used last) as a tab.
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.finsumaDownloadChooser) {
-                FinsumaService.showSiteChooser(bottomNavigationView.getContext(), navController);
-                return false;
+            if (item.getItemId() == R.id.finsuma_library) {
+                com.eddyizm.tempus.util.FinsumaTabBar.openLibrary(navController);
+                return true;
             }
             return NavigationUI.onNavDestinationSelected(item, navController);
         });

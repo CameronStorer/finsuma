@@ -83,8 +83,6 @@ public class ArtistCarouselAdapter extends RecyclerView.Adapter<ArtistCarouselAd
                 click.onArtistLongClick(bundle);
                 return true;
             });
-
-            item.artistNameLabel.setSelected(true);
         }
     }
 }

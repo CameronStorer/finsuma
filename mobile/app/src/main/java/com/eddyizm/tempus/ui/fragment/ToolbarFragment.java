@@ -180,6 +180,7 @@ public class ToolbarFragment extends Fragment {
     private void updateMusicLibraryIndicator() {
         if (bind == null) return;
 
+        // Finsuma: with one library the title still opens the menu (for Servers…).
         // One library offers no choice. A filter in force has to stay visible whatever the folder
         // list says, because this is the only way to clear one from outside Settings, and the list
         // is empty for as long as the server has not answered.
@@ -237,7 +238,15 @@ public class ToolbarFragment extends Fragment {
         List<String> itemIds = new ArrayList<>();
         for (MusicFolder musicFolder : musicFolders) itemIds.add(musicFolder.getId());
 
+        // Finsuma: server switching/management from the title.
+        final int serversItemId = 9999;
+        popup.getMenu().add(MUSIC_LIBRARY_MENU_GROUP + 1, serversItemId, serversItemId, R.string.finsuma_servers);
+
         popup.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == serversItemId) {
+                ((com.eddyizm.tempus.ui.activity.MainActivity) requireActivity()).openServers();
+                return true;
+            }
             int index = menuItem.getItemId() - 1;
             String selectedId = index < 0 ? Preferences.MUSIC_FOLDER_ALL : itemIds.get(index);
 

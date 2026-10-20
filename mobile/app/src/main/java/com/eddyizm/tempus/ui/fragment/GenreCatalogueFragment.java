@@ -87,10 +87,13 @@ public class GenreCatalogueFragment extends Fragment implements ClickCallback {
     private void initAppBar() {
         activity.setSupportActionBar(bind.toolbar);
 
+        // Finsuma: as the bottom-bar Library tab: no back arrow, compact top bar.
+        boolean isTab = com.eddyizm.tempus.util.FinsumaTabBar.isTab(getArguments());
         if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(!isTab);
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(!isTab);
         }
+        if (isTab) com.eddyizm.tempus.util.FinsumaTabBar.compact(bind.appBarLayout, bind.toolbar, getString(R.string.genre_catalogue_title));
 
         bind.toolbar.setNavigationOnClickListener(v -> {
             hideKeyboard(v);
@@ -98,7 +101,7 @@ public class GenreCatalogueFragment extends Fragment implements ClickCallback {
         });
 
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (bind == null) return;
+            if (bind == null || com.eddyizm.tempus.util.FinsumaTabBar.isTab(getArguments())) return;
 
             if ((bind.genreInfoSector.getHeight() + verticalOffset) < bind.genreInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.genre_catalogue_title);
@@ -130,6 +133,9 @@ public class GenreCatalogueFragment extends Fragment implements ClickCallback {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        if (com.eddyizm.tempus.util.FinsumaTabBar.isTab(getArguments())) {
+            com.eddyizm.tempus.util.FinsumaTabBar.addActions(menu, com.eddyizm.tempus.util.FinsumaTabBar.TO_ALBUMS | com.eddyizm.tempus.util.FinsumaTabBar.SORT);
+        }
         inflater.inflate(R.menu.toolbar_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
@@ -152,6 +158,19 @@ public class GenreCatalogueFragment extends Fragment implements ClickCallback {
         });
 
         searchView.setPadding(-32, 0, 0, 0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.finsuma_action_albums) {
+            com.eddyizm.tempus.util.FinsumaTabBar.openTab(activity.navController, R.id.albumCatalogueFragment);
+            return true;
+        }
+        if (item.getItemId() == R.id.finsuma_action_sort) {
+            showPopupMenu(com.eddyizm.tempus.util.FinsumaTabBar.anchor(bind.toolbar, item.getItemId()), R.menu.sort_genre_popup_menu);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void hideKeyboard(View view) {

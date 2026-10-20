@@ -32,6 +32,27 @@ object AutoDj {
     const val MODE_ALBUMS = "albums"
 
     private val running = AtomicBoolean(false)
+
+    /** While a Discovery mix is loading, Auto DJ waits so the two don't both fill the queue. */
+    @Volatile private var mixPendingUntil = 0L
+    private var lastContext: Context? = null
+    private var lastTarget: java.lang.ref.WeakReference<MediaManager.QueueTarget>? = null
+
+    @JvmStatic
+    fun holdForMix() {
+        mixPendingUntil = android.os.SystemClock.elapsedRealtime() + 15_000
+    }
+
+    /** The mix arrived (or failed): let Auto DJ look at the queue again. */
+    @JvmStatic
+    fun releaseMix() {
+        mixPendingUntil = 0
+        main.post {
+            val context = lastContext ?: return@post
+            val target = lastTarget?.get() ?: return@post
+            check(context, target)
+        }
+    }
     private val executor = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
 
@@ -69,7 +90,10 @@ object AutoDj {
     /** Call on the main thread whenever the current song or the queue changes. */
     @JvmStatic
     fun check(context: Context, queueTarget: MediaManager.QueueTarget) {
+        lastContext = context.applicationContext
+        lastTarget = java.lang.ref.WeakReference(queueTarget)
         if (!Preferences.isAutoDjEnabled()) return
+        if (android.os.SystemClock.elapsedRealtime() < mixPendingUntil) return
         val player = queueTarget.livePlayer() ?: return
         if (player.repeatMode == Player.REPEAT_MODE_ONE) return
         val current = player.currentMediaItem ?: return

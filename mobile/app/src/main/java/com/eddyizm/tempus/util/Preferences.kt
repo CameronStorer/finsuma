@@ -590,7 +590,16 @@ object Preferences {
 
     @JvmStatic
     fun getImageSize(): Int {
-        return App.getInstance().preferences.getString(IMAGE_SIZE, "-1")!!.toInt()
+        // Finsuma: server-resized covers by default (full-size originals made scrolling heavy).
+        // Existing installs on the old default move to Medium once; High stays available.
+        val prefs = App.getInstance().preferences
+        if (!prefs.getBoolean("finsuma_image_size_migrated", false)) {
+            val edit = prefs.edit().putBoolean("finsuma_image_size_migrated", true)
+            if (prefs.getString(IMAGE_SIZE, "-1") == "-1") edit.putString(IMAGE_SIZE, "500")
+            edit.apply()
+            return 500
+        }
+        return prefs.getString(IMAGE_SIZE, "500")!!.toInt()
     }
 
     @JvmStatic

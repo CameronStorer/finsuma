@@ -49,6 +49,22 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.finsuma_action_new_playlist) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList(Constants.TRACKS_OBJECT, new java.util.ArrayList<>());
+            com.eddyizm.tempus.ui.dialog.PlaylistEditorDialog dialog = new com.eddyizm.tempus.ui.dialog.PlaylistEditorDialog(null);
+            dialog.setArguments(bundle);
+            dialog.show(requireActivity().getSupportFragmentManager(), null);
+            return true;
+        }
+        if (item.getItemId() == R.id.finsuma_action_download) {
+            com.eddyizm.tempus.util.FinsumaService.showSiteChooser(requireContext(), activity.navController);
+            return true;
+        }
+        if (item.getItemId() == R.id.finsuma_action_sort) {
+            showPopupMenu(com.eddyizm.tempus.util.FinsumaTabBar.anchor(bind.toolbar, item.getItemId()), R.menu.sort_playlist_popup_menu);
+            return true;
+        }
         if (item.getItemId() == R.id.finsuma_grid_toggle) {
             boolean grid = !FinsumaGrid.isGrid(requireContext(), "playlists");
             FinsumaGrid.setGrid(requireContext(), "playlists", grid);
@@ -122,6 +138,9 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
             boolean isTab = getArguments() != null && getArguments().getBoolean("finsuma_tab", false);
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(!isTab);
             activity.getSupportActionBar().setDisplayShowHomeEnabled(!isTab);
+            if (isTab) {
+                com.eddyizm.tempus.util.FinsumaTabBar.compact(bind.appBarLayout, bind.toolbar, getString(R.string.finsuma_nav_playlists));
+            }
         }
 
         bind.toolbar.setNavigationOnClickListener(v -> {
@@ -131,7 +150,7 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
 
 
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (bind == null) return;
+            if (bind == null || com.eddyizm.tempus.util.FinsumaTabBar.isTab(getArguments())) return;
 
             if ((bind.albumInfoSector.getHeight() + verticalOffset) < bind.albumInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(R.string.playlist_catalogue_title);
@@ -185,6 +204,10 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        if (com.eddyizm.tempus.util.FinsumaTabBar.isTab(getArguments())) {
+            com.eddyizm.tempus.util.FinsumaTabBar.addActions(menu, com.eddyizm.tempus.util.FinsumaTabBar.NEW_PLAYLIST
+                    | com.eddyizm.tempus.util.FinsumaTabBar.DOWNLOAD | com.eddyizm.tempus.util.FinsumaTabBar.SORT);
+        }
         inflater.inflate(R.menu.toolbar_menu, menu);
         gridToggle = FinsumaGrid.addToggle(menu, FinsumaGrid.isGrid(requireContext(), "playlists"));
 
@@ -217,6 +240,19 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
     private void showPopupMenu(View view, int menuResource) {
         PopupMenu popup = new PopupMenu(requireContext(), view);
         popup.getMenuInflater().inflate(menuResource, popup.getMenu());
+
+        // Finsuma: check the current sort.
+        String current = playlistCatalogueViewModel.getSortOrderValue();
+        java.util.Map<String, Integer> sortItems = new java.util.HashMap<>();
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_NAME, R.id.menu_playlist_sort_name);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_PINNED, R.id.menu_playlist_sort_pinned);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_RANDOM, R.id.menu_playlist_sort_random);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_DATE, R.id.menu_playlist_sort_date);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_SONGS, R.id.menu_playlist_sort_songs);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_LAST_PLAYED, R.id.menu_playlist_sort_last_played);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_LAST_UPDATED, R.id.menu_playlist_sort_last_updated);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_BOTH, R.id.menu_playlist_sort_both);
+        com.eddyizm.tempus.util.FinsumaTabBar.checkSort(popup.getMenu(), sortItems.get(current));
 
         popup.setOnMenuItemClickListener(menuItem -> {
             int id = menuItem.getItemId();

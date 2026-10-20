@@ -494,6 +494,11 @@ public class MainActivity extends BaseActivity {
         }, MoreExecutors.directExecutor());
     }
 
+    /** Finsuma: the server list (switch, add or edit servers), opened from the Home title. */
+    public void openServers() {
+        goToLogin();
+    }
+
     private void goToLogin() {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         setBottomNavigationBarVisibility(false);

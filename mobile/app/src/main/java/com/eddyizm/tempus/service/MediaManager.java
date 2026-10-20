@@ -267,6 +267,26 @@ public class MediaManager {
     }
 
     @OptIn(markerClass = UnstableApi.class)
+    // Finsuma: add songs to the end of a queue that startQueue may still be setting up. Mapping and
+    // the player call go through the same single-thread executor and main-thread post as
+    // startQueue, so these always land after the queue it started.
+    public static void appendAfterStart(ListenableFuture<MediaBrowser> mediaBrowserListenableFuture, List<Child> media) {
+        if (mediaBrowserListenableFuture == null || media == null || media.isEmpty()) return;
+        mediaBrowserListenableFuture.addListener(() -> backgroundExecutor.execute(() -> {
+            final List<MediaItem> items = MappingUtil.mapMediaItems(media);
+            new Handler(Looper.getMainLooper()).post(() -> {
+                try {
+                    if (LanRemoteSession.isActive()) return;
+                    MediaBrowser browser = mediaBrowserListenableFuture.get();
+                    enqueueDatabase(media, false, browser.getMediaItemCount());
+                    browser.addMediaItems(items);
+                } catch (ExecutionException | InterruptedException e) {
+                    Log.e(TAG, "appendAfterStart", e);
+                }
+            });
+        }), MoreExecutors.directExecutor());
+    }
+
     public static void startQueue(ListenableFuture<MediaBrowser> mediaBrowserListenableFuture, List<Child> media, int startIndex) {
         startQueue(mediaBrowserListenableFuture, media, startIndex, 0L);
     }

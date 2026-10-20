@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Finsuma: Home, Playlists, Tracks, Download (Download opens a YouTube/SoundCloud chooser). -->
+<!-- Finsuma: Home, Playlists, Tracks, Library (albums or genres). Download is on the Playlists and Tracks top bars. -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_finsuma_tracks"
         android:title="@string/finsuma_nav_tracks" />
     <item
-        android:id="@+id/finsumaDownloadChooser"
-        android:icon="@drawable/ic_download"
-        android:title="@string/finsuma_nav_download" />
+        android:id="@+id/finsuma_library"
+        android:icon="@drawable/ic_albums"
+        android:title="@string/finsuma_nav_library" />
 </menu>

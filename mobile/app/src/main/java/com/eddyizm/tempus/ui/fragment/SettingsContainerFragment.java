@@ -280,7 +280,16 @@ public class SettingsContainerFragment extends PreferenceFragmentCompat {
                 return true;
             });
         }
+    
+        // Finsuma: start collapsed, so the page doesn't draw expanded and then jump closed.
+        applyAccordionState();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getListView() != null) getListView().setItemAnimator(null);
+}
 
     private void applyAccordionState() {
         PreferenceScreen screen = getPreferenceScreen();

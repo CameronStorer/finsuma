@@ -78,6 +78,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -1480,19 +1481,27 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
             Child track = bundle.getParcelable(Constants.TRACK_OBJECT);
             activity.setBottomSheetInPeek(true);
 
-            if (mediaBrowserListenableFuture != null) {
-                final boolean[] playbackStarted = {false};
-                Toast.makeText(requireContext(), R.string.bottom_sheet_generating_instant_mix, Toast.LENGTH_SHORT).show();
+            if (mediaBrowserListenableFuture != null && track != null) {
+                // Finsuma: play the song right away; the mix fills in behind it, silently.
+                com.eddyizm.tempus.service.AutoDj.holdForMix();
+                new Handler(Looper.getMainLooper()).postDelayed(
+                        com.eddyizm.tempus.service.AutoDj::releaseMix, 16000); // if the mix never comes
+                MediaManager.startQueue(mediaBrowserListenableFuture, new ArrayList<>(Collections.singletonList(track)), 0);
+                final boolean[] mixAdded = {false};
                 homeViewModel.getMediaInstantMix(getViewLifecycleOwner(), track)
                         .observe(getViewLifecycleOwner(), songs -> {
-                            if (playbackStarted[0] || songs == null || songs.isEmpty()) return;
-
-                            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                                if (playbackStarted[0]) return;
-
-                                MediaManager.startQueue(mediaBrowserListenableFuture, songs, 0);
-                                playbackStarted[0] = true;
-                            }, 300);
+                            if (mixAdded[0] || songs == null || songs.isEmpty()) return;
+                            mixAdded[0] = true;
+                            List<Child> rest = new ArrayList<>();
+                            java.util.Set<String> seen = new java.util.HashSet<>();
+                            seen.add(track.getId());
+                            for (Child song : songs) {
+                                if (seen.add(song.getId())) rest.add(song);
+                            }
+                            MediaManager.appendAfterStart(mediaBrowserListenableFuture, rest);
+                            // Let Auto DJ look again once the mix is in the queue.
+                            new Handler(Looper.getMainLooper()).postDelayed(
+                                    com.eddyizm.tempus.service.AutoDj::releaseMix, 1500);
                         });
             }
         } else if (bundle.containsKey(Constants.MEDIA_CHRONOLOGY)) {

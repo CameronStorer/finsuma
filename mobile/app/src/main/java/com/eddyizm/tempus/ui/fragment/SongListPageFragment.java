@@ -182,6 +182,9 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
             boolean isTab = Constants.MEDIA_ALL_SONGS.equals(songListPageViewModel.title);
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(!isTab);
             activity.getSupportActionBar().setDisplayShowHomeEnabled(!isTab);
+            if (isTab) {
+                com.eddyizm.tempus.util.FinsumaTabBar.compact(bind.appBarLayout, bind.toolbar, getString(R.string.finsuma_nav_tracks));
+            }
         }
 
         bind.toolbar.setNavigationOnClickListener(v -> {
@@ -190,7 +193,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         });
 
         bind.appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (bind == null) return;
+            if (bind == null || Constants.MEDIA_ALL_SONGS.equals(songListPageViewModel.title)) return;
 
             if ((bind.albumInfoSector.getHeight() + verticalOffset) < bind.albumInfoSector.getHeight() / 3) {
                 bind.toolbar.setTitle(songListPageViewModel.toolbarTitle);
@@ -206,8 +209,10 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
                 setSongListPageSorter();
 
                 bind.songListShuffleImageView.setOnClickListener(v -> {
-                    Collections.shuffle(songs);
-                    MediaManager.startQueue(mediaBrowserListenableFuture, songs.subList(0, Math.min(500, songs.size())), 0);
+                    // Shuffle a copy: the list is shared with the Tracks screen (and its cache).
+                    List<Child> shuffled = new java.util.ArrayList<>(songs);
+                    Collections.shuffle(shuffled);
+                    MediaManager.startQueue(mediaBrowserListenableFuture, shuffled.subList(0, Math.min(500, shuffled.size())), 0);
                     activity.setBottomSheetInPeek(true);
                 });
             }
@@ -231,6 +236,8 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         songListPageViewModel.getSongList().observe(getViewLifecycleOwner(), songs -> {
             isLoading = false;
             songHorizontalAdapter.setItems(songs);
+            String saved = savedSort();
+            if (saved != null) songHorizontalAdapter.sort(saved);
             reapplyPlayback();
             setSongListPageSubtitle(songs);
         });
@@ -258,6 +265,10 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        if (Constants.MEDIA_ALL_SONGS.equals(songListPageViewModel.title)) {
+            com.eddyizm.tempus.util.FinsumaTabBar.addActions(menu, com.eddyizm.tempus.util.FinsumaTabBar.DOWNLOAD
+                    | com.eddyizm.tempus.util.FinsumaTabBar.SORT | com.eddyizm.tempus.util.FinsumaTabBar.SHUFFLE);
+        }
         inflater.inflate(R.menu.toolbar_menu, menu);
         gridToggle = FinsumaGrid.addToggle(menu, FinsumaGrid.isGrid(requireContext(), "songs"));
 
@@ -287,6 +298,18 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.finsuma_action_download) {
+            com.eddyizm.tempus.util.FinsumaService.showSiteChooser(requireContext(), activity.navController);
+            return true;
+        }
+        if (item.getItemId() == R.id.finsuma_action_sort) {
+            showPopupMenu(com.eddyizm.tempus.util.FinsumaTabBar.anchor(bind.toolbar, item.getItemId()), R.menu.sort_song_popup_menu);
+            return true;
+        }
+        if (item.getItemId() == R.id.finsuma_action_shuffle) {
+            bind.songListShuffleImageView.performClick();
+            return true;
+        }
         if (item.getItemId() == R.id.finsuma_grid_toggle) {
             boolean grid = !FinsumaGrid.isGrid(requireContext(), "songs");
             FinsumaGrid.setGrid(requireContext(), "songs", grid);
@@ -315,37 +338,68 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    // Finsuma: remember each list's sort, show it checked, and jump to the top after sorting.
+    private static final java.util.Map<String, Integer> SORT_ITEMS = new java.util.HashMap<>();
+    static {
+        SORT_ITEMS.put(Constants.MEDIA_BY_TITLE, R.id.menu_song_sort_name);
+        SORT_ITEMS.put(Constants.MEDIA_MOST_RECENTLY_STARRED, R.id.menu_song_sort_most_recently_starred);
+        SORT_ITEMS.put(Constants.MEDIA_LEAST_RECENTLY_STARRED, R.id.menu_song_sort_least_recently_starred);
+        SORT_ITEMS.put(Constants.SORT_SONG_ARTIST, R.id.menu_song_sort_artist);
+        SORT_ITEMS.put(Constants.SORT_SONG_ALBUM, R.id.menu_song_sort_album);
+        SORT_ITEMS.put(Constants.SORT_SONG_YEAR, R.id.menu_song_sort_year);
+        SORT_ITEMS.put(Constants.SORT_SONG_RECENTLY_ADDED, R.id.menu_song_sort_recently_added);
+        SORT_ITEMS.put(Constants.SORT_SONG_MOST_PLAYED, R.id.menu_song_sort_most_played);
+        SORT_ITEMS.put(Constants.SORT_SONG_RATING, R.id.menu_song_sort_rating);
+    }
+
+    private String sortKey() {
+        return "finsuma_song_sort_" + songListPageViewModel.title;
+    }
+
+    private String savedSort() {
+        return com.eddyizm.tempus.App.getInstance().getPreferences().getString(sortKey(), null);
+    }
+
+    private void applySort(String order) {
+        com.eddyizm.tempus.App.getInstance().getPreferences().edit().putString(sortKey(), order).apply();
+        songHorizontalAdapter.sort(order, () -> {
+            if (bind != null) bind.songListRecyclerView.scrollToPosition(0);
+        });
+    }
+
     private void showPopupMenu(View view, int menuResource) {
         PopupMenu popup = new PopupMenu(requireContext(), view);
         popup.getMenuInflater().inflate(menuResource, popup.getMenu());
+        Integer current = SORT_ITEMS.get(savedSort());
+        com.eddyizm.tempus.util.FinsumaTabBar.checkSort(popup.getMenu(), current);
 
         popup.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.menu_song_sort_name) {
-                songHorizontalAdapter.sort(Constants.MEDIA_BY_TITLE);
+                applySort(Constants.MEDIA_BY_TITLE);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_most_recently_starred) {
-                songHorizontalAdapter.sort(Constants.MEDIA_MOST_RECENTLY_STARRED);
+                applySort(Constants.MEDIA_MOST_RECENTLY_STARRED);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_least_recently_starred) {
-                songHorizontalAdapter.sort(Constants.MEDIA_LEAST_RECENTLY_STARRED);
+                applySort(Constants.MEDIA_LEAST_RECENTLY_STARRED);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_artist) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_ARTIST);
+                applySort(Constants.SORT_SONG_ARTIST);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_album) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_ALBUM);
+                applySort(Constants.SORT_SONG_ALBUM);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_year) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_YEAR);
+                applySort(Constants.SORT_SONG_YEAR);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_recently_added) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_RECENTLY_ADDED);
+                applySort(Constants.SORT_SONG_RECENTLY_ADDED);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_most_played) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_MOST_PLAYED);
+                applySort(Constants.SORT_SONG_MOST_PLAYED);
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_rating) {
-                songHorizontalAdapter.sort(Constants.SORT_SONG_RATING);
+                applySort(Constants.SORT_SONG_RATING);
                 return true;
             }
 
@@ -360,6 +414,7 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         switch (songListPageViewModel.title) {
             case Constants.MEDIA_ALL_SONGS:
                 bind.pageSubtitleLabel.setText(getString(R.string.generic_list_page_count, children.size()));
+                bind.toolbar.setSubtitle(getResources().getQuantityString(R.plurals.finsuma_song_count, children.size(), children.size()));
                 break;
             case Constants.MEDIA_BY_GENRE:
                 bind.pageSubtitleLabel.setText(children.size() < songListPageViewModel.maxNumberByGenre ?

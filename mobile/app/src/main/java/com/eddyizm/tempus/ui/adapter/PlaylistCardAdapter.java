@@ -71,7 +71,6 @@ public class PlaylistCardAdapter extends RecyclerView.Adapter<PlaylistCardAdapte
         ViewHolder(ItemLibraryAlbumBinding item) {
             super(item.getRoot());
             this.item = item;
-            item.albumNameLabel.setSelected(true);
             itemView.setOnClickListener(v -> click.onPlaylistClick(bundle()));
             itemView.setOnLongClickListener(v -> {
                 click.onPlaylistLongClick(bundle());

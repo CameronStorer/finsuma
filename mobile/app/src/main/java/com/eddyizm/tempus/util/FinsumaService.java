@@ -139,6 +139,45 @@ public final class FinsumaService {
         return prefs(context).getString(KEY_TOKEN, "");
     }
 
+    /** The app's Navidrome sign-in; the Finsuma server checks it with Navidrome (no token needed). */
+    public static String subsonicAuth() {
+        try {
+            java.util.Map<String, String> params = com.eddyizm.tempus.App.getSubsonicClientInstance(false).getParams();
+            StringBuilder out = new StringBuilder();
+            for (String key : new String[]{"u", "t", "s", "p"}) {
+                String value = params.get(key);
+                if (value == null || value.isEmpty()) continue;
+                if (out.length() > 0) out.append('&');
+                out.append(key).append('=').append(Uri.encode(value));
+            }
+            return out.toString();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    /** Adds whichever credentials we have: the optional token and the Navidrome sign-in. */
+    private static Request.Builder authed(Context context, String url) {
+        Request.Builder builder = new Request.Builder().url(url).header("X-Subsonic-Auth", subsonicAuth());
+        String token = token(context);
+        if (!token.isEmpty()) builder.header("X-Token", token);
+        return builder;
+    }
+
+    /** Finds the first Finsuma server address that answers (remembers it). Call off the main thread. */
+    private static String reachableBase(Context context) {
+        for (String base : candidateUrls(context)) {
+            try (Response health = HTTP.newCall(new Request.Builder().url(base + "/health").build()).execute()) {
+                if (!health.isSuccessful()) continue;
+            } catch (Exception e) {
+                continue;
+            }
+            prefs(context).edit().putString(KEY_URL, base).apply();
+            return base;
+        }
+        return null;
+    }
+
     /** Asks for the service address and token, then runs {@code then}. */
     public static void showSettings(Context context, Runnable then) {
         LinearLayout box = new LinearLayout(context);
@@ -150,7 +189,7 @@ public final class FinsumaService {
         url.setText(url(context));
         url.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
         EditText token = new EditText(context);
-        token.setHint("Download token (YT_TOKEN on the server)");
+        token.setHint("Token (optional: your Navidrome login is used)");
         token.setText(token(context));
         token.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         box.addView(url);
@@ -173,11 +212,15 @@ public final class FinsumaService {
     // ------------------------------------------------------------------ actions
 
     public static void showSiteChooser(Context context, NavController navController) {
-        String[] sites = {"YouTube", "SoundCloud"};
+        String[] sites = {"YouTube", "SoundCloud", "Download manager"};
         String[] urls = {"https://m.youtube.com/", "https://m.soundcloud.com/discover"};
         new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.finsuma_download_from)
                 .setItems(sites, (dialog, which) -> {
+                    if (which == 2) {
+                        showDownloadManager(context);
+                        return;
+                    }
                     Bundle args = new Bundle();
                     args.putString(Constants.FINSUMA_SITE_URL, urls[which]);
                     navController.navigate(R.id.finsumaWebFragment, args);
@@ -190,10 +233,6 @@ public final class FinsumaService {
         Target target = targetFor(url);
         if (!target.ok()) {
             Toast.makeText(context, "Open a song or playlist first, then press download.", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (token(context).isEmpty()) {
-            showSettings(context, () -> showDownloadDialog(context, url));
             return;
         }
         String single = target.soundcloud ? "Track" : "Video";
@@ -223,17 +262,9 @@ public final class FinsumaService {
         }
         List<String> candidates = candidateUrls(context);
         new Thread(() -> {
-            for (String base : candidates) {
-                try (Response health = HTTP.newCall(new Request.Builder().url(base + "/health").build()).execute()) {
-                    if (!health.isSuccessful()) continue;
-                } catch (Exception e) {
-                    continue;
-                }
-                // Remember the address that answers.
-                prefs(context).edit().putString(KEY_URL, base).apply();
-                Request request = new Request.Builder()
-                        .url(base + "/download")
-                        .header("X-Token", token(context))
+            String base = reachableBase(context);
+            if (base != null) {
+                Request request = authed(context, base + "/download")
                         .post(RequestBody.create(body, MediaType.get("application/json")))
                         .build();
                 try (Response response = HTTP.newCall(request).execute()) {
@@ -242,7 +273,7 @@ public final class FinsumaService {
                         if (code == 202) {
                             Toast.makeText(context, "Downloading to your music server", Toast.LENGTH_SHORT).show();
                         } else if (code == 401) {
-                            Toast.makeText(context, "Wrong download token", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "The Finsuma server didn't accept your sign-in", Toast.LENGTH_LONG).show();
                             showSettings(context, null);
                         } else {
                             Toast.makeText(context, "Download failed (" + code + ")", Toast.LENGTH_LONG).show();
@@ -257,5 +288,69 @@ public final class FinsumaService {
                     "Can't reach the Finsuma server (tried " + candidates.size() + " addresses).",
                     Toast.LENGTH_LONG).show());
         }).start();
+    }
+
+    // ------------------------------------------------------------------ download manager
+
+    /** Recent downloads on the Finsuma server with their status (Refresh to update). */
+    public static void showDownloadManager(Context context) {
+        Handler main = new Handler(Looper.getMainLooper());
+        Toast.makeText(context, "Loading downloads…", Toast.LENGTH_SHORT).show();
+        new Thread(() -> {
+            String base = reachableBase(context);
+            List<String> lines = new java.util.ArrayList<>();
+            String problem = null;
+            if (base == null) {
+                problem = "Can't reach the Finsuma server.";
+            } else {
+                try (Response response = HTTP.newCall(authed(context, base + "/jobs").build()).execute()) {
+                    if (response.code() == 401) {
+                        problem = "The Finsuma server didn't accept your sign-in.";
+                    } else if (!response.isSuccessful() || response.body() == null) {
+                        problem = "Couldn't load downloads (" + response.code() + ").";
+                    } else {
+                        org.json.JSONArray jobs = new JSONObject(response.body().string()).optJSONArray("jobs");
+                        for (int i = 0; jobs != null && i < jobs.length(); i++) {
+                            lines.add(describeJob(jobs.getJSONObject(i)));
+                        }
+                    }
+                } catch (Exception e) {
+                    problem = "Couldn't load downloads: " + e.getMessage();
+                }
+            }
+            final String error = problem;
+            main.post(() -> {
+                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context)
+                        .setTitle("Downloads")
+                        .setNegativeButton("Close", null)
+                        .setPositiveButton("Refresh", (d, w) -> showDownloadManager(context));
+                if (error != null) {
+                    dialog.setMessage(error);
+                } else if (lines.isEmpty()) {
+                    dialog.setMessage("No recent downloads. Use YouTube or SoundCloud to add music.");
+                } else {
+                    dialog.setItems(lines.toArray(new String[0]), null);
+                }
+                dialog.show();
+            });
+        }).start();
+    }
+
+    private static String describeJob(JSONObject job) {
+        String title = job.optString("title", "");
+        if (title.isEmpty() || "null".equals(title)) title = job.optString("set_title", "");
+        if (title.isEmpty() || "null".equals(title)) title = job.optString("url", "");
+        String playlist = "playlist".equals(job.optString("mode")) ? " (playlist)" : "";
+        switch (job.optString("status")) {
+            case "done":
+                int files = job.optJSONArray("files") != null ? job.optJSONArray("files").length() : 0;
+                return "✓ " + title + playlist + (files > 1 ? " · " + files + " songs" : "");
+            case "running":
+                return "↓ " + Math.round(job.optDouble("progress", 0)) + "% · " + title + playlist;
+            case "failed":
+                return "✗ " + title + playlist + " · failed";
+            default:
+                return "… " + title + playlist + " · waiting";
+        }
     }
 }

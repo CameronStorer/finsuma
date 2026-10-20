@@ -122,28 +122,13 @@ public class PlaylistEditorDialog extends DialogFragment {
             neutralButton.setVisibility(View.GONE);
         } else {
             neutralButton.setVisibility(View.VISIBLE);
-            neutralButton.setOnClickListener(v -> {
-                playlistEditorViewModel.deletePlaylist(new PlaylistRepository.PlaylistActionCallback() {
-                    @Override
-                    public void onSuccess() {
-                        if (isAdded() && getContext() != null) {
-                            requireActivity().runOnUiThread(() -> {
-                                Toast.makeText(getContext(), R.string.playlist_editor_dialog_action_delete_success, Toast.LENGTH_SHORT).show();
-                                dialogDismiss();
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onFailure() {
-                        if (isAdded() && getContext() != null) {
-                            requireActivity().runOnUiThread(() -> {
-                                Toast.makeText(getContext(), R.string.playlist_editor_dialog_action_delete_failure, Toast.LENGTH_SHORT).show();
-                            });
-                        }
-                    }
-                });
-            });
+            // Finsuma: confirm before deleting (one tap used to delete straight away).
+            neutralButton.setOnClickListener(v -> new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.finsuma_delete_playlist_title)
+                    .setMessage(getString(R.string.finsuma_delete_playlist_message, playlistEditorViewModel.getPlaylistToEdit().getName()))
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(R.string.playlist_editor_dialog_neutral_button, (confirm, which) -> confirmedDelete())
+                    .show());
         }
 
         bind.playlistShareButton.setOnClickListener(view -> {
@@ -155,6 +140,28 @@ public class PlaylistEditorDialog extends DialogFragment {
         });
 
         bind.playlistShareButton.setVisibility(Preferences.isSharingEnabled() ? View.VISIBLE : View.GONE);
+    }
+
+    private void confirmedDelete() {
+        playlistEditorViewModel.deletePlaylist(new PlaylistRepository.PlaylistActionCallback() {
+            @Override
+            public void onSuccess() {
+                if (isAdded() && getContext() != null) {
+                    requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(getContext(), R.string.playlist_editor_dialog_action_delete_success, Toast.LENGTH_SHORT).show();
+                        dialogDismiss();
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure() {
+                if (isAdded() && getContext() != null) {
+                    requireActivity().runOnUiThread(() ->
+                            Toast.makeText(getContext(), R.string.playlist_editor_dialog_action_delete_failure, Toast.LENGTH_SHORT).show());
+                }
+            }
+        });
     }
 
     private boolean validateInput() {
