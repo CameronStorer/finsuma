@@ -104,11 +104,17 @@ export const UpdatePlaylistContextModal = ({
                     body: { image: new Uint8Array(buffer) },
                     query: { id: query.id },
                 });
-            } else if (removeCustomCover && playlistImage?.uploadedImage) {
-                await deleteImageMutation.mutateAsync({
-                    apiClientProps: { serverId: server.id },
-                    query: { id: query.id },
-                });
+            } else if (removeCustomCover) {
+                // Finsuma: always ask the server; the playlist data this dialog opened with
+                // can be stale (e.g. a cover just added by a batch job).
+                try {
+                    await deleteImageMutation.mutateAsync({
+                        apiClientProps: { serverId: server.id },
+                        query: { id: query.id },
+                    });
+                } catch (err) {
+                    if (playlistImage?.uploadedImage) throw err;
+                }
             }
 
             toast.success({

@@ -107,9 +107,8 @@ export const findTopSong = async (serverId: string, playlistId: string) => {
     return top ?? null;
 };
 
-export const topSongCoverBlob = async (serverId: string, playlistId: string) => {
-    const song = await findTopSong(serverId, playlistId);
-    if (!song) return null;
+// The album cover of one song, cropped square.
+export const songCoverBlob = async (serverId: string, song: Song) => {
     const request = api.controller.getImageRequest({
         apiClientProps: { serverId },
         query: {
@@ -126,7 +125,14 @@ export const topSongCoverBlob = async (serverId: string, playlistId: string) => 
     if (!res.ok) return null;
     const blob = await res.blob();
     if (!blob.type.startsWith('image/')) return null;
-    return { blob: await squareCrop(blob), song };
+    return squareCrop(blob);
+};
+
+export const topSongCoverBlob = async (serverId: string, playlistId: string) => {
+    const song = await findTopSong(serverId, playlistId);
+    if (!song) return null;
+    const blob = await songCoverBlob(serverId, song);
+    return blob ? { blob, song } : null;
 };
 
 export const resetToDefaultCover = (serverId: string, playlistId: string) =>
