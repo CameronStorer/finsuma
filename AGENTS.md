@@ -44,3 +44,17 @@ Conventional Commits + allowed scopes: read `docs/agents/commits.md` when writin
 ## Working mode
 
 Ponytail (lazy senior / YAGNI ladder) on coding tasks. See the `ponytail` skill.
+
+## Finsuma
+
+This repo is Finsuma, a fork of Feishin. Upstream guidance above still applies to the desktop app.
+
+- `server/`: Finsuma server (Python, `server/yt-download/server.py`). YouTube/SoundCloud downloads
+  via yt-dlp, plus playlist ratings/pins (`/prefs`) because Navidrome cannot store them. The
+  renderer talks to it through `src/renderer/features/youtube/api/youtube-api.ts`.
+- `mobile/`: Android app, a `git subtree` of Tempus (Kotlin/Java). Follow `mobile/AGENTS.md`
+  there. Keep the `com.eddyizm.tempus` package name so upstream subtree pulls stay easy.
+- Finsuma-only desktop code: `src/renderer/features/youtube/`, playlist cover and prefs code in
+  `src/renderer/features/playlists/` (`utils/gradient-cover.ts`, `utils/playlist-cover-jobs.ts`,
+  `utils/playlist-prefs.ts`). Changes to upstream files are marked with a `Finsuma:` comment.
+- Personal settings (service address) go in `.env.local`, never in code.

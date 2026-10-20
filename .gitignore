@@ -10,3 +10,8 @@ release
 tsconfig.*.tsbuildinfo
 # Personal settings (service address etc.)
 .env.local
+
+# Personal Claude / AI-assistant files (shared guidance like AGENTS.md stays tracked)
+.claude/settings.local.json
+.claude/*.local.*
+CLAUDE.local.md
