@@ -3,6 +3,7 @@
 #   cp .env.example .env                       # then edit it
 #   docker compose up -d                       # download service only
 #   docker compose --profile navidrome up -d   # download service + Navidrome
+#   add --profile proxy                         # one URL for both (see README)
 #
 # Downloads go to $MUSIC_DIR/YouTube; point Navidrome at the same $MUSIC_DIR.
 
@@ -33,3 +34,18 @@ services:
     volumes:
       - ./navidrome-data:/data
       - ${MUSIC_DIR:?set MUSIC_DIR in .env}:/music:ro
+
+  # Optional: one address for Navidrome and the Finsuma server (/finsuma/...).
+  # Point your domain or tunnel at this port instead of at Navidrome directly.
+  proxy:
+    profiles: [proxy]
+    image: caddy:2.8
+    container_name: finsuma-proxy
+    restart: unless-stopped
+    environment:
+      # Where Navidrome is, if it is not the navidrome service above.
+      NAVIDROME_UPSTREAM: ${NAVIDROME_UPSTREAM:-navidrome:4533}
+    ports:
+      - "${PROXY_PORT:-4534}:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro

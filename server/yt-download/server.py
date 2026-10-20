@@ -294,6 +294,19 @@ def valid_url(url):
 
 # ---------------------------------------------------------------- http
 
+# Requests may arrive under /finsuma when the service shares the music server's URL
+# (reverse proxy or Cloudflare tunnel path rule); the prefix is optional.
+PATH_PREFIX = "/finsuma"
+
+
+def route(raw_path):
+    parsed = urlparse(raw_path)
+    path = parsed.path
+    if path == PATH_PREFIX or path.startswith(PATH_PREFIX + "/"):
+        path = path[len(PATH_PREFIX):] or "/"
+    return path, parsed.query
+
+
 class Handler(BaseHTTPRequestHandler):
     def _reply(self, code, payload):
         body = json.dumps(payload).encode()
@@ -318,21 +331,21 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        path = urlparse(self.path)
-        if path.path == "/health":
+        route_path, query = route(self.path)
+        if route_path == "/health":
             return self._reply(200, {"ok": True, "ffmpeg": bool(shutil.which("ffmpeg"))})
         if not self._authed():
             return self._reply(401, {"error": "bad token"})
-        if path.path == "/prefs":
+        if route_path == "/prefs":
             with prefs_lock:
                 prefs = load_prefs()
             return self._reply(200, {"playlists": prefs.get("playlists", {})})
-        if path.path == "/jobs":
+        if route_path == "/jobs":
             with jobs_lock:
                 listed = sorted(jobs.values(), key=lambda j: j["created"], reverse=True)
             return self._reply(200, {"jobs": listed})
-        if path.path == "/preview":
-            url = (parse_qs(path.query).get("url") or [""])[0]
+        if route_path == "/preview":
+            url = (parse_qs(query).get("url") or [""])[0]
             if not valid_url(url):
                 return self._reply(400, {"error": "only https YouTube or SoundCloud links are accepted"})
             try:
@@ -342,7 +355,7 @@ class Handler(BaseHTTPRequestHandler):
         return self._reply(404, {"error": "not found"})
 
     def do_PUT(self):
-        match = re.fullmatch(r"/prefs/playlists/([A-Za-z0-9_-]{1,64})", urlparse(self.path).path)
+        match = re.fullmatch(r"/prefs/playlists/([A-Za-z0-9_-]{1,64})", route(self.path)[0])
         if not match:
             return self._reply(404, {"error": "not found"})
         if not self._authed():
@@ -357,7 +370,7 @@ class Handler(BaseHTTPRequestHandler):
         return self._reply(200, update_playlist_pref(match.group(1), changes))
 
     def do_POST(self):
-        if self.path != "/download":
+        if route(self.path)[0] != "/download":
             return self._reply(404, {"error": "not found"})
         if not self._authed():
             return self._reply(401, {"error": "bad token"})

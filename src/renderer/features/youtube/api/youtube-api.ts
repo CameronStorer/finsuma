@@ -38,6 +38,12 @@ const defaultServiceUrl = () => {
     return FALLBACK_SERVICE_URL ?? 'http://localhost:3200';
 };
 
+// The service can share the music server URL under /finsuma (reverse proxy or tunnel path rule).
+const sameUrlAsServer = () => {
+    const serverUrl = useAuthStore.getState().currentServer?.url;
+    return serverUrl ? `${serverUrl.replace(/\/+$/, '')}/finsuma` : undefined;
+};
+
 const isLocalhost = (url: string) => {
     try {
         return ['127.0.0.1', 'localhost'].includes(new URL(url).hostname);
@@ -93,9 +99,12 @@ const resolveServiceUrl = async () => {
     if (resolvedServiceUrl) return resolvedServiceUrl;
     const candidates = [
         ...new Set(
-            [getYoutubeConfig().url, defaultServiceUrl(), FALLBACK_SERVICE_URL].filter(
-                (u): u is string => Boolean(u),
-            ),
+            [
+                getYoutubeConfig().url,
+                sameUrlAsServer(),
+                defaultServiceUrl(),
+                FALLBACK_SERVICE_URL,
+            ].filter((u): u is string => Boolean(u)),
         ),
     ];
     for (const candidate of candidates) {

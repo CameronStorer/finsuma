@@ -1,0 +1,12 @@
+# One address for both Navidrome and the Finsuma server:
+#   /finsuma/...  -> download + playlist-prefs service
+#   everything else -> Navidrome
+# Finsuma apps try <your Navidrome URL>/finsuma automatically.
+:80 {
+	handle /finsuma/* {
+		reverse_proxy yt-download:3200
+	}
+	handle {
+		reverse_proxy {$NAVIDROME_UPSTREAM:navidrome:4533}
+	}
+}

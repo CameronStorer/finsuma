@@ -17,6 +17,21 @@ The first time you press the download button in Finsuma, it asks for the token: 
 Finsuma looks for the service on port 3200 of the machine your Navidrome server is on, then
 on the address saved in the YouTube page settings.
 
+## One URL for everything (no IP or port in the apps)
+
+Finsuma apps first try `<your Navidrome URL>/finsuma`, so if that path reaches this service,
+nobody has to type an address. Two ways to set it up:
+
+- **Cloudflare Tunnel:** in the tunnel's Public Hostnames, add a rule for your Navidrome hostname
+  with path `finsuma` (or `^/finsuma`) pointing at `http://<server-ip>:3200`, and put it above the
+  rule that sends the hostname to Navidrome.
+- **Built-in proxy:** `docker compose --profile proxy up -d` runs Caddy on port 4534 (change with
+  `PROXY_PORT`). It sends `/finsuma/...` here and everything else to Navidrome
+  (`NAVIDROME_UPSTREAM`, default the `navidrome` service). Point your domain at it.
+
+The service accepts requests with or without the `/finsuma` prefix. When it is reachable from the
+internet, the token is what protects it, so use a long random one.
+
 ## What it does
 
 - `POST /download` `{url, mode: "single" | "playlist", artist?, title?, album?}` queues a download
@@ -26,7 +41,7 @@ on the address saved in the YouTube page settings.
 - yt-dlp updates itself when the container starts (set `YT_AUTO_UPDATE=0` to turn that off)
 
 It only accepts YouTube and SoundCloud links, and every request except `/health` needs the token.
-Keep port 3200 on your home network; it is not meant to face the internet.
+Without the URL setup above, keep port 3200 on your home network.
 
 ## Without Docker
 
