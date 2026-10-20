@@ -1006,6 +1006,11 @@ object Preferences {
         return App.getInstance().preferences.getBoolean(LAN_REMOTE_ENABLED, false)
     }
 
+    // Finsuma: look lyrics up online (LRCLIB, NetEase) when the server has none (OnlineLyrics)
+    @JvmStatic
+    fun isOnlineLyricsEnabled(): Boolean =
+        App.getInstance().preferences.getBoolean("finsuma_online_lyrics", true)
+
     // Finsuma: start playing when a car or headphones connect (BluetoothAutoPlayReceiver)
     @JvmStatic
     fun isBluetoothAutoPlay(): Boolean =

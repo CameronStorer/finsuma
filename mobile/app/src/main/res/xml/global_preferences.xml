@@ -287,6 +287,12 @@
 
     <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_players">
         <SwitchPreference
+            android:title="@string/settings_online_lyrics"
+            android:defaultValue="true"
+            android:summary="@string/settings_online_lyrics_summary"
+            android:key="finsuma_online_lyrics" />
+
+        <SwitchPreference
             android:title="@string/settings_bluetooth_auto_play"
             android:defaultValue="true"
             android:summary="@string/settings_bluetooth_auto_play_summary"

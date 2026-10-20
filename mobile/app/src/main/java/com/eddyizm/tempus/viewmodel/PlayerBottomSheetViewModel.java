@@ -184,6 +184,7 @@ public class PlayerBottomSheetViewModel extends AndroidViewModel {
                 if (shouldAutoDownloadLyrics() && hasStructuredLyrics(lyricsList)) {
                     saveLyricsToCache(media, null, lyricsList);
                 }
+                if (!hasStructuredLyrics(lyricsList)) findLyricsOnline(media);
             });
         } else {
             songRepository.getSongLyrics(media).observe(owner, lyrics -> {
@@ -193,8 +194,21 @@ public class PlayerBottomSheetViewModel extends AndroidViewModel {
                 if (shouldAutoDownloadLyrics() && !TextUtils.isEmpty(lyrics)) {
                     saveLyricsToCache(media, lyrics, null);
                 }
+                if (TextUtils.isEmpty(lyrics)) findLyricsOnline(media);
             });
         }
+    }
+
+    // Finsuma: when the server has no lyrics, find them online (LRCLIB, NetEase) like desktop does.
+    private void findLyricsOnline(Child media) {
+        if (!Preferences.isOnlineLyricsEnabled()) return;
+        com.eddyizm.tempus.util.OnlineLyrics.find(media, lyricsList -> {
+            if (lyricsList == null || !java.util.Objects.equals(currentSongId, media.getId())) return kotlin.Unit.INSTANCE;
+            lyricsListLiveData.postValue(lyricsList);
+            lyricsLiveData.postValue(null);
+            if (shouldAutoDownloadLyrics()) saveLyricsToCache(media, null, lyricsList);
+            return kotlin.Unit.INSTANCE;
+        });
     }
 
     public LiveData<Child> getLiveMedia() {

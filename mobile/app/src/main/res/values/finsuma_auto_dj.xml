@@ -13,6 +13,8 @@
     <string name="finsuma_delete_playlist_title">Delete playlist?</string>
     <string name="finsuma_delete_playlist_message">\"%1$s\" will be removed from your server. This can\'t be undone.</string>
     <string name="finsuma_next">Next</string>
+    <string name="settings_online_lyrics">Find lyrics online</string>
+    <string name="settings_online_lyrics_summary">When your server has no lyrics for a song, look them up on LRCLIB and NetEase</string>
     <string name="settings_bluetooth_auto_play">Play when a car or headphones connect</string>
     <string name="settings_bluetooth_auto_play_summary">Resume your queue when Bluetooth audio connects, even with the app closed</string>
     <string name="auto_dj_on">Auto DJ on: similar songs are added before the queue runs out</string>
