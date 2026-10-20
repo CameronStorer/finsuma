@@ -11,3 +11,7 @@
 *.ttf   binary
 *.woff  binary
 *.woff2 binary
+*.aar   binary
+*.jar   binary
+# Windows scripts keep CRLF
+*.bat   text eol=crlf
