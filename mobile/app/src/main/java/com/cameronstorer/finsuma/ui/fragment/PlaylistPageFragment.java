@@ -227,6 +227,14 @@ public class PlaylistPageFragment extends Fragment implements ClickCallback {
             bundle.putParcelable(Constants.PLAYLIST_OBJECT, playlistPageViewModel.getPlaylist());
             Navigation.findNavController(requireView()).navigate(R.id.playlistEditorFragment, bundle);
             return true;
+        } else if (item.getItemId() == R.id.finsuma_action_change_cover) {
+            coverPicker.launch("image/*");
+            return true;
+        } else if (item.getItemId() == R.id.finsuma_action_reset_cover) {
+            com.cameronstorer.finsuma.util.PlaylistCoverStore.clear(requireContext(), playlistPageViewModel.getPlaylist().getId());
+            com.cameronstorer.finsuma.util.PlaylistCoverStore.clear(requireContext(), String.valueOf(playlistPageViewModel.getPlaylist().getCoverArtId()));
+            initBackCover();
+            return true;
         } else if (item.getItemId() == R.id.action_edit_playlist_details) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(Constants.PLAYLIST_OBJECT, playlistPageViewModel.getPlaylist());
@@ -353,6 +361,18 @@ public class PlaylistPageFragment extends Fragment implements ClickCallback {
                         });
     }
 
+    // Finsuma: pick a picture for this playlist (kept on this phone).
+    private final androidx.activity.result.ActivityResultLauncher<String> coverPicker = registerForActivityResult(
+            new androidx.activity.result.contract.ActivityResultContracts.GetContent(), uri -> {
+                Playlist playlist = playlistPageViewModel != null ? playlistPageViewModel.getPlaylist() : null;
+                if (uri == null || playlist == null || bind == null) return;
+                if (com.cameronstorer.finsuma.util.PlaylistCoverStore.save(requireContext(), playlist.getId(), uri)) {
+                    initBackCover();
+                } else {
+                    android.widget.Toast.makeText(requireContext(), R.string.playlist_cover_failed, android.widget.Toast.LENGTH_SHORT).show();
+                }
+            });
+
     private void initBackCover() {
         // Observe with the view lifecycle, not the activity. The view model is
         // activity-scoped, so observing its shared LiveData with requireActivity()
@@ -366,6 +386,10 @@ public class PlaylistPageFragment extends Fragment implements ClickCallback {
         if (playlist == null || bind == null) return;
 
         String playlistCoverId = playlist.getCoverArtId();
+        if ((playlistCoverId == null || playlistCoverId.trim().isEmpty())
+                && com.cameronstorer.finsuma.util.PlaylistCoverStore.file(requireContext(), playlist.getId()) != null) {
+            playlistCoverId = playlist.getId(); // the user picked a picture for this playlist
+        }
 
         if (playlistCoverId != null && !playlistCoverId.trim().isEmpty()) {
             bind.playlistCoverImageViewSingle.setVisibility(View.VISIBLE);

@@ -227,6 +227,9 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         songHorizontalAdapter = new SongHorizontalAdapter(getViewLifecycleOwner(), this, true, false, null);
         bind.songListRecyclerView.setAdapter(songHorizontalAdapter);
 
+        // Finsuma: invisible fast scroller; letters when sorted A-Z, otherwise a value or position.
+        com.cameronstorer.finsuma.util.FastScroller.attach(bind.songListRecyclerView, this::fastScrollLabel);
+
         // Finsuma: optional grid of cover tiles that mirrors the list (sort/search included).
         songCardAdapter = new SongCardAdapter(this);
         songHorizontalAdapter.addListListener((previous, current) -> songCardAdapter.setItems(current));
@@ -235,9 +238,8 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         reapplyPlayback();
         songListPageViewModel.getSongList().observe(getViewLifecycleOwner(), songs -> {
             isLoading = false;
+            songHorizontalAdapter.setActiveOrder(savedSort());
             songHorizontalAdapter.setItems(songs);
-            String saved = savedSort();
-            if (saved != null) songHorizontalAdapter.sort(saved);
             reapplyPlayback();
             setSongListPageSubtitle(songs);
         });
@@ -356,6 +358,29 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         SORT_ITEMS.put(Constants.SORT_SONG_DURATION, R.id.menu_song_sort_duration);
         SORT_ITEMS.put(Constants.SORT_SONG_GENRE, R.id.menu_song_sort_genre);
         SORT_ITEMS.put(Constants.SORT_SONG_RANDOM, R.id.menu_song_sort_random);
+    }
+
+    private String fastScrollLabel(int position, int count) {
+        Child song = songHorizontalAdapter.songAt(position);
+        if (song == null) return null;
+        String order = savedSort();
+        if (order == null || Constants.MEDIA_BY_TITLE.equals(order)) {
+            return com.cameronstorer.finsuma.util.FastScroller.letter(song.getTitle());
+        }
+        switch (order) {
+            case Constants.SORT_SONG_ARTIST:
+                return com.cameronstorer.finsuma.util.FastScroller.letter(song.getArtist());
+            case Constants.SORT_SONG_ALBUM:
+                return com.cameronstorer.finsuma.util.FastScroller.letter(song.getAlbum());
+            case Constants.SORT_SONG_GENRE:
+                return com.cameronstorer.finsuma.util.FastScroller.letter(song.getGenre());
+            case Constants.SORT_SONG_YEAR:
+                return song.getYear() != null ? String.valueOf(song.getYear()) : "?";
+            case Constants.SORT_SONG_DURATION:
+                return song.getDuration() != null ? (song.getDuration() / 60) + " min" : "?";
+            default:
+                return (position + 1) + "/" + count;
+        }
     }
 
     private String sortKey() {

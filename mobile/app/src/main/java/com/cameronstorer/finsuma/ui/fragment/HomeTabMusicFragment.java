@@ -1354,7 +1354,6 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
 
     private ArrayList<View> buildDesiredOrder() {
         ArrayList<View> desired = new ArrayList<>();
-        desired.add(bind.homePlayRandomButton);
 
         if (bind.homeSyncStarredCard.getVisibility() == View.VISIBLE) {
             desired.add(bind.homeSyncStarredCard);
@@ -1372,6 +1371,9 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
             if (!sector.isVisible()) continue;
 
             switch (sector.getId()) {
+                case Constants.HOME_SECTOR_PLAY_RANDOM:
+                    desired.add(bind.homePlayRandomButton);
+                    break;
                 case Constants.HOME_SECTOR_DISCOVERY:
                     desired.add(bind.homeDiscoverSector);
                     break;

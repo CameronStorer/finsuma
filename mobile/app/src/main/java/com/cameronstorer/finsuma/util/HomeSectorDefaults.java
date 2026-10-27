@@ -31,6 +31,7 @@ public final class HomeSectorDefaults {
         sectors.add(new HomeSector(Constants.HOME_SECTOR_MOST_PLAYED, context.getString(R.string.home_title_most_played), true, ++order));
 
         // Hidden by default
+        sectors.add(new HomeSector(Constants.HOME_SECTOR_PLAY_RANDOM, context.getString(R.string.play_random), false, ++order));
         sectors.add(new HomeSector(Constants.HOME_SECTOR_CONTINUE_LISTENING, context.getString(R.string.home_title_continue_listening), false, ++order));
         sectors.add(new HomeSector(Constants.HOME_SECTOR_MADE_FOR_YOU, context.getString(R.string.home_title_made_for_you), false, ++order));
         sectors.add(new HomeSector(Constants.HOME_SECTOR_PINNED_PLAYLISTS, context.getString(R.string.home_title_pinned_playlists), false, ++order));

@@ -106,31 +106,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/play_random_next"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:text="@string/play_random_add_next" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/play_random_now"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="8dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:text="@string/play_random_play" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/play_random_last"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="8dp"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:text="@string/play_random_add_last" />

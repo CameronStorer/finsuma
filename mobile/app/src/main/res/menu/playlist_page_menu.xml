@@ -23,6 +23,14 @@
         android:title="@string/menu_edit_playlist_button"
         app:showAsAction="never" />
     <item
+        android:id="@+id/finsuma_action_change_cover"
+        android:title="@string/playlist_cover_change"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/finsuma_action_reset_cover"
+        android:title="@string/playlist_cover_reset"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_edit_playlist_details"
         android:title="@string/menu_edit_playlist_details_button"
         app:showAsAction="never" />

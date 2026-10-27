@@ -70,6 +70,24 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
     private List<Integer> currentPlayingPositions = Collections.emptyList();
     private ListenableFuture<MediaBrowser> mediaBrowserListenableFuture;
 
+    // Finsuma: the sort the user picked; kept so it survives list refreshes and search filtering.
+    private String activeOrder;
+
+    @androidx.annotation.Nullable
+    public Child songAt(int position) {
+        List<Child> list = differ.getCurrentList();
+        return position >= 0 && position < list.size() ? list.get(position) : null;
+    }
+
+    /** Sets the order used for the next lists without touching the current one. */
+    public void setActiveOrder(String order) {
+        activeOrder = order;
+    }
+
+    private boolean filterActive() {
+        return currentFilter != null && !currentFilter.isEmpty();
+    }
+
     private final Filter filtering = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -96,7 +114,7 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            List<Child> newSongs = (List<Child>) results.values;
+            List<Child> newSongs = sorted(new ArrayList<>((List<Child>) results.values), activeOrder, activeOrder != null && !filterActive());
             differ.submitList(newSongs, () -> {
                 for (int pos : currentPlayingPositions) {
                     if (pos >= 0 && pos < differ.getCurrentList().size()) {
@@ -406,7 +424,23 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
 
     /** Finsuma: {@code onApplied} runs once the new order is on screen (e.g. scroll to top). */
     public void sort(String order, Runnable onApplied) {
-        List<Child> sortedList = new ArrayList<>(differ.getCurrentList());
+        activeOrder = order;
+        differ.submitList(sorted(new ArrayList<>(differ.getCurrentList()), order, true), onApplied);
+    }
+
+    /** Sorts [sortedList] in place by [order] (random only when [reshuffle]) and returns it. */
+    private List<Child> sorted(List<Child> sortedList, String order, boolean reshuffle) {
+        if (order == null) return sortedList;
+        List<Child> original = new ArrayList<>(sortedList);
+        try {
+            sortInPlace(sortedList, order, reshuffle);
+        } catch (RuntimeException e) {
+            return original; // an odd tag in the library must not crash the page
+        }
+        return sortedList;
+    }
+
+    private void sortInPlace(List<Child> sortedList, String order, boolean reshuffle) {
         switch (order) {
             case Constants.MEDIA_BY_TITLE:
                 sortedList.sort(Comparator.comparing(Child::getTitle, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
@@ -440,14 +474,12 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
                 sortedList.sort(Comparator.comparing(Child::getGenre, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
                 break;
             case Constants.SORT_SONG_RANDOM:
-                java.util.Collections.shuffle(sortedList);
+                if (reshuffle) java.util.Collections.shuffle(sortedList);
                 break;
             case Constants.SORT_SONG_RATING:
                 sortedList.sort(Comparator.comparing(Child::getUserRating, Comparator.nullsLast(Comparator.reverseOrder())));
                 break;
         }
-
-        differ.submitList(sortedList, onApplied);
     }
 
     public void setMediaBrowserListenableFuture(ListenableFuture<MediaBrowser> mediaBrowserListenableFuture) {

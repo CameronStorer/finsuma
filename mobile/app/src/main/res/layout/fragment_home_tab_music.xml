@@ -29,7 +29,9 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="12dp"
             android:text="@string/play_random"
-            app:icon="@drawable/ic_play_random" />
+            app:icon="@drawable/ic_play_random"
+            app:iconGravity="textStart"
+            android:gravity="center" />
 
         <!--  Download/Sync starred  -->
         <com.google.android.material.card.MaterialCardView

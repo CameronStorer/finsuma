@@ -52,8 +52,15 @@ public class CustomGlideRequest {
                 .fallback(getPlaceholder(context, type))
                 .error(getPlaceholder(context, type))
                 .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                .signature(new ObjectKey(item != null ? item : 0))
+                .signature(new ObjectKey(item != null ? item + customStamp(context, item, type) : 0))
                 .transform(new CenterCrop(), new RoundedCorners(CustomGlideRequest.CORNER_RADIUS));
+    }
+
+    /** Finsuma: changes when the user picks another picture for a playlist, so Glide reloads it. */
+    private static String customStamp(Context context, String item, ResourceType type) {
+        if (type != ResourceType.Playlist) return "";
+        java.io.File custom = com.cameronstorer.finsuma.util.PlaylistCoverStore.file(context, item);
+        return custom != null ? "#" + custom.lastModified() : "";
     }
 
     @Nullable
@@ -133,7 +140,9 @@ public class CustomGlideRequest {
             this.requestManager = Glide.with(context);
 
             if (item != null) {
-                this.item = createUrl(item, Preferences.getImageSize());
+                java.io.File custom = type == ResourceType.Playlist
+                        ? com.cameronstorer.finsuma.util.PlaylistCoverStore.file(context, item) : null;
+                this.item = custom != null ? custom.getAbsolutePath() : createUrl(item, Preferences.getImageSize());
             }
 
             requestManager.applyDefaultRequestOptions(createRequestOptions(context, item, type));

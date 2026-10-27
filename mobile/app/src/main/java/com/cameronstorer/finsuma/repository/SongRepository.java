@@ -53,12 +53,63 @@ public class SongRepository {
             allSongsCache = new MutableLiveData<>();
             allSongsServer = server;
             allSongsLoading = true;
-            loadAllSongsPage(allSongsCache, new ArrayList<>(), 0, true);
+            MutableLiveData<List<Child>> target = allSongsCache;
+            // Finsuma: after an app restart show the list saved last time right away, and only
+            // re-read the whole library from the server when that copy is old.
+            new Thread(() -> {
+                List<Child> saved = readAllSongsFromDisk(server);
+                if (saved == null) {
+                    loadAllSongsPage(target, new ArrayList<>(), 0, true);
+                    return;
+                }
+                allSongsLoadedAt = allSongsFile(server).lastModified();
+                target.postValue(saved);
+                if (System.currentTimeMillis() - allSongsLoadedAt < ALL_SONGS_DISK_FRESH_MS) {
+                    allSongsLoading = false;
+                } else {
+                    loadAllSongsPage(target, new ArrayList<>(), 0, false);
+                }
+            }).start();
         } else if (!allSongsLoading && System.currentTimeMillis() - allSongsLoadedAt > ALL_SONGS_FRESH_MS) {
             allSongsLoading = true;
             loadAllSongsPage(allSongsCache, new ArrayList<>(), 0, false);
         }
         return allSongsCache;
+    }
+
+    private static final long ALL_SONGS_DISK_FRESH_MS = 60 * 60 * 1000;
+
+    private static java.io.File allSongsFile(String server) {
+        return new java.io.File(App.getInstance().getFilesDir(), "all_songs_" + Integer.toHexString(Objects.hashCode(server)) + ".json");
+    }
+
+    private static List<Child> readAllSongsFromDisk(String server) {
+        java.io.File file = allSongsFile(server);
+        if (!file.isFile()) return null;
+        try (java.io.Reader reader = new java.io.InputStreamReader(new java.io.FileInputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+            List<Child> songs = new com.google.gson.Gson().fromJson(reader,
+                    new com.google.gson.reflect.TypeToken<ArrayList<Child>>() {}.getType());
+            return songs == null || songs.isEmpty() ? null : songs;
+        } catch (Exception e) {
+            Log.w(TAG, "could not read the saved song list: " + e);
+            return null;
+        }
+    }
+
+    private static void writeAllSongsToDisk(String server, List<Child> songs) {
+        List<Child> copy = new ArrayList<>(songs);
+        new Thread(() -> {
+            java.io.File file = allSongsFile(server);
+            java.io.File tmp = new java.io.File(file.getPath() + ".tmp");
+            try (java.io.Writer writer = new java.io.OutputStreamWriter(new java.io.FileOutputStream(tmp), java.nio.charset.StandardCharsets.UTF_8)) {
+                new com.google.gson.Gson().toJson(copy, writer);
+            } catch (Exception e) {
+                Log.w(TAG, "could not save the song list: " + e);
+                tmp.delete();
+                return;
+            }
+            if (!tmp.renameTo(file)) tmp.delete();
+        }).start();
     }
 
     private void loadAllSongsPage(MutableLiveData<List<Child>> target, List<Child> acc, int offset, boolean progressive) {
@@ -75,10 +126,12 @@ public class SongRepository {
                         }
                         if (page != null) acc.addAll(page);
                         boolean more = page != null && page.size() == ALL_SONGS_PAGE;
-                        if (progressive || !more) target.setValue(new ArrayList<>(acc));
+                        // A failed page on a quiet refresh keeps the list that is already showing.
+                        if (progressive || (!more && page != null)) target.setValue(new ArrayList<>(acc));
                         if (more) {
                             loadAllSongsPage(target, acc, offset + ALL_SONGS_PAGE, progressive);
                         } else {
+                            if (page != null) writeAllSongsToDisk(allSongsServer, acc);
                             allSongsLoadedAt = System.currentTimeMillis();
                             allSongsLoading = false;
                         }

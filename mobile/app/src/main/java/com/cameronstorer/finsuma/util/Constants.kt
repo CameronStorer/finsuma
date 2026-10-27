@@ -122,6 +122,7 @@ object Constants {
     const val HOME_SECTOR_DISCOVERY = "HOME_SECTOR_DISCOVERY"
     // Finsuma home sections
     const val HOME_SECTOR_PLAYLISTS = "HOME_SECTOR_PLAYLISTS"
+    const val HOME_SECTOR_PLAY_RANDOM = "FINSUMA_HOME_SECTOR_PLAY_RANDOM"
     const val MEDIA_ALL_SONGS = "MEDIA_ALL_SONGS"
     const val FINSUMA_SITE_URL = "finsuma_site_url"
     const val SORT_SONG_ARTIST = "FINSUMA_SORT_SONG_ARTIST"
