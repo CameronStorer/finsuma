@@ -24,3 +24,7 @@ app/tempus/
 app/degoogled/
 .agents/
 .kotlin
+# Release signing (never commit)
+keystore*.properties
+*.jks
+*.keystore

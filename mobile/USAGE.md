@@ -72,7 +72,7 @@ This app works with any service that implements the Subsonic API, including:
 ## Getting Started
 
 ### Installation
-1. Download the APK from the [Releases](https://github.com/eddyizm/tempus/releases) section
+1. Download the APK from the [Releases](https://github.com/cameronstorer/finsuma/releases) section
 2. Enable "Install from unknown sources" in your Android settings
 3. Install the application
 
@@ -605,13 +605,13 @@ Shortcuts are displayed only if the function is selected from root level:
 
 ### Airsonic Distorted Playback
 
-First reported in issue [#226](https://github.com/eddyizm/tempus/issues/226)  
+First reported in issue [#226](https://github.com/cameronstorer/finsuma/issues/226)  
 The work around is to disable the cache in the settings, (set to 0), and if needed, cleaning the (Android) cache fixes the problem.
 
 ### Support
 For additional help:
-- Question? Start a [Discussion](https://github.com/eddyizm/tempus/discussions)
-- Open an [issue](https://github.com/eddyizm/tempus/issues) if you don't find a discussion solving your issue. 
+- Question? Start a [Discussion](https://github.com/cameronstorer/finsuma/discussions)
+- Open an [issue](https://github.com/cameronstorer/finsuma/issues) if you don't find a discussion solving your issue. 
 - Consult your Subsonic server's documentation
 
 ---

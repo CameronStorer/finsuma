@@ -64,7 +64,7 @@
 
                 <data
                     android:host="asset"
-                    android:scheme="tempus" />
+                    android:scheme="finsuma" />
             </intent-filter>
         </activity>
 

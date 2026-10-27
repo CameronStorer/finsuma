@@ -465,7 +465,7 @@
     <string name="settings_precache_wifi_only_summary">Pausa cachning i förväg på anslutningar med databegränsning</string>
     <string name="settings_system_equalizer_summary">Justera ljudinställningar</string>
     <string name="settings_system_equalizer_title">Systemets equalizer</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Följ utvecklingen</string>
     <string name="settings_github_title">GitHub</string>
     <string name="settings_github_update">Uppdateringar</string>

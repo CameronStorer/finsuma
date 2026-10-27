@@ -50,4 +50,24 @@
         <item>similar</item>
         <item>library_random</item>
     </string-array>
+    <string name="play_random">Play random</string>
+    <string name="play_random_limit">How many</string>
+    <string name="play_random_min_year">From year</string>
+    <string name="play_random_max_year">To year</string>
+    <string name="play_random_genre">Genre (any)</string>
+    <string name="play_random_play">Play</string>
+    <string name="play_random_add_next">Play next</string>
+    <string name="play_random_add_last">Add last</string>
+    <string name="play_random_empty">Nothing found</string>
+    <string name="settings_title_battery">Battery and data</string>
+    <string name="settings_background_wifi_only">Extras on Wi-Fi only</string>
+    <string name="settings_background_wifi_only_summary">Online lyrics and artist and cover lookups wait for an unmetered connection. Playback is not affected.</string>
+    <string name="settings_skip_on_battery_saver">Pause extras in Battery Saver</string>
+    <string name="settings_skip_on_battery_saver_summary">Online lyrics and lookups are skipped while Android Battery Saver is on</string>
+    <string name="settings_metadata_auto_fill">Fill missing artists and covers</string>
+    <string name="settings_metadata_auto_fill_summary">About once a day the Finsuma server looks up songs with no artist or picture. The server does the work, not your phone.</string>
+    <string name="settings_metadata_fill_now">Fill missing artists and covers now</string>
+    <string name="settings_metadata_fill_now_summary">Ask the Finsuma server to scan its downloaded songs</string>
+    <string name="metadata_fill_started">The Finsuma server is filling in missing artists and covers</string>
+    <string name="metadata_fill_running">The server is already working on it</string>
 </resources>

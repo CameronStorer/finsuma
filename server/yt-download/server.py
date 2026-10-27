@@ -7,12 +7,15 @@ Endpoints (all JSON, CORS open; the token is the guard):
   GET  /prefs            (X-Token)      -> {"playlists": {id: {"rating"?, "pinned"?}}}
   PUT  /prefs/playlists/<id> (X-Token)  {"rating"?: 0-5, "pinned"?: bool, "favorite"?: bool}
   POST /download         (X-Token)      {"url", "mode": "single"|"playlist", "artist"?, "title"?, "album"?}
+  POST /metadata/fill    (X-Token)      start filling missing artists / cover art (iTunes search)
+  GET  /metadata/status  (X-Token)      -> {"running", "total", "scanned", "fixed", "finished"?}
 
 Each song gets a cleaned-up artist/title/album tag and square cover art.
 Singles land in <root>/<artist>/<title>.mp3, playlists in <root>/<playlist>/NN <title>.mp3.
 Jobs run one at a time so the server isn't hammered.
 """
 
+import difflib
 import json
 import os
 import queue
@@ -23,7 +26,8 @@ import threading
 import time
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, quote, urlparse
+from urllib.request import Request, urlopen
 
 MUSIC_ROOT = os.environ.get("YT_MUSIC_ROOT", "/mnt/data/nextcloud_files/cam/files/Music/YouTube")
 YT_DLP = os.environ.get("YT_DLP", os.path.expanduser("~/.local/bin/yt-dlp"))
@@ -262,6 +266,113 @@ def update_playlist_pref(playlist_id, changes):
         return entry
 
 
+
+# ---------------------------------------------------------------- metadata grabber
+
+meta_state = {"running": False, "total": 0, "scanned": 0, "fixed": 0, "finished": None}
+meta_lock = threading.Lock()
+_lookup_cache = {}
+MISSING_ARTISTS = {"", "unknown", "unknown artist", "<unknown>", "various artists"}
+
+
+def _http_get(url, timeout=10):
+    request = Request(url, headers={"User-Agent": "Finsuma/1.0"})
+    with urlopen(request, timeout=timeout) as response:
+        return response.read()
+
+
+def lookup_track(artist, title):
+    """Best iTunes match for a song as {artist, album, art}, or None. Cached per query."""
+    key = (artist or "").lower(), (title or "").lower()
+    if key in _lookup_cache:
+        return _lookup_cache[key]
+    found = None
+    try:
+        term = quote(f"{artist} {title}".strip())
+        data = json.loads(_http_get(f"https://itunes.apple.com/search?term={term}&media=music&entity=song&limit=5"))
+        matches = []
+        for item in data.get("results", []):
+            score = difflib.SequenceMatcher(None, (item.get("trackName") or "").lower(), (title or "").lower()).ratio()
+            if artist and artist.lower() not in (item.get("artistName") or "").lower():
+                continue
+            if score >= 0.8:
+                matches.append((score, item))
+        # With no artist to go on, a title like "Blinding Lights" matches covers by other artists.
+        # Only trust the result when every match is by the same artist.
+        if matches and (artist or len({m[1].get("artistName") for m in matches}) == 1):
+            item = max(matches, key=lambda m: m[0])[1]
+            art = (item.get("artworkUrl100") or "").replace("100x100bb", "600x600bb")
+            found = {"artist": item.get("artistName"), "album": item.get("collectionName"), "art": art}
+    except Exception as exc:
+        print(f"[metadata] lookup failed for {title!r}: {exc}", flush=True)
+        return None  # not cached: try again next time
+    _lookup_cache[key] = found
+    return found
+
+
+def fill_file(path):
+    """Add a missing artist and/or cover to one MP3. Returns True if the file changed."""
+    from mutagen.id3 import APIC, ID3, ID3NoHeaderError, TALB, TIT2, TPE1
+    try:
+        tags = ID3(path)
+    except ID3NoHeaderError:
+        tags = ID3()
+    artist = str(tags["TPE1"]) if "TPE1" in tags else ""
+    title = str(tags["TIT2"]) if "TIT2" in tags else os.path.splitext(os.path.basename(path))[0]
+    need_artist = artist.strip().lower() in MISSING_ARTISTS
+    need_cover = not tags.getall("APIC")
+    if not (need_artist or need_cover):
+        return False
+    match = lookup_track("" if need_artist else artist, title)
+    if not match:
+        return False
+    changed = False
+    if need_artist and match.get("artist"):
+        tags.setall("TPE1", [TPE1(encoding=3, text=match["artist"])])
+        if "TIT2" not in tags:
+            tags.setall("TIT2", [TIT2(encoding=3, text=title)])
+        if match.get("album") and "TALB" not in tags:
+            tags.setall("TALB", [TALB(encoding=3, text=match["album"])])
+        changed = True
+    if need_cover and match.get("art"):
+        try:
+            tags.setall("APIC", [APIC(encoding=3, mime="image/jpeg", type=3, desc="Cover", data=_http_get(match["art"], 15))])
+            changed = True
+        except Exception as exc:
+            print(f"[metadata] cover download failed for {title!r}: {exc}", flush=True)
+    if changed:
+        tags.save(path, v2_version=3)
+    return changed
+
+
+def run_metadata_fill():
+    files = [os.path.join(d, f) for d, _, names in os.walk(MUSIC_ROOT) for f in names if f.lower().endswith(".mp3")]
+    with meta_lock:
+        meta_state.update(running=True, total=len(files), scanned=0, fixed=0, finished=None)
+    for path in files:
+        try:
+            if fill_file(path):
+                with meta_lock:
+                    meta_state["fixed"] += 1
+        except Exception as exc:
+            print(f"[metadata] {path}: {exc}", flush=True)
+        with meta_lock:
+            meta_state["scanned"] += 1
+        time.sleep(0.3)  # be polite to the lookup service
+    with meta_lock:
+        meta_state.update(running=False, finished=time.time())
+    print(f"[metadata] done: {meta_state['fixed']} of {len(files)} files updated", flush=True)
+
+
+def start_metadata_fill():
+    with meta_lock:
+        if meta_state["running"]:
+            return False
+        meta_state["running"] = True
+    threading.Thread(target=run_metadata_fill, daemon=True).start()
+    return True
+
+
 # ---------------------------------------------------------------- jobs
 
 def update(job_id, **fields):
@@ -382,6 +493,9 @@ class Handler(BaseHTTPRequestHandler):
             with prefs_lock:
                 prefs = load_prefs()
             return self._reply(200, {"playlists": prefs.get("playlists", {})})
+        if route_path == "/metadata/status":
+            with meta_lock:
+                return self._reply(200, dict(meta_state))
         if route_path == "/jobs":
             with jobs_lock:
                 listed = sorted(jobs.values(), key=lambda j: j["created"], reverse=True)
@@ -412,7 +526,12 @@ class Handler(BaseHTTPRequestHandler):
         return self._reply(200, update_playlist_pref(match.group(1), changes))
 
     def do_POST(self):
-        if route(self.path)[0] != "/download":
+        path = route(self.path)[0]
+        if path == "/metadata/fill":
+            if not self._authed():
+                return self._reply(401, {"error": "bad token"})
+            return self._reply(202, {"started": start_metadata_fill()})
+        if path != "/download":
             return self._reply(404, {"error": "not found"})
         if not self._authed():
             return self._reply(401, {"error": "bad token"})

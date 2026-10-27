@@ -33,7 +33,7 @@ jobs:
 
       - name: Build 64-bit Debug APKs
         run: |
-          bash ./gradlew assembleTempusDebug
+          bash ./gradlew assembleFinsumaDebug
           bash ./gradlew assembleDegoogledDebug
 
       - name: Sign Tempus Debug APK

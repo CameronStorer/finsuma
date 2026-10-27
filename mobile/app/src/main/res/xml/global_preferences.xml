@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_general">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_general">
         <Preference
             android:key="logout"
             android:title="@string/settings_logout_title"/>
@@ -28,9 +28,9 @@
         <Preference
             android:key="permissions"
             android:title="@string/settings_permissions"/>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_ui">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_ui">
         <ListPreference
             android:layout_height="match_parent"
             app:defaultValue="default"
@@ -154,9 +154,9 @@
             android:defaultValue="false"
             android:summary="@string/search_sort_summary"
             android:key="sort_search_chronologically" />
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_sound">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_sound">
 
         <PreferenceCategory app:title="@string/settings_title_equalizer">
             <ListPreference
@@ -225,9 +225,9 @@
 
 
         </PreferenceCategory>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/auto_dj">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/auto_dj">
         <SwitchPreference
             android:title="@string/auto_dj"
             android:defaultValue="false"
@@ -283,9 +283,34 @@
             android:defaultValue="false"
             android:summary="@string/settings_auto_dj_allow_duplicates_summary"
             android:key="auto_dj_allow_duplicates" />
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_players">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_battery">
+        <SwitchPreference
+            android:title="@string/settings_background_wifi_only"
+            android:defaultValue="false"
+            android:summary="@string/settings_background_wifi_only_summary"
+            android:key="finsuma_background_wifi_only" />
+
+        <SwitchPreference
+            android:title="@string/settings_skip_on_battery_saver"
+            android:defaultValue="true"
+            android:summary="@string/settings_skip_on_battery_saver_summary"
+            android:key="finsuma_skip_on_battery_saver" />
+
+        <SwitchPreference
+            android:title="@string/settings_metadata_auto_fill"
+            android:defaultValue="false"
+            android:summary="@string/settings_metadata_auto_fill_summary"
+            android:key="finsuma_metadata_auto_fill" />
+
+        <Preference
+            android:title="@string/settings_metadata_fill_now"
+            android:summary="@string/settings_metadata_fill_now_summary"
+            android:key="finsuma_metadata_fill_now" />
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
+
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_players">
         <SwitchPreference
             android:title="@string/settings_online_lyrics"
             android:defaultValue="true"
@@ -348,9 +373,9 @@
             app:summary="@string/settings_summary_skip_min_star_rating"
             app:title="@string/settings_title_skip_min_star_rating" />
 
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory
         android:key="network_playback"
         app:title="@string/settings_network_playback_title">
 
@@ -366,14 +391,14 @@
             android:summary="@string/settings_lan_remote_summary"
             android:title="@string/lan_title" />
 
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory
         android:key="lan_playback"
         android:title="@string/lan_title"
         android:icon="@drawable/ic_navigate_next" />
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_playlist">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_playlist">
         <SwitchPreference
             android:title="@string/settings_allow_playlist_duplicates"
             android:defaultValue="false"
@@ -387,9 +412,9 @@
             app:key="home_sort_playlists"
             app:title="@string/settings_playlist_sort"
             app:useSimpleSummaryProvider="true" />
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_data">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_data">
         <ListPreference
             app:defaultValue="256"
             app:dialogTitle="@string/settings_streaming_cache_size"
@@ -496,9 +521,9 @@
             android:key="delete_download_storage"
             app:title="@string/settings_delete_download_storage_title"
             app:summary="@string/settings_delete_download_storage_summary"/>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_transcoding">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_transcoding">
         <Preference
             app:selectable="false"
             app:summary="@string/settings_summary_transcoding" />
@@ -580,9 +605,9 @@
                 app:title="@string/settings_max_bitrate_download"
                 app:useSimpleSummaryProvider="true" />
         </PreferenceCategory>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_title_misc">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_title_misc">
         <PreferenceCategory app:title="@string/settings_title_scrobble">
             <Preference
                 app:selectable="false"
@@ -629,9 +654,9 @@
                 app:title="@string/settings_queue_syncing_countdown"
                 app:useSimpleSummaryProvider="true" />
         </PreferenceCategory>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory
         android:key="settings_androidauto_category_key"
         app:title="@string/settings_androidauto">
         <Preference
@@ -727,9 +752,9 @@
             app:key="androidauto_starred_for_made_for_you"
             app:title="@string/settings_androidauto_starred_for_made_for_you"
             app:useSimpleSummaryProvider="true" />
-	</com.eddyizm.tempus.util.ClickablePreferenceCategory>
+	</com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory
         android:key="settings_github_update_category_key"
         app:title="@string/settings_github_update">
         <Preference
@@ -739,9 +764,9 @@
             android:title="@string/settings_github_update_title"
             android:defaultValue="true"
             android:key="github_update_check" />
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 
-    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_about_title">
+    <com.cameronstorer.finsuma.util.ClickablePreferenceCategory app:title="@string/settings_about_title">
         <Preference
             app:selectable="false"
             app:summary="@string/settings_about_summary" />
@@ -774,5 +799,5 @@
                 android:action="android.intent.action.VIEW"
                 android:data="@string/undraw_url" />
         </Preference>
-    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+    </com.cameronstorer.finsuma.util.ClickablePreferenceCategory>
 </PreferenceScreen>

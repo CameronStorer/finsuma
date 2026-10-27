@@ -327,10 +327,10 @@
     <string name="settings_set_download_folder">Setați folderul de descărcare</string>
     <string name="settings_system_equalizer_summary">Ajustați setările audio</string>
     <string name="settings_system_equalizer_title">Egalizator sistem</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Urmăriți dezvoltarea</string>
     <string name="settings_github_title">Github</string>
-    <string name="settings_support_discussion_link">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">Actualizări</string>
     <string name="settings_github_update_title">Verificați pe github lansări noi</string>
     <string name="settings_github_update_summary">Dacă utilizați versiunea github, prin implicare, aplicația va verifica noile versiuni de apk. Comutați pentru a dezactiva verificările automate pe github</string>

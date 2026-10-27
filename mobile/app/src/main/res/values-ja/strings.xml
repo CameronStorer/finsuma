@@ -460,10 +460,10 @@
     <string name="settings_precache_wifi_only_summary">従量制接続時は事前キャッシュを一時停止します</string>
     <string name="settings_system_equalizer_summary">音声設定を調整</string>
     <string name="settings_system_equalizer_title">システムイコライザー</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">開発の進捗を見る</string>
     <string name="settings_github_title">GitHub</string>
-    <string name="settings_support_discussion_link" translatable="false">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link" translatable="false">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">アップデート</string>
     <string name="settings_github_update_title">GitHubのリリース更新を確認</string>
     <string name="settings_github_update_summary">GitHub版を使用している場合、デフォルトで新しいAPKリリースを確認します。切り替えることで自動確認を無効にできます</string>

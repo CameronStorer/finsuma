@@ -53,7 +53,7 @@ This repo is Finsuma, a fork of Feishin. Upstream guidance above still applies t
   via yt-dlp, plus playlist ratings/pins (`/prefs`) because Navidrome cannot store them. The
   renderer talks to it through `src/renderer/features/youtube/api/youtube-api.ts`.
 - `mobile/`: Android app, a `git subtree` of Tempus (Kotlin/Java). Follow `mobile/AGENTS.md`
-  there. Keep the `com.eddyizm.tempus` package name so upstream subtree pulls stay easy.
+  there. The source package is `com.cameronstorer.finsuma` and the app IDs are `com.finsuma.android` (+ `.degoogled`), renamed from the upstream Tempus names, so upstream subtree pulls need their package renamed.
 - Finsuma-only desktop code: `src/renderer/features/youtube/`, playlist cover and prefs code in
   `src/renderer/features/playlists/` (`utils/gradient-cover.ts`, `utils/playlist-cover-jobs.ts`,
   `utils/playlist-prefs.ts`). Changes to upstream files are marked with a `Finsuma:` comment.

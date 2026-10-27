@@ -9,4 +9,5 @@
     <item name="finsuma_action_genres" type="id" />
     <item name="finsuma_action_albums" type="id" />
     <item name="finsuma_library" type="id" />
+    <item name="finsuma_pinch_listener" type="id" />
 </resources>

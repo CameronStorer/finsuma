@@ -46,8 +46,8 @@ While Tempus itself collects no information, downloading or updating the app via
 
 As open-source software distributed under the **GPL-3.0**, the source code is public and fully auditable:
 
-* **Repository:** https://github.com/eddyizm/tempus
-* **Issue Tracker:** https://github.com/eddyizm/tempus/issues
+* **Repository:** https://github.com/cameronstorer/finsuma
+* **Issue Tracker:** https://github.com/cameronstorer/finsuma/issues
 
 ---
 
@@ -62,5 +62,5 @@ Because Tempus does not collect or process personal data, it fully complies with
 For privacy questions or open-source inquiry:
 
 * **Email:** [eddyizm.play@gmail.com]
-* **Repository Issues:** [https://github.com/eddyizm/tempus/issues](https://github.com/eddyizm/tempus/issues)
+* **Repository Issues:** [https://github.com/cameronstorer/finsuma/issues](https://github.com/cameronstorer/finsuma/issues)
     

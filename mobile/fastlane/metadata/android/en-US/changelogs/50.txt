@@ -6,4 +6,4 @@ feat: add permissions manager
 fix: ask for notifications and local network access in one request
 fix: count a VPN as connected when a network sits under it
 
-Full Changelog: https://github.com/eddyizm/tempus/compare/v4.28.0...v4.29.0
+Full Changelog: https://github.com/cameronstorer/finsuma/compare/v4.28.0...v4.29.0

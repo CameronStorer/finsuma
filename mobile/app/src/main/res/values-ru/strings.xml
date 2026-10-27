@@ -478,10 +478,10 @@
     <string name="settings_precache_wifi_only_summary">Приостанавливать предкэш в мобильной сети.</string>
     <string name="settings_system_equalizer_summary">Настройки аудио системы</string>
     <string name="settings_system_equalizer_title">Системный эквалайзер</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Следить за разработкой</string>
     <string name="settings_github_title">GitHub</string>
-    <string name="settings_support_discussion_link" translatable="false">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link" translatable="false">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">Обновления</string>
     <string name="settings_github_update_title">Проверка обновлений на GitHub</string>
     <string name="settings_github_update_summary">Автоматически проверять наличие новых APK на GitHub.</string>

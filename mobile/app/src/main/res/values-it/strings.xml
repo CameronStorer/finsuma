@@ -317,10 +317,10 @@
     <string name="settings_set_download_folder">Imposta cartella di download</string>
     <string name="settings_system_equalizer_summary">Regola le impostazioni audio</string>
     <string name="settings_system_equalizer_title">Equalizzatore di sistema</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Segui lo sviluppo</string>
     <string name="settings_github_title">Github</string>
-    <string name="settings_support_discussion_link">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">Aggiornamenti</string>
     <string name="settings_github_update_title">Controlla GitHub per aggiornamenti</string>
     <string name="settings_github_update_summary">Se si utilizza la versione GitHub, per impostazione predefinita l\'app controllerà la presenza di nuove versioni. Disattiva per disabilitare i controlli automatici su GitHub</string>

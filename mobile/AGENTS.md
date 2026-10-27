@@ -1,9 +1,9 @@
-# AGENTS.md - Tempus (Android Subsonic Client)
+# AGENTS.md - Finsuma (Android Subsonic Client)
 
 ## Project Overview
-**Tempus** is an open-source Android music client for Subsonic servers. Two product flavors:
-- **tempus** (`com.eddyizm.tempus`) - GitHub release with Android Auto & Chromecast
-- **degoogled** (`com.eddyizm.degoogled.tempus`) - IzzyOnDroid/F-Droid release, no Google services
+**Finsuma** is an open-source Android music client for Subsonic servers. Two product flavors:
+- **finsuma** (`com.finsuma.android`) - GitHub release with Android Auto & Chromecast
+- **degoogled** (`com.finsuma.android.degoogled`) - IzzyOnDroid/F-Droid release, no Google services
 
 ## Build & Development
 
@@ -18,20 +18,20 @@
 ### Key Commands
 ```bash
 # Build both release APKs (as in CI)
-./gradlew assembleTempusRelease
+./gradlew assembleFinsumaRelease
 ./gradlew assembleDegoogledRelease
 
 # Build debug APKs (for testing)
-./gradlew assembleTempusDebug
+./gradlew assembleFinsumaDebug
 ./gradlew assembleDegoogledDebug
 
 # Run unit tests (per flavor)
-./gradlew testTempusDebugUnitTest
+./gradlew testFinsumaDebugUnitTest
 ./gradlew testDegoogledDebugUnitTest
 
 # Run lint (per flavor/variant)
-./gradlew lintTempusDebug
-./gradlew lintTempusRelease
+./gradlew lintFinsumaDebug
+./gradlew lintFinsumaRelease
 ./gradlew lintDegoogledDebug
 ./gradlew lintDegoogledRelease
 
@@ -39,7 +39,7 @@
 ./gradlew lint
 
 # Run instrumented tests (requires device/emulator)
-./gradlew connectedTempusDebugAndroidTest
+./gradlew connectedFinsumaDebugAndroidTest
 ./gradlew connectedDegoogledDebugAndroidTest
 
 # Clean
@@ -59,7 +59,7 @@
 - **Architecture**: MVVM-ish with Media3/ExoPlayer for playback
 - **Key libs**: Room (DB), Retrofit/OkHttp (network), Media3/ExoPlayer (media), Glide (images), Material3
 - **Flavors**: `tempus` (Media3 Cast) vs `degoogled` (no Cast)
-- **Main package**: `com.eddyizm.tempus` (namespace), app IDs differ by flavor
+- **Main package**: `com.cameronstorer.finsuma` (namespace), app IDs differ by flavor
 
 ## Testing
 - **Unit tests**: JUnit 4 + Mockito + MockK (run via `test*UnitTest` tasks)
@@ -94,15 +94,15 @@
 
 | Task | Command |
 |------|---------|
-| Build debug APK (tempus) | `./gradlew assembleTempusDebug` |
-| Build release APK (both) | `./gradlew assembleTempusRelease assembleDegoogledRelease` |
-| Run unit tests (tempus) | `./gradlew testTempusDebugUnitTest` |
+| Build debug APK (tempus) | `./gradlew assembleFinsumaDebug` |
+| Build release APK (both) | `./gradlew assembleFinsumaRelease assembleDegoogledRelease` |
+| Run unit tests (tempus) | `./gradlew testFinsumaDebugUnitTest` |
 | Run lint (all) | `./gradlew lint` |
 | Clean build | `./gradlew clean` |
 | Generate lint baseline | `./gradlew updateLintBaseline` |
 
 ## Gotchas
-- **Two app IDs**: `com.eddyizm.tempus` vs `com.eddyizm.degoogled.tempus` - debug adds `.debug` suffix
+- **Two app IDs**: `com.finsuma.android` vs `com.finsuma.android.degoogled` - debug adds `.debug` suffix
 - **Media3 Cast** only in `tempus` flavor (`tempusImplementation libs.media3.cast`)
 - **FFmpeg decoder** is a local AAR (`libs/lib-decoder-ffmpeg-release.aar`), built separately via `bin/build.sh`
 - **Room schemas** committed to `app/schemas/` - update on schema changes

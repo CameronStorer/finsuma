@@ -403,7 +403,7 @@
     <string name="settings_song_preload_buffer_summary">Valeur actuelle : %1$s\nRedémarrez l\'app pour appliquer les changements.</string>
     <string name="settings_system_equalizer_summary">Ajuster les paramètres audio</string>
     <string name="settings_system_equalizer_title">Égaliseur du système</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Suivre le développement</string>
     <string name="settings_github_title">Github</string>
     <string name="settings_github_update">Mises à jour</string>

@@ -417,10 +417,10 @@
     <string name="settings_precache_wifi_only_summary">Pausatu aurrez cachean gordetzea konexio neurtua erabiltzean</string>
     <string name="settings_system_equalizer_summary">Doitu audio-ezarpenak</string>
     <string name="settings_system_equalizer_title">Sistemaren ekualizadorea</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Garapenaren jarraipena egin</string>
     <string name="settings_github_title">Github</string>
-    <string name="settings_support_discussion_link" translatable="false">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link" translatable="false">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">Eguneraketak</string>
     <string name="settings_github_update_title">Bertsio-eguneraketak Githuben egiaztatu</string>
     <string name="settings_github_update_summary">Github bertsioa erabiliz gero, lehenespenez aplikazioak apk argitalpen berririk dagoen begiratuko du. Aktibatu/desaktibatu Githuben egiaztapen automatikoak desgaitzeko</string>

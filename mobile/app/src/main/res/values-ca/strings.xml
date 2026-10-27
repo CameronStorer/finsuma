@@ -404,10 +404,10 @@
     <string name="settings_song_preload_buffer_summary">Valor actual: %1$s\nPerquè el canvi tingui efecte, heu de reiniciar l\'aplicació manualment.</string>
     <string name="settings_system_equalizer_summary">Ajusteu els paràmetres d\'àudio</string>
     <string name="settings_system_equalizer_title">Equalitzador del sistema</string>
-    <string name="settings_github_link">https://github.com/eddyizm/tempus</string>
+    <string name="settings_github_link">https://github.com/cameronstorer/finsuma</string>
     <string name="settings_github_summary">Seguiu el desenvolupament</string>
     <string name="settings_github_title">Github</string>
-    <string name="settings_support_discussion_link" translatable="false">https://github.com/eddyizm/tempus/discussions</string>
+    <string name="settings_support_discussion_link" translatable="false">https://github.com/cameronstorer/finsuma/discussions</string>
     <string name="settings_github_update">Actualitzacions</string>
     <string name="settings_github_update_title">Comprova si hi ha actualitzacions a GitHub</string>
     <string name="settings_github_update_summary">Si feu servir la versió de GitHub, per defecte l\'aplicació comprovarà si hi ha noves versions en format APK. Canvieu-ho per a inhabilitar les comprovacions automàtiques de GitHub.</string>

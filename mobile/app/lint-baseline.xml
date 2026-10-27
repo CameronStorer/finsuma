@@ -7,7 +7,7 @@
         errorLine1="        super.onCleared();"
         errorLine2="              ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistPageViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistPageViewModel.java"
             line="50"
             column="15"/>
     </issue>
@@ -18,7 +18,7 @@
         errorLine1="        View view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_playback_speed, null);"
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaybackSpeedDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaybackSpeedDialog.java"
             line="45"
             column="21"/>
     </issue>
@@ -201,7 +201,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCatalogueAdapter.java"
             line="40"
             column="62"/>
     </issue>
@@ -212,7 +212,7 @@
         errorLine1="                    if (item.getName().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCatalogueAdapter.java"
             line="44"
             column="40"/>
     </issue>
@@ -223,7 +223,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumHorizontalAdapter.java"
             line="41"
             column="62"/>
     </issue>
@@ -234,7 +234,7 @@
         errorLine1="                    if (item.getName().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumHorizontalAdapter.java"
             line="45"
             column="40"/>
     </issue>
@@ -245,7 +245,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCatalogueAdapter.java"
             line="35"
             column="62"/>
     </issue>
@@ -256,7 +256,7 @@
         errorLine1="                    if (item.getName().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCatalogueAdapter.java"
             line="38"
             column="40"/>
     </issue>
@@ -267,7 +267,7 @@
         errorLine1="            String searchQuery = query.toLowerCase().trim();"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/ArtistCatalogueFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/ArtistCatalogueFragment.java"
             line="181"
             column="40"/>
     </issue>
@@ -278,7 +278,7 @@
         errorLine1="                    artist.getName().toLowerCase().contains(searchQuery)) {"
         errorLine2="                                     ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/ArtistCatalogueFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/ArtistCatalogueFragment.java"
             line="186"
             column="38"/>
     </issue>
@@ -289,7 +289,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="41"
             column="62"/>
     </issue>
@@ -300,7 +300,7 @@
         errorLine1="                    if (item.getName().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="45"
             column="40"/>
     </issue>
@@ -311,7 +311,7 @@
         errorLine1="            String releaseType = releaseTypes.get(0).trim().toLowerCase();"
         errorLine2="                                                            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/ArtistPageViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/ArtistPageViewModel.java"
             line="99"
             column="61"/>
     </issue>
@@ -322,7 +322,7 @@
         errorLine1="                    if (file.isFile() &amp;&amp; file.getName().toLowerCase().endsWith(&quot;.exo&quot;)) {"
         errorLine2="                                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/DownloadUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/DownloadUtil.java"
             line="293"
             column="57"/>
     </issue>
@@ -333,7 +333,7 @@
         errorLine1="                        String.format(&quot;%.1f kHz&quot;, freq / 1000f)"
         errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/EqualizerFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/EqualizerFragment.kt"
             line="205"
             column="25"/>
     </issue>
@@ -344,7 +344,7 @@
         errorLine1="                        String.format(&quot;%.1f kHz&quot;, freq / 1000f)"
         errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/EqualizerFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/EqualizerFragment.kt"
             line="205"
             column="25"/>
     </issue>
@@ -355,7 +355,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreCatalogueAdapter.java"
             line="33"
             column="62"/>
     </issue>
@@ -366,7 +366,7 @@
         errorLine1="                    if (item.getGenre().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreCatalogueAdapter.java"
             line="36"
             column="41"/>
     </issue>
@@ -377,7 +377,7 @@
         errorLine1="        return artists != null &amp;&amp; !artists.isEmpty() ? Character.toString(Objects.requireNonNull(artists.get(pos).getName().toUpperCase()).charAt(0)) : null;"
         errorLine2="                                                                                                                            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/MusicIndexAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/MusicIndexAdapter.java"
             line="64"
             column="125"/>
     </issue>
@@ -388,7 +388,7 @@
         errorLine1="        return String.format(&quot;%.1f %ciB&quot;, value / 1024.0, ci.current());"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/MusicUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/MusicUtil.java"
             line="308"
             column="16"/>
     </issue>
@@ -399,7 +399,7 @@
         errorLine1="        switch (format.toLowerCase()) {"
         errorLine2="                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/MusicUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/MusicUtil.java"
             line="443"
             column="24"/>
     </issue>
@@ -410,7 +410,7 @@
         errorLine1="        String mime = sampleMimeType.toLowerCase();"
         errorLine2="                                     ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/MusicUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/MusicUtil.java"
             line="469"
             column="38"/>
     </issue>
@@ -421,7 +421,7 @@
         errorLine1="        switch (sourceSuffix.toLowerCase()) {"
         errorLine2="                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/MusicUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/MusicUtil.java"
             line="492"
             column="30"/>
     </issue>
@@ -432,7 +432,7 @@
         errorLine1="        String path = url.toLowerCase().trim().split(&quot;\\?&quot;)[0];"
         errorLine2="                          ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/MusicUtil.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/MusicUtil.java"
             line="585"
             column="27"/>
     </issue>
@@ -443,7 +443,7 @@
         errorLine1="                                ? String.format(&quot;%02d&quot;, mediaMetadata.trackNumber) + &quot;. &quot;"
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="408"
             column="35"/>
     </issue>
@@ -454,7 +454,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistHorizontalAdapter.java"
             line="40"
             column="62"/>
     </issue>
@@ -465,7 +465,7 @@
         errorLine1="                    if (item.getName().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                       ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistHorizontalAdapter.java"
             line="43"
             column="40"/>
     </issue>
@@ -476,7 +476,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastChannelCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastChannelCatalogueAdapter.java"
             line="33"
             column="62"/>
     </issue>
@@ -487,7 +487,7 @@
         errorLine1="                    if (item.getTitle().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastChannelCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastChannelCatalogueAdapter.java"
             line="36"
             column="41"/>
     </issue>
@@ -498,7 +498,7 @@
         errorLine1="        String q = query != null ? query.trim().toLowerCase() : &quot;&quot;;"
         errorLine2="                                                ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/RadioEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/RadioEditorDialog.java"
             line="262"
             column="49"/>
     </issue>
@@ -509,7 +509,7 @@
         errorLine1="            if (q.isEmpty() || name.toLowerCase().contains(q)) filtered.add(name);"
         errorLine2="                                    ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/RadioEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/RadioEditorDialog.java"
             line="265"
             column="37"/>
     </issue>
@@ -520,7 +520,7 @@
         errorLine1="        return String.format(&quot;%d:%02d&quot;, minutes, seconds);"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/SleepTimerManager.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/SleepTimerManager.java"
             line="159"
             column="16"/>
     </issue>
@@ -531,7 +531,7 @@
         errorLine1="                String filterPattern = constraint.toString().toLowerCase().trim();"
         errorLine2="                                                             ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/SongHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/SongHorizontalAdapter.java"
             line="81"
             column="62"/>
     </issue>
@@ -542,7 +542,7 @@
         errorLine1="                    if (item.getTitle().toLowerCase().contains(filterPattern)) {"
         errorLine2="                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/SongHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/SongHorizontalAdapter.java"
             line="85"
             column="41"/>
     </issue>
@@ -606,7 +606,7 @@
         errorLine1="            localNetworkRequestOpen = missing.contains(Manifest.permission.ACCESS_LOCAL_NETWORK);"
         errorLine2="                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/activity/base/BaseActivity.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/activity/base/BaseActivity.java"
             line="100"
             column="56"/>
     </issue>
@@ -815,7 +815,7 @@
         errorLine1="        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;MMM d&quot;);"
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastEpisodeAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastEpisodeAdapter.java"
             line="48"
             column="45"/>
     </issue>
@@ -980,7 +980,7 @@
         errorLine1="                Chip chip = (Chip) requireActivity().getLayoutInflater().inflate(R.layout.chip_search_filter_genre, null, false);"
         errorLine2="                                                                                                                    ~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/FilterFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/FilterFragment.java"
             line="95"
             column="117"/>
     </issue>
@@ -991,7 +991,7 @@
         errorLine1="            if ((intent.resolveActivity(requireActivity().getPackageManager()) != null)) {"
         errorLine2="                        ~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsContainerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsContainerFragment.java"
             line="372"
             column="25"/>
     </issue>
@@ -1002,7 +1002,7 @@
         errorLine1="    private lateinit var eqSwitch: Switch"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/EqualizerFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/EqualizerFragment.kt"
             line="36"
             column="5"/>
     </issue>
@@ -1409,7 +1409,7 @@
         errorLine1="    private final MainActivity activity;"
         errorLine2="                  ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="30"
             column="19"/>
     </issue>
@@ -1420,7 +1420,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository = new PlaylistRepository();"
         errorLine2="                  ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="34"
             column="19"/>
     </issue>
@@ -1431,7 +1431,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository = new PlaylistRepository();"
         errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="34"
             column="59"/>
     </issue>
@@ -1442,7 +1442,7 @@
         errorLine1="    public AssetLinkNavigator(@NonNull MainActivity activity) {"
         errorLine2="                                       ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="36"
             column="40"/>
     </issue>
@@ -1453,7 +1453,7 @@
         errorLine1="                SongBottomSheetViewModel viewModel = new ViewModelProvider(activity).get(SongBottomSheetViewModel.class);"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="79"
             column="17"/>
     </issue>
@@ -1464,7 +1464,7 @@
         errorLine1="                SongBottomSheetViewModel viewModel = new ViewModelProvider(activity).get(SongBottomSheetViewModel.class);"
         errorLine2="                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="79"
             column="90"/>
     </issue>
@@ -1475,7 +1475,7 @@
         errorLine1="                viewModel.setSong(child);"
         errorLine2="                          ~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="80"
             column="27"/>
     </issue>
@@ -1486,7 +1486,7 @@
         errorLine1="                SongBottomSheetDialog dialog = new SongBottomSheetDialog();"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="81"
             column="17"/>
     </issue>
@@ -1497,7 +1497,7 @@
         errorLine1="                SongBottomSheetDialog dialog = new SongBottomSheetDialog();"
         errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="81"
             column="48"/>
     </issue>
@@ -1508,7 +1508,7 @@
         errorLine1="        MutableLiveData&lt;Playlist> liveData = playlistRepository.getPlaylist(id);"
         errorLine2="                                                                ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="128"
             column="65"/>
     </issue>
@@ -1519,7 +1519,7 @@
         errorLine1="            NavController navController = activity.navController;"
         errorLine2="                                                   ~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/AssetLinkNavigator.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/AssetLinkNavigator.java"
             line="176"
             column="52"/>
     </issue>
@@ -1530,7 +1530,7 @@
         errorLine1="    private final ChronologyDao chronologyDao = AppDatabase.getInstance().chronologyDao();"
         errorLine2="                                                            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/ChronologyRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/ChronologyRepository.java"
             line="13"
             column="61"/>
     </issue>
@@ -1541,7 +1541,7 @@
         errorLine1="    private final ChronologyDao chronologyDao = AppDatabase.getInstance().chronologyDao();"
         errorLine2="                                                                          ~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/ChronologyRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/ChronologyRepository.java"
             line="13"
             column="75"/>
     </issue>
@@ -1552,7 +1552,7 @@
         errorLine1="    private final DownloadDao downloadDao = AppDatabase.getInstance().downloadDao();"
         errorLine2="                                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/DownloadRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/DownloadRepository.java"
             line="15"
             column="57"/>
     </issue>
@@ -1563,7 +1563,7 @@
         errorLine1="    private final DownloadDao downloadDao = AppDatabase.getInstance().downloadDao();"
         errorLine2="                                                                      ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/DownloadRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/DownloadRepository.java"
             line="15"
             column="71"/>
     </issue>
@@ -1574,7 +1574,7 @@
         errorLine1="    private final FavoriteDao favoriteDao = AppDatabase.getInstance().favoriteDao();"
         errorLine2="                                                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/FavoriteRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/FavoriteRepository.java"
             line="22"
             column="57"/>
     </issue>
@@ -1585,7 +1585,7 @@
         errorLine1="    private final FavoriteDao favoriteDao = AppDatabase.getInstance().favoriteDao();"
         errorLine2="                                                                      ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/FavoriteRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/FavoriteRepository.java"
             line="22"
             column="71"/>
     </issue>
@@ -1596,7 +1596,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository;"
         errorLine2="                  ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/HomeViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/HomeViewModel.java"
             line="52"
             column="19"/>
     </issue>
@@ -1607,7 +1607,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/HomeViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/HomeViewModel.java"
             line="93"
             column="9"/>
     </issue>
@@ -1618,7 +1618,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/HomeViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/HomeViewModel.java"
             line="93"
             column="30"/>
     </issue>
@@ -1629,7 +1629,7 @@
         errorLine1="            playlistRepository.getSortedPlaylistsPreview(sortOrder, 20)"
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/HomeViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/HomeViewModel.java"
             line="103"
             column="32"/>
     </issue>
@@ -1640,7 +1640,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository;"
         errorLine2="                  ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/LibraryViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/LibraryViewModel.java"
             line="35"
             column="19"/>
     </issue>
@@ -1651,7 +1651,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/LibraryViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/LibraryViewModel.java"
             line="54"
             column="9"/>
     </issue>
@@ -1662,7 +1662,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/LibraryViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/LibraryViewModel.java"
             line="54"
             column="30"/>
     </issue>
@@ -1673,7 +1673,7 @@
         errorLine1="            playlistRepository.getPlaylists(true, 10).observe(owner, playlistSample::postValue);"
         errorLine2="                               ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/LibraryViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/LibraryViewModel.java"
             line="137"
             column="32"/>
     </issue>
@@ -1684,7 +1684,7 @@
         errorLine1="        playlistRepository.getPlaylists(true, 10).observe(owner, playlistSample::postValue);"
         errorLine2="                           ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/LibraryViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/LibraryViewModel.java"
             line="156"
             column="28"/>
     </issue>
@@ -1695,7 +1695,7 @@
         errorLine1="        observePlaylistSongsOnce(new PlaylistRepository(), owner, playlistId, action);"
         errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/LiveDataUtils.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/LiveDataUtils.java"
             line="19"
             column="34"/>
     </issue>
@@ -1706,7 +1706,7 @@
         errorLine1="    public static void observePlaylistSongsOnce(@NonNull PlaylistRepository repo, @NonNull LifecycleOwner owner, @NonNull String playlistId, @NonNull Consumer&lt;List&lt;Child>> action) {"
         errorLine2="                                                         ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/LiveDataUtils.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/LiveDataUtils.java"
             line="23"
             column="58"/>
     </issue>
@@ -1717,7 +1717,7 @@
         errorLine1="        final LiveData&lt;List&lt;Child>> live = repo.getPlaylistSongs(playlistId);"
         errorLine2="                                                ~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/LiveDataUtils.java"
+            file="src/main/java/com/cameronstorer/finsuma/util/LiveDataUtils.java"
             line="24"
             column="49"/>
     </issue>
@@ -1728,7 +1728,7 @@
         errorLine1="    private final LyricsDao lyricsDao = AppDatabase.getInstance().lyricsDao();"
         errorLine2="                                                    ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/LyricsRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/LyricsRepository.java"
             line="10"
             column="53"/>
     </issue>
@@ -1739,7 +1739,7 @@
         errorLine1="    private final LyricsDao lyricsDao = AppDatabase.getInstance().lyricsDao();"
         errorLine2="                                                                  ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/LyricsRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/LyricsRepository.java"
             line="10"
             column="67"/>
     </issue>
@@ -1758,7 +1758,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository;"
         errorLine2="                  ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistChooserViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistChooserViewModel.java"
             line="24"
             column="19"/>
     </issue>
@@ -1769,7 +1769,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistChooserViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistChooserViewModel.java"
             line="51"
             column="9"/>
     </issue>
@@ -1780,7 +1780,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistChooserViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistChooserViewModel.java"
             line="51"
             column="30"/>
     </issue>
@@ -1791,7 +1791,7 @@
         errorLine1="                PlaylistRepository.PlaylistActionCallback callback = new PlaylistRepository.PlaylistActionCallback() {"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaylistEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaylistEditorDialog.java"
             line="88"
             column="17"/>
     </issue>
@@ -1802,7 +1802,7 @@
         errorLine1="                    public void onSuccess() {"
         errorLine2="                                ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaylistEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaylistEditorDialog.java"
             line="90"
             column="33"/>
     </issue>
@@ -1813,7 +1813,7 @@
         errorLine1="                    public void onFailure() {"
         errorLine2="                                ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaylistEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaylistEditorDialog.java"
             line="103"
             column="33"/>
     </issue>
@@ -1824,7 +1824,7 @@
         errorLine1="                    public void onSuccess() {"
         errorLine2="                                ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaylistEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaylistEditorDialog.java"
             line="128"
             column="33"/>
     </issue>
@@ -1835,7 +1835,7 @@
         errorLine1="                    public void onFailure() {"
         errorLine2="                                ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/PlaylistEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/PlaylistEditorDialog.java"
             line="138"
             column="33"/>
     </issue>
@@ -1846,7 +1846,7 @@
         errorLine1="    private final PlaylistRepository playlistRepository;"
         errorLine2="                  ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="29"
             column="19"/>
     </issue>
@@ -1857,7 +1857,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="45"
             column="9"/>
     </issue>
@@ -1868,7 +1868,7 @@
         errorLine1="        playlistRepository = new PlaylistRepository();"
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="45"
             column="30"/>
     </issue>
@@ -1879,7 +1879,7 @@
         errorLine1="    public void createPlaylist(String name, PlaylistRepository.PlaylistActionCallback callback) {"
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="49"
             column="45"/>
     </issue>
@@ -1890,7 +1890,7 @@
         errorLine1="        playlistRepository.createPlaylist(null, name, new ArrayList(Lists.transform(toAdd, Child::getId)), callback);"
         errorLine2="                           ~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="50"
             column="28"/>
     </issue>
@@ -1901,7 +1901,7 @@
         errorLine1="    public void updatePlaylist(String name, PlaylistRepository.PlaylistActionCallback callback) {"
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="53"
             column="45"/>
     </issue>
@@ -1912,7 +1912,7 @@
         errorLine1="            if (callback != null) callback.onFailure();"
         errorLine2="                                           ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="57"
             column="44"/>
     </issue>
@@ -1923,7 +1923,7 @@
         errorLine1="            if (callback != null) callback.onEmptied();"
         errorLine2="                                           ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="62"
             column="44"/>
     </issue>
@@ -1934,7 +1934,7 @@
         errorLine1="        playlistRepository.updatePlaylist(toEdit.getId(), name, songsId, callback);"
         errorLine2="                           ~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/viewmodel/PlaylistEditorViewModel.java"
+            file="src/main/java/com/cameronstorer/finsuma/viewmodel/PlaylistEditorViewModel.java"
             line="66"
             column="28"/>
     </issue>
@@ -1945,7 +1945,7 @@
         errorLine1="    private final QueueDao queueDao = AppDatabase.getInstance().queueDao();"
         errorLine2="                                                  ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/QueueRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/QueueRepository.java"
             line="38"
             column="51"/>
     </issue>
@@ -1956,7 +1956,7 @@
         errorLine1="    private final QueueDao queueDao = AppDatabase.getInstance().queueDao();"
         errorLine2="                                                                ~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/QueueRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/QueueRepository.java"
             line="38"
             column="65"/>
     </issue>
@@ -1967,7 +1967,7 @@
         errorLine1="            AppDatabase db = AppDatabase.getInstance();"
         errorLine2="            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="53"
             column="13"/>
     </issue>
@@ -1978,7 +1978,7 @@
         errorLine1="            AppDatabase db = AppDatabase.getInstance();"
         errorLine2="                                         ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="53"
             column="42"/>
     </issue>
@@ -1989,7 +1989,7 @@
         errorLine1="            db.internetRadioStationDao().deleteSubsonic();"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="54"
             column="16"/>
     </issue>
@@ -2000,7 +2000,7 @@
         errorLine1="            db.internetRadioStationDao().insertAll(cacheList);"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="58"
             column="16"/>
     </issue>
@@ -2011,7 +2011,7 @@
         errorLine1="            List&lt;InternetRadioStationCache> localCaches = AppDatabase.getInstance().internetRadioStationDao().getLocal();"
         errorLine2="                                                                      ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="70"
             column="71"/>
     </issue>
@@ -2022,7 +2022,7 @@
         errorLine1="            List&lt;InternetRadioStationCache> localCaches = AppDatabase.getInstance().internetRadioStationDao().getLocal();"
         errorLine2="                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="70"
             column="85"/>
     </issue>
@@ -2033,7 +2033,7 @@
         errorLine1="            List&lt;InternetRadioStation> cached = AppDatabase.getInstance().internetRadioStationDao().getAll().stream()"
         errorLine2="                                                            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="84"
             column="61"/>
     </issue>
@@ -2044,7 +2044,7 @@
         errorLine1="            List&lt;InternetRadioStation> cached = AppDatabase.getInstance().internetRadioStationDao().getAll().stream()"
         errorLine2="                                                                          ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="84"
             column="75"/>
     </issue>
@@ -2055,7 +2055,7 @@
         errorLine1="            AppDatabase.getInstance().internetRadioStationDao().insert(cache);"
         errorLine2="                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="111"
             column="25"/>
     </issue>
@@ -2066,7 +2066,7 @@
         errorLine1="            AppDatabase.getInstance().internetRadioStationDao().insert(cache);"
         errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="111"
             column="39"/>
     </issue>
@@ -2077,7 +2077,7 @@
         errorLine1="            AppDatabase db = AppDatabase.getInstance();"
         errorLine2="            ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="125"
             column="13"/>
     </issue>
@@ -2088,7 +2088,7 @@
         errorLine1="            AppDatabase db = AppDatabase.getInstance();"
         errorLine2="                                         ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="125"
             column="42"/>
     </issue>
@@ -2099,7 +2099,7 @@
         errorLine1="            InternetRadioStationCache cache = db.internetRadioStationDao().getById(id);"
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="126"
             column="50"/>
     </issue>
@@ -2110,7 +2110,7 @@
         errorLine1="                db.internetRadioStationDao().update(cache);"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="132"
             column="20"/>
     </issue>
@@ -2121,7 +2121,7 @@
         errorLine1="            AppDatabase.getInstance().internetRadioStationDao().deleteById(id);"
         errorLine2="                        ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="147"
             column="25"/>
     </issue>
@@ -2132,7 +2132,7 @@
         errorLine1="            AppDatabase.getInstance().internetRadioStationDao().deleteById(id);"
         errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/RadioRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/RadioRepository.java"
             line="147"
             column="39"/>
     </issue>
@@ -2143,7 +2143,7 @@
         errorLine1="    private final RecentSearchDao recentSearchDao = AppDatabase.getInstance().recentSearchDao();"
         errorLine2="                                                                ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/SearchingRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/SearchingRepository.java"
             line="37"
             column="65"/>
     </issue>
@@ -2154,7 +2154,7 @@
         errorLine1="    private final RecentSearchDao recentSearchDao = AppDatabase.getInstance().recentSearchDao();"
         errorLine2="                                                                              ~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/SearchingRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/SearchingRepository.java"
             line="37"
             column="79"/>
     </issue>
@@ -2165,7 +2165,7 @@
         errorLine1="    private final ServerDao serverDao = AppDatabase.getInstance().serverDao();"
         errorLine2="                                                    ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/ServerRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/ServerRepository.java"
             line="14"
             column="53"/>
     </issue>
@@ -2176,7 +2176,7 @@
         errorLine1="    private final ServerDao serverDao = AppDatabase.getInstance().serverDao();"
         errorLine2="                                                                  ~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/repository/ServerRepository.java"
+            file="src/main/java/com/cameronstorer/finsuma/repository/ServerRepository.java"
             line="14"
             column="67"/>
     </issue>
@@ -2187,7 +2187,7 @@
         errorLine1="    SessionMediaItem get(String id);"
         errorLine2="    ~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/database/dao/SessionMediaItemDao.java"
+            file="src/main/java/com/cameronstorer/finsuma/database/dao/SessionMediaItemDao.java"
             line="16"
             column="5"/>
     </issue>
@@ -2198,7 +2198,7 @@
         errorLine1="    List&lt;SessionMediaItem> get(long timestamp);"
         errorLine2="         ~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/database/dao/SessionMediaItemDao.java"
+            file="src/main/java/com/cameronstorer/finsuma/database/dao/SessionMediaItemDao.java"
             line="19"
             column="10"/>
     </issue>
@@ -2209,7 +2209,7 @@
         errorLine1="    void insert(SessionMediaItem sessionMediaItem);"
         errorLine2="                ~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/database/dao/SessionMediaItemDao.java"
+            file="src/main/java/com/cameronstorer/finsuma/database/dao/SessionMediaItemDao.java"
             line="22"
             column="17"/>
     </issue>
@@ -2220,7 +2220,7 @@
         errorLine1="    void insertAll(List&lt;SessionMediaItem> sessionMediaItems);"
         errorLine2="                        ~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/database/dao/SessionMediaItemDao.java"
+            file="src/main/java/com/cameronstorer/finsuma/database/dao/SessionMediaItemDao.java"
             line="25"
             column="25"/>
     </issue>
@@ -2231,7 +2231,7 @@
         errorLine1="    private MainActivity activity;"
         errorLine2="            ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="31"
             column="13"/>
     </issue>
@@ -2242,7 +2242,7 @@
         errorLine1="        activity = (MainActivity) getActivity();"
         errorLine2="                    ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="39"
             column="21"/>
     </issue>
@@ -2253,7 +2253,7 @@
         errorLine1="        activity.setBottomNavigationBarVisibility(false);"
         errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="78"
             column="18"/>
     </issue>
@@ -2264,7 +2264,7 @@
         errorLine1="        activity.setBottomSheetVisibility(false);"
         errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="79"
             column="18"/>
     </issue>
@@ -2275,7 +2275,7 @@
         errorLine1="        activity.setNavigationDrawerLock(true);"
         errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="80"
             column="18"/>
     </issue>
@@ -2286,7 +2286,7 @@
         errorLine1="        activity.setSystemBarsVisibility(!isLandscape);"
         errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="81"
             column="18"/>
     </issue>
@@ -2297,7 +2297,7 @@
         errorLine1="        activity.setBottomSheetVisibility(true);"
         errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="87"
             column="18"/>
     </issue>
@@ -2308,7 +2308,7 @@
         errorLine1="            activity.setNavigationDrawerLock(false);"
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="89"
             column="22"/>
     </issue>
@@ -2319,7 +2319,7 @@
         errorLine1="            activity.setNavigationDrawerLock(false);"
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="91"
             column="22"/>
     </issue>
@@ -2330,7 +2330,7 @@
         errorLine1="            activity.navController.navigateUp();"
         errorLine2="                     ~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsFragment.java"
             line="126"
             column="22"/>
     </issue>
@@ -2338,10 +2338,10 @@
     <issue
         id="UnsafeOptInUsageError"
         message="This declaration is opt-in and its usage should be marked with `@androidx.media3.common.util.UnstableApi` or `@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)`"
-        errorLine1="            ((com.eddyizm.tempus.ui.activity.MainActivity) requireActivity()).openAssetLink(assetLink, collapse);"
+        errorLine1="            ((com.cameronstorer.finsuma.ui.activity.MainActivity) requireActivity()).openAssetLink(assetLink, collapse);"
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/TrackInfoDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/TrackInfoDialog.java"
             line="250"
             column="15"/>
     </issue>
@@ -2349,10 +2349,10 @@
     <issue
         id="UnsafeOptInUsageError"
         message="This declaration is opt-in and its usage should be marked with `@androidx.media3.common.util.UnstableApi` or `@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)`"
-        errorLine1="            ((com.eddyizm.tempus.ui.activity.MainActivity) requireActivity()).openAssetLink(assetLink, collapse);"
+        errorLine1="            ((com.cameronstorer.finsuma.ui.activity.MainActivity) requireActivity()).openAssetLink(assetLink, collapse);"
         errorLine2="                                                                              ~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/TrackInfoDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/TrackInfoDialog.java"
             line="250"
             column="79"/>
     </issue>
@@ -2363,7 +2363,7 @@
         errorLine1="        SessionToken token = new SessionToken(appCtx, new ComponentName(appCtx, MediaService.class));"
         errorLine2="                                                                                ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/widget/WidgetActions.java"
+            file="src/main/java/com/cameronstorer/finsuma/widget/WidgetActions.java"
             line="21"
             column="81"/>
     </issue>
@@ -2374,7 +2374,7 @@
         errorLine1="            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link), ctx, MainActivity.class);"
         errorLine2="                                                                          ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/widget/WidgetProvider.java"
+            file="src/main/java/com/cameronstorer/finsuma/widget/WidgetProvider.java"
             line="128"
             column="75"/>
     </issue>
@@ -2385,7 +2385,7 @@
         errorLine1="            intent = new Intent(ctx, MainActivity.class);"
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/widget/WidgetProvider.java"
+            file="src/main/java/com/cameronstorer/finsuma/widget/WidgetProvider.java"
             line="130"
             column="38"/>
     </issue>
@@ -2396,7 +2396,7 @@
         errorLine1="        SessionToken token = new SessionToken(appCtx, new ComponentName(appCtx, MediaService.class));"
         errorLine2="                                                                                ~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/widget/WidgetUpdateManager.java"
+            file="src/main/java/com/cameronstorer/finsuma/widget/WidgetUpdateManager.java"
             line="141"
             column="81"/>
     </issue>
@@ -2682,7 +2682,7 @@
         errorLine1="            leadingImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_history, null));"
         errorLine2="                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SearchFragment.java"
             line="192"
             column="47"/>
     </issue>
@@ -2693,7 +2693,7 @@
         errorLine1="                leadingImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_search, null));"
         errorLine2="                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SearchFragment.java"
             line="217"
             column="51"/>
     </issue>
@@ -8146,7 +8146,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;it&quot; (Italian) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-it/strings.xml"
@@ -8157,7 +8157,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ro&quot; (Romanian) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-ro/strings.xml"
@@ -8201,7 +8201,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;de&quot; (German) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-de/strings.xml"
@@ -8256,7 +8256,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;ca&quot; (Catalan) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-ca/strings.xml"
@@ -8267,7 +8267,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;es&quot; (Spanish) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-b+es+419/strings.xml"
@@ -8278,7 +8278,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;zh&quot; (Chinese) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-zh-rCN/strings.xml"
@@ -8289,7 +8289,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;zh&quot; (Chinese) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-zh-rTW/strings.xml"
@@ -8300,7 +8300,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;zh&quot; (Chinese) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-zh/strings.xml"
@@ -8311,7 +8311,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;eu&quot; (Basque) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-eu/strings.xml"
@@ -8377,7 +8377,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;ja&quot; (Japanese) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-ja/strings.xml"
@@ -8399,7 +8399,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;pl&quot; (Polish) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-pl/strings.xml"
@@ -8410,7 +8410,7 @@
     <issue
         id="Untranslatable"
         message="The resource string &quot;settings_support_discussion_link&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;ru&quot; (Russian) here"
-        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/eddyizm/tempus/discussions&lt;/string>"
+        errorLine1="    &lt;string name=&quot;settings_support_discussion_link&quot; translatable=&quot;false&quot;>https://github.com/cameronstorer/finsuma/discussions&lt;/string>"
         errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values-ru/strings.xml"
@@ -9003,22 +9003,22 @@
 
     <issue
         id="UnsafeImplicitIntentLaunch"
-        message="The intent action `com.eddyizm.tempus.service.EQUALIZER_UPDATED (used to send a broadcast)` matches the intent filter of a non-exported receiver, registered via a call to `Context.registerReceiver`, or similar. If you are trying to invoke this specific receiver via the action then you should use `Intent.setPackage(&lt;APPLICATION_ID>)`."
+        message="The intent action `com.cameronstorer.finsuma.service.EQUALIZER_UPDATED (used to send a broadcast)` matches the intent filter of a non-exported receiver, registered via a call to `Context.registerReceiver`, or similar. If you are trying to invoke this specific receiver via the action then you should use `Intent.setPackage(&lt;APPLICATION_ID>)`."
         errorLine1="                sendBroadcast(Intent(ACTION_EQUALIZER_UPDATED))"
         errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/service/BaseMediaService.kt"
+            file="src/main/java/com/cameronstorer/finsuma/service/BaseMediaService.kt"
             line="651"
             column="31"/>
     </issue>
 
     <issue
         id="UnsafeImplicitIntentLaunch"
-        message="The intent action `com.eddyizm.tempus.service.EQUALIZER_UPDATED (used to send a broadcast)` matches the intent filter of a non-exported receiver, registered via a call to `Context.registerReceiver`, or similar. If you are trying to invoke this specific receiver via the action then you should use `Intent.setPackage(&lt;APPLICATION_ID>)`."
+        message="The intent action `com.cameronstorer.finsuma.service.EQUALIZER_UPDATED (used to send a broadcast)` matches the intent filter of a non-exported receiver, registered via a call to `Context.registerReceiver`, or similar. If you are trying to invoke this specific receiver via the action then you should use `Intent.setPackage(&lt;APPLICATION_ID>)`."
         errorLine1="        sendBroadcast(Intent(ACTION_EQUALIZER_UPDATED))"
         errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/service/BaseMediaService.kt"
+            file="src/main/java/com/cameronstorer/finsuma/service/BaseMediaService.kt"
             line="861"
             column="23"/>
     </issue>
@@ -9040,7 +9040,7 @@
         errorLine1="        val trust = object : X509TrustManager {"
         errorLine2="                    ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/lan/LanWire.kt"
+            file="src/main/java/com/cameronstorer/finsuma/lan/LanWire.kt"
             line="52"
             column="21"/>
     </issue>
@@ -9106,7 +9106,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumAdapter.java"
             line="73"
             column="9"/>
     </issue>
@@ -9117,7 +9117,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumArtistPageOrSimilarAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumArtistPageOrSimilarAdapter.java"
             line="61"
             column="9"/>
     </issue>
@@ -9128,7 +9128,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCarouselAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCarouselAdapter.java"
             line="76"
             column="9"/>
     </issue>
@@ -9139,7 +9139,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCatalogueAdapter.java"
             line="59"
             column="13"/>
     </issue>
@@ -9150,7 +9150,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCatalogueAdapter.java"
             line="154"
             column="9"/>
     </issue>
@@ -9161,7 +9161,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumCatalogueAdapter.java"
             line="205"
             column="9"/>
     </issue>
@@ -9172,7 +9172,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumHorizontalAdapter.java"
             line="60"
             column="13"/>
     </issue>
@@ -9183,7 +9183,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumHorizontalAdapter.java"
             line="100"
             column="9"/>
     </issue>
@@ -9194,7 +9194,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumHorizontalAdapter.java"
             line="159"
             column="9"/>
     </issue>
@@ -9205,7 +9205,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/AlbumSectionsAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/AlbumSectionsAdapter.java"
             line="95"
             column="9"/>
     </issue>
@@ -9216,7 +9216,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistAdapter.java"
             line="77"
             column="9"/>
     </issue>
@@ -9227,7 +9227,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCarouselAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCarouselAdapter.java"
             line="64"
             column="9"/>
     </issue>
@@ -9238,7 +9238,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCatalogueAdapter.java"
             line="54"
             column="13"/>
     </issue>
@@ -9249,7 +9249,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCatalogueAdapter.java"
             line="97"
             column="9"/>
     </issue>
@@ -9260,7 +9260,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistCatalogueAdapter.java"
             line="154"
             column="9"/>
     </issue>
@@ -9271,7 +9271,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="60"
             column="13"/>
     </issue>
@@ -9282,7 +9282,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="104"
             column="9"/>
     </issue>
@@ -9293,7 +9293,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="173"
             column="9"/>
     </issue>
@@ -9304,7 +9304,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistSimilarAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistSimilarAdapter.java"
             line="72"
             column="9"/>
     </issue>
@@ -9315,7 +9315,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ContinueListeningAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ContinueListeningAdapter.java"
             line="56"
             column="9"/>
     </issue>
@@ -9326,7 +9326,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/DiscoverSongAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/DiscoverSongAdapter.java"
             line="89"
             column="9"/>
     </issue>
@@ -9337,7 +9337,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/DownloadHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/DownloadHorizontalAdapter.java"
             line="95"
             column="9"/>
     </issue>
@@ -9348,7 +9348,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreAdapter.java"
             line="54"
             column="9"/>
     </issue>
@@ -9359,7 +9359,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreCatalogueAdapter.java"
             line="51"
             column="13"/>
     </issue>
@@ -9370,7 +9370,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreCatalogueAdapter.java"
             line="89"
             column="9"/>
     </issue>
@@ -9381,7 +9381,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GenreCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GenreCatalogueAdapter.java"
             line="125"
             column="9"/>
     </issue>
@@ -9392,7 +9392,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/GridTrackAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/GridTrackAdapter.java"
             line="58"
             column="9"/>
     </issue>
@@ -9403,7 +9403,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/HomeSectorHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/HomeSectorHorizontalAdapter.java"
             line="54"
             column="9"/>
     </issue>
@@ -9414,7 +9414,7 @@
         errorLine1="        topSongAdapter.notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/HomeTabMusicFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/HomeTabMusicFragment.java"
             line="1402"
             column="9"/>
     </issue>
@@ -9425,7 +9425,7 @@
         errorLine1="        starredSongAdapter.notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/HomeTabMusicFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/HomeTabMusicFragment.java"
             line="1403"
             column="9"/>
     </issue>
@@ -9436,7 +9436,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/InternetRadioStationAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/InternetRadioStationAdapter.java"
             line="106"
             column="9"/>
     </issue>
@@ -9447,7 +9447,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/MusicDirectoryAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/MusicDirectoryAdapter.java"
             line="84"
             column="9"/>
     </issue>
@@ -9458,7 +9458,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/MusicFolderAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/MusicFolderAdapter.java"
             line="57"
             column="9"/>
     </issue>
@@ -9469,7 +9469,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/MusicIndexAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/MusicIndexAdapter.java"
             line="59"
             column="9"/>
     </issue>
@@ -9490,7 +9490,7 @@
         errorLine1="                playlistHorizontalAdapter.notifyDataSetChanged(); "
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlaylistCatalogueFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlaylistCatalogueFragment.java"
             line="116"
             column="17"/>
     </issue>
@@ -9501,7 +9501,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistDialogHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistDialogHorizontalAdapter.java"
             line="52"
             column="9"/>
     </issue>
@@ -9512,7 +9512,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistDialogSongHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistDialogSongHorizontalAdapter.java"
             line="66"
             column="9"/>
     </issue>
@@ -9523,7 +9523,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistHorizontalAdapter.java"
             line="62"
             column="13"/>
     </issue>
@@ -9534,7 +9534,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistHorizontalAdapter.java"
             line="103"
             column="9"/>
     </issue>
@@ -9545,7 +9545,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PlaylistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PlaylistHorizontalAdapter.java"
             line="153"
             column="9"/>
     </issue>
@@ -9556,7 +9556,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastChannelCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastChannelCatalogueAdapter.java"
             line="52"
             column="13"/>
     </issue>
@@ -9567,7 +9567,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastChannelCatalogueAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastChannelCatalogueAdapter.java"
             line="95"
             column="9"/>
     </issue>
@@ -9578,7 +9578,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastChannelHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastChannelHorizontalAdapter.java"
             line="57"
             column="9"/>
     </issue>
@@ -9589,7 +9589,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastEpisodeAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastEpisodeAdapter.java"
             line="91"
             column="9"/>
     </issue>
@@ -9600,7 +9600,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/PodcastEpisodeAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/PodcastEpisodeAdapter.java"
             line="168"
             column="9"/>
     </issue>
@@ -9611,7 +9611,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/dialog/RadioEditorDialog.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/dialog/RadioEditorDialog.java"
             line="476"
             column="13"/>
     </issue>
@@ -9622,7 +9622,7 @@
         errorLine1="        songHorizontalAdapter.notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SearchFragment.java"
             line="308"
             column="9"/>
     </issue>
@@ -9633,7 +9633,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ServerAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ServerAdapter.java"
             line="49"
             column="9"/>
     </issue>
@@ -9644,7 +9644,7 @@
         errorLine1="            getListView().getAdapter().notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/SettingsContainerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/SettingsContainerFragment.java"
             line="300"
             column="13"/>
     </issue>
@@ -9655,7 +9655,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ShareHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ShareHorizontalAdapter.java"
             line="59"
             column="9"/>
     </issue>
@@ -9666,7 +9666,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/SimilarTrackAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/SimilarTrackAdapter.java"
             line="71"
             column="9"/>
     </issue>
@@ -9677,7 +9677,7 @@
         errorLine1="            notifyDataSetChanged();"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/SongHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/SongHorizontalAdapter.java"
             line="234"
             column="13"/>
     </issue>
@@ -9688,7 +9688,7 @@
         errorLine1="        notifyDataSetChanged();"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/YearAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/YearAdapter.java"
             line="52"
             column="9"/>
     </issue>
@@ -9699,7 +9699,7 @@
         errorLine1="    } else if (Build.VERSION.SDK_INT >= 23) {"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/navigation/ManualEdgeToEdge.kt"
+            file="src/main/java/com/cameronstorer/finsuma/navigation/ManualEdgeToEdge.kt"
             line="48"
             column="16"/>
     </issue>
@@ -9710,7 +9710,7 @@
         errorLine1="    } else if (Build.VERSION.SDK_INT >= 21) {"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/navigation/ManualEdgeToEdge.kt"
+            file="src/main/java/com/cameronstorer/finsuma/navigation/ManualEdgeToEdge.kt"
             line="50"
             column="16"/>
     </issue>
@@ -9721,7 +9721,7 @@
         errorLine1="@RequiresApi(23)"
         errorLine2="~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/navigation/ManualEdgeToEdge.kt"
+            file="src/main/java/com/cameronstorer/finsuma/navigation/ManualEdgeToEdge.kt"
             line="100"
             column="1"/>
     </issue>
@@ -9732,7 +9732,7 @@
         errorLine1="@RequiresApi(21)"
         errorLine2="~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/navigation/ManualEdgeToEdge.kt"
+            file="src/main/java/com/cameronstorer/finsuma/navigation/ManualEdgeToEdge.kt"
             line="115"
             column="1"/>
     </issue>
@@ -9743,7 +9743,7 @@
         errorLine1="    private static App instance;"
         errorLine2="            ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/App.java"
+            file="src/main/java/com/cameronstorer/finsuma/App.java"
             line="24"
             column="13"/>
     </issue>
@@ -9754,7 +9754,7 @@
         errorLine1="    private static Context context;"
         errorLine2="            ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/App.java"
+            file="src/main/java/com/cameronstorer/finsuma/App.java"
             line="25"
             column="13"/>
     </issue>
@@ -9941,7 +9941,7 @@
         errorLine1="        val pageOffset = ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue"
         errorLine2="                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/components/NowPlayingArtworkPager.kt"
+            file="src/main/java/com/cameronstorer/finsuma/ui/components/NowPlayingArtworkPager.kt"
             line="113"
             column="72"/>
     </issue>
@@ -12237,7 +12237,7 @@
         errorLine1="                shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/activity/MainActivity.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/activity/MainActivity.java"
             line="919"
             column="17"/>
     </issue>
@@ -12248,7 +12248,7 @@
         errorLine1="            prefs(context).edit().putStringSet(&quot;trusted&quot;, trusted(context) + request.fingerprint)"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/lan/LanReceiverService.kt"
+            file="src/main/java/com/cameronstorer/finsuma/lan/LanReceiverService.kt"
             line="55"
             column="13"/>
     </issue>
@@ -12259,7 +12259,7 @@
         errorLine1="                LanReceiverService.prefs(app).edit().putString(&quot;name&quot;, trimmed).apply()"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/lan/LanSettingsFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/lan/LanSettingsFragment.kt"
             line="137"
             column="17"/>
     </issue>
@@ -12270,7 +12270,7 @@
         errorLine1="                            prefs.edit().putStringSet(&quot;trusted&quot;, LanReceiverService.trusted(app) - fingerprint)"
         errorLine2="                            ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/lan/LanSettingsFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/lan/LanSettingsFragment.kt"
             line="279"
             column="29"/>
     </issue>
@@ -12281,7 +12281,7 @@
         errorLine1="                                prefs.edit().putStringSet(&quot;receivers&quot;, receivers).apply()"
         errorLine2="                                ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/lan/LanSettingsFragment.kt"
+            file="src/main/java/com/cameronstorer/finsuma/lan/LanSettingsFragment.kt"
             line="420"
             column="33"/>
     </issue>
@@ -12294,7 +12294,7 @@
         errorLine1="        App.getInstance().preferences.edit()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="226"
             column="9"/>
     </issue>
@@ -12305,7 +12305,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(SERVER, server).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="238"
             column="9"/>
     </issue>
@@ -12316,7 +12316,7 @@
         errorLine1="        App.getInstance().preferences.edit()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="267"
             column="9"/>
     </issue>
@@ -12327,7 +12327,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(NETWORK_PING_TIMEOUT, pingTimeout).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="279"
             column="9"/>
     </issue>
@@ -12338,7 +12338,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(USER, user).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="291"
             column="9"/>
     </issue>
@@ -12349,7 +12349,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(PASSWORD, password).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="301"
             column="9"/>
     </issue>
@@ -12360,7 +12360,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(TOKEN, token).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="311"
             column="9"/>
     </issue>
@@ -12371,7 +12371,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(SALT, salt).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="321"
             column="9"/>
     </issue>
@@ -12382,7 +12382,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(LOW_SECURITY, isLowSecurity).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="331"
             column="9"/>
     </issue>
@@ -12393,7 +12393,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(CLIENT_CERT, clientCert).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="341"
             column="9"/>
     </issue>
@@ -12404,7 +12404,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(SERVER_ID, serverId).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="351"
             column="9"/>
     </issue>
@@ -12415,7 +12415,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(OPEN_SUBSONIC, isOpenSubsonic).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="361"
             column="9"/>
     </issue>
@@ -12426,7 +12426,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(OPEN_SUBSONIC_EXTENSIONS, Gson().toJson(extension)).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="371"
             column="9"/>
     </issue>
@@ -12437,7 +12437,7 @@
         errorLine1="        App.getInstance().preferences.edit()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="387"
             column="9"/>
     </issue>
@@ -12448,7 +12448,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(LOCAL_ADDRESS, address).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="399"
             column="9"/>
     </issue>
@@ -12459,7 +12459,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(IN_USE_SERVER_ADDRESS, address).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="411"
             column="9"/>
     </issue>
@@ -12470,7 +12470,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(IN_USE_SERVER_ADDRESS, inUseAddress).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="422"
             column="9"/>
     </issue>
@@ -12481,7 +12481,7 @@
         errorLine1="        App.getInstance().preferences.edit().putLong(NEXT_SERVER_SWITCH, System.currentTimeMillis()).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="434"
             column="9"/>
     </issue>
@@ -12492,7 +12492,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(BATTERY_OPTIMIZATION, false).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="444"
             column="9"/>
     </issue>
@@ -12503,7 +12503,7 @@
         errorLine1="        App.getInstance().preferences.edit().putFloat(PLAYBACK_SPEED, playbackSpeed).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="454"
             column="9"/>
     </issue>
@@ -12514,7 +12514,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(PLAYBACK_SPEED_PITCH, isEnabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="464"
             column="9"/>
     </issue>
@@ -12525,7 +12525,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(PLAYBACK_SPEED_MANUAL_PITCH, isEnabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="474"
             column="9"/>
     </issue>
@@ -12536,7 +12536,7 @@
         errorLine1="        App.getInstance().preferences.edit().putFloat(PLAYBACK_SPEED_MANUAL_PITCH_VALUE, pitch).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="484"
             column="9"/>
     </issue>
@@ -12547,7 +12547,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(BITRATE_VISIBLE, bitrateVisible).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="494"
             column="9"/>
     </issue>
@@ -12558,7 +12558,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(QUICK_ACTION_VISIBLE, quickActionVisible).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="504"
             column="9"/>
     </issue>
@@ -12569,7 +12569,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(TRACK_NUMBER_VISIBLE, trackNumberVisible).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="514"
             column="9"/>
     </issue>
@@ -12580,7 +12580,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(ALBUM_YEAR_VISIBLE, albumYearVisible).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="523"
             column="9"/>
     </issue>
@@ -12591,7 +12591,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(SKIP_SILENCE, isSkipSilenceMode).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="533"
             column="9"/>
     </issue>
@@ -12602,7 +12602,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(SHUFFLE_MODE, shuffleModeEnabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="543"
             column="9"/>
     </issue>
@@ -12613,7 +12613,7 @@
         errorLine1="        App.getInstance().preferences.edit().putInt(REPEAT_MODE, repeatMode).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="553"
             column="9"/>
     </issue>
@@ -12624,7 +12624,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(DOWNLOAD_WIFI_ONLY, enabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="618"
             column="9"/>
     </issue>
@@ -12635,7 +12635,7 @@
         errorLine1="        App.getInstance().preferences.edit().putInt(DOWNLOAD_DATABASE_REPAIRED, version).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="628"
             column="9"/>
     </issue>
@@ -12646,7 +12646,7 @@
         errorLine1="        App.getInstance().preferences.edit().putInt(DOWNLOAD_REPAIR_ATTEMPTS, attempts).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="638"
             column="9"/>
     </issue>
@@ -12657,7 +12657,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(DATA_SAVING_MODE, isDataSavingModeEnabled)"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="678"
             column="9"/>
     </issue>
@@ -12668,7 +12668,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean("
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="689"
             column="9"/>
     </issue>
@@ -12679,7 +12679,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean("
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="701"
             column="9"/>
     </issue>
@@ -12690,7 +12690,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean("
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="713"
             column="9"/>
     </issue>
@@ -12701,7 +12701,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(MINI_SHUFFLE_BUTTON_VISIBILITY, enabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="725"
             column="9"/>
     </issue>
@@ -12712,7 +12712,7 @@
         errorLine1="        App.getInstance().preferences.edit().putLong(SERVER_UNREACHABLE, System.currentTimeMillis()).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="747"
             column="9"/>
     </issue>
@@ -12723,7 +12723,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(PODCAST_SECTION_VISIBILITY, false).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="777"
             column="9"/>
     </issue>
@@ -12734,7 +12734,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(RADIO_SECTION_VISIBILITY, false).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="787"
             column="9"/>
     </issue>
@@ -12745,7 +12745,7 @@
         errorLine1="        App.getInstance().preferences.edit().putInt(LOUDNESS_PREAMP, value.toInt()).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="812"
             column="9"/>
     </issue>
@@ -12756,7 +12756,7 @@
         errorLine1="        return App.getInstance().preferences.edit().putString("
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="827"
             column="16"/>
     </issue>
@@ -12767,7 +12767,7 @@
         errorLine1="        return App.getInstance().preferences.edit().putString("
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="840"
             column="16"/>
     </issue>
@@ -12778,7 +12778,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(DOWNLOAD_DIRECTORY_URI, uri).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="857"
             column="9"/>
     </issue>
@@ -12789,7 +12789,7 @@
         errorLine1="        return App.getInstance().preferences.edit().putString("
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="870"
             column="16"/>
     </issue>
@@ -12800,7 +12800,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(HOME_SECTOR_LIST, Gson().toJson(extension)).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="943"
             column="9"/>
     </issue>
@@ -12811,7 +12811,7 @@
         errorLine1="        App.getInstance().preferences.edit().putLong(NEXT_UPDATE_CHECK, System.currentTimeMillis()).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="971"
             column="9"/>
     </issue>
@@ -12822,7 +12822,7 @@
         errorLine1="        App.getInstance().preferences.edit()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="991"
             column="9"/>
     </issue>
@@ -12833,7 +12833,7 @@
         errorLine1="        App.getInstance().preferences.edit().putLong(LAST_INSTANT_MIX, System.currentTimeMillis()).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="998"
             column="9"/>
     </issue>
@@ -12844,7 +12844,7 @@
         errorLine1="        return App.getInstance().preferences.edit().putString("
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1010"
             column="16"/>
     </issue>
@@ -12855,7 +12855,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(HOME_SORT_PLAYLISTS, sortOrder).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1029"
             column="9"/>
     </issue>
@@ -12866,7 +12866,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(EQUALIZER_ENABLED, enabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1034"
             column="9"/>
     </issue>
@@ -12877,7 +12877,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(SELECTED_EQUALIZER, selectedEqualizer)"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1049"
             column="9"/>
     </issue>
@@ -12888,7 +12888,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(EQUALIZER_BAND_LEVELS, asString).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1056"
             column="9"/>
     </issue>
@@ -12899,7 +12899,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(ALBUM_SORT_ORDER, sortOrder).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1082"
             column="9"/>
     </issue>
@@ -12910,7 +12910,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(ARTIST_DISPLAY_BIOGRAPHY, displayBiographyEnabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1107"
             column="9"/>
     </issue>
@@ -12921,7 +12921,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(AA_FIRST_TAB,&quot;-1&quot;).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1163"
             column="9"/>
     </issue>
@@ -12932,7 +12932,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(AA_SECOND_TAB,&quot;-1&quot;).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1168"
             column="9"/>
     </issue>
@@ -12943,7 +12943,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(AA_THIRD_TAB,&quot;-1&quot;).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1173"
             column="9"/>
     </issue>
@@ -12954,7 +12954,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(AA_FOURTH_TAB,&quot;-1&quot;).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1178"
             column="9"/>
     </issue>
@@ -12965,7 +12965,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(AA_SHUFFLE_GENRE_SONGS, enabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1203"
             column="9"/>
     </issue>
@@ -12976,7 +12976,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(THEME, theme).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1218"
             column="9"/>
     </issue>
@@ -12987,7 +12987,7 @@
         errorLine1="        return App.getInstance().preferences.edit().putBoolean(DYNAMIC_COLOR_ACCENT, enabled).apply()"
         errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1228"
             column="16"/>
     </issue>
@@ -12998,7 +12998,7 @@
         errorLine1="        App.getInstance().preferences.edit().putBoolean(DARK_THEME_BLACK, enabled).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1238"
             column="9"/>
     </issue>
@@ -13009,7 +13009,7 @@
         errorLine1="        App.getInstance().preferences.edit().putString(COLOR_ACCENT, colorAccent).apply()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/util/Preferences.kt"
+            file="src/main/java/com/cameronstorer/finsuma/util/Preferences.kt"
             line="1248"
             column="9"/>
     </issue>
@@ -13020,7 +13020,7 @@
         errorLine1="                Uri.parse(streamUrl)"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/model/SessionMediaItem.kt"
+            file="src/main/java/com/cameronstorer/finsuma/model/SessionMediaItem.kt"
             line="301"
             column="17"/>
     </issue>
@@ -13075,7 +13075,7 @@
         errorLine1="    public boolean onTouchEvent(@NonNull MotionEvent event) {"
         errorLine2="                   ~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/helper/recyclerview/FastScrollbar.java"
+            file="src/main/java/com/cameronstorer/finsuma/helper/recyclerview/FastScrollbar.java"
             line="82"
             column="20"/>
     </issue>
@@ -15418,7 +15418,7 @@
         errorLine1="            holder.item.artistInfoTextView.setText(&quot;Album count: &quot; + artist.getAlbumCount());"
         errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="85"
             column="52"/>
     </issue>
@@ -15429,7 +15429,7 @@
         errorLine1="            holder.item.artistInfoTextView.setText(&quot;Album count: &quot; + artist.getAlbumCount());"
         errorLine2="                                                   ~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/ArtistHorizontalAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/ArtistHorizontalAdapter.java"
             line="85"
             column="52"/>
     </issue>
@@ -15440,7 +15440,7 @@
         errorLine1="                                bind.homeSyncStarredTracksToSync.setText(displayText.toString() + &quot;\n&quot; + countText);"
         errorLine2="                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/HomeTabMusicFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/HomeTabMusicFragment.java"
             line="354"
             column="74"/>
     </issue>
@@ -15451,7 +15451,7 @@
         errorLine1="                            bind.homeSyncStarredAlbumsToSync.setText(displayText.toString() + &quot;\n&quot; + countText);"
         errorLine2="                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/HomeTabMusicFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/HomeTabMusicFragment.java"
             line="544"
             column="70"/>
     </issue>
@@ -15462,7 +15462,7 @@
         errorLine1="                            bind.homeSyncStarredArtistsToSync.setText(displayText.toString() + &quot;\n&quot; + countText);"
         errorLine2="                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/HomeTabMusicFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/HomeTabMusicFragment.java"
             line="683"
             column="71"/>
     </issue>
@@ -15473,7 +15473,7 @@
         errorLine1="            playerMediaBitrate.setText((format.bitrate / 1000) + &quot;kbps&quot;);"
         errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="529"
             column="40"/>
     </issue>
@@ -15484,7 +15484,7 @@
         errorLine1="            playerMediaBitrate.setText((format.bitrate / 1000) + &quot;kbps&quot;);"
         errorLine2="                                                                 ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="529"
             column="66"/>
     </issue>
@@ -15495,7 +15495,7 @@
         errorLine1="                playerMediaBitrate.setText((format.bitrate / 1000) + &quot;kbps&quot;);"
         errorLine2="                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="533"
             column="44"/>
     </issue>
@@ -15506,7 +15506,7 @@
         errorLine1="                playerMediaBitrate.setText((format.bitrate / 1000) + &quot;kbps&quot;);"
         errorLine2="                                                                     ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="533"
             column="70"/>
     </issue>
@@ -15517,7 +15517,7 @@
         errorLine1="                playerMediaBitrate.setText(targetBitrate + &quot;kbps&quot;);"
         errorLine2="                                           ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="539"
             column="44"/>
     </issue>
@@ -15528,7 +15528,7 @@
         errorLine1="                playerMediaBitrate.setText(targetBitrate + &quot;kbps&quot;);"
         errorLine2="                                                           ~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/fragment/PlayerControllerFragment.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/fragment/PlayerControllerFragment.java"
             line="539"
             column="60"/>
     </issue>
@@ -15539,7 +15539,7 @@
         errorLine1="        holder.item.yearLabel.setText(Integer.toString(year));"
         errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/eddyizm/tempus/ui/adapter/YearAdapter.java"
+            file="src/main/java/com/cameronstorer/finsuma/ui/adapter/YearAdapter.java"
             line="38"
             column="39"/>
     </issue>

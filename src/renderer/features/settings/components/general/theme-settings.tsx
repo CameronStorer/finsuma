@@ -33,7 +33,7 @@ const getThemeSwatchColors = (theme: AppTheme | string) => {
         primary:
             themeConfig.colors?.primary ||
             themeConfig.colors?.['state-info'] ||
-            'rgb(53, 116, 252)',
+            'rgb(255, 140, 0)',
         surface: themeConfig.colors?.surface || themeConfig.colors?.background || 'rgb(0, 0, 0)',
     };
 };
@@ -336,7 +336,7 @@ export const ThemeSettings = memo(() => {
                             });
                         }}
                         swatches={[
-                            'rgb(53, 116, 252)',
+                            'rgb(255, 140, 0)',
                             'rgb(240, 170, 22)',
                             'rgb(29, 185, 84)',
                             'rgb(214, 81, 63)',

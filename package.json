@@ -1,6 +1,6 @@
 {
     "name": "finsuma",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A modern self-hosted music player.",
     "keywords": [
         "subsonic",
@@ -9,15 +9,14 @@
         "react",
         "electron"
     ],
-    "homepage": "https://github.com/jeffvli/feishin",
+    "homepage": "https://github.com/CameronStorer/finsuma",
     "bugs": {
-        "url": "https://github.com/jeffvli/feishin/issues"
+        "url": "https://github.com/CameronStorer/finsuma/issues"
     },
     "license": "GPL-3.0",
     "author": {
-        "name": "jeffvli",
-        "email": "feishin@users.noreply.github.com",
-        "url": "https://github.com/jeffvli/"
+        "name": "CameronStorer",
+        "url": "https://github.com/CameronStorer/"
     },
     "main": "./out/main/index.js",
     "scripts": {

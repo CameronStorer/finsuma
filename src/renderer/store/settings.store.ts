@@ -1346,7 +1346,7 @@ const initialState: SettingsState = {
         type: FontType.BUILT_IN,
     },
     general: {
-        accent: 'rgb(53, 116, 252)',
+        accent: 'rgb(255, 140, 0)',
         albumBackground: false,
         albumBackgroundBlur: 6,
         albumGroupImageSize: 0,

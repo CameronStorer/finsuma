@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/toolbar_fragment"
-        android:name="com.eddyizm.tempus.ui.fragment.ToolbarFragment"
+        android:name="com.cameronstorer.finsuma.ui.fragment.ToolbarFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -138,7 +138,7 @@
             android:paddingEnd="36dp"
             android:paddingBottom="@dimen/global_padding_bottom" />
 
-        <com.eddyizm.tempus.helper.recyclerview.FastScrollbar
+        <com.cameronstorer.finsuma.helper.recyclerview.FastScrollbar
             android:id="@+id/download_fast_scrollbar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

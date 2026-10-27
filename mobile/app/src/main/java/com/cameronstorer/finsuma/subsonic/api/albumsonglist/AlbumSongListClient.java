@@ -1,0 +1,68 @@
+package com.cameronstorer.finsuma.subsonic.api.albumsonglist;
+
+import android.util.Log;
+
+import com.cameronstorer.finsuma.subsonic.RetrofitClient;
+import com.cameronstorer.finsuma.subsonic.Subsonic;
+import com.cameronstorer.finsuma.subsonic.base.ApiResponse;
+import com.cameronstorer.finsuma.util.Preferences;
+
+import retrofit2.Call;
+
+public class AlbumSongListClient {
+    private static final String TAG = "BrowsingClient";
+
+    private final Subsonic subsonic;
+    private final AlbumSongListService albumSongListService;
+
+    public AlbumSongListClient(Subsonic subsonic) {
+        this.subsonic = subsonic;
+        this.albumSongListService = new RetrofitClient(subsonic).getRetrofit().create(AlbumSongListService.class);
+    }
+
+    public Call<ApiResponse> getAlbumList(String type, int size, int offset) {
+        Log.d(TAG, "getAlbumList()");
+        return albumSongListService.getAlbumList(subsonic.getParams(), type, size, offset);
+    }
+
+    public Call<ApiResponse> getAlbumList2(String type, int size, int offset, Integer fromYear, Integer toYear) {
+        Log.d(TAG, "getAlbumList2()");
+        return albumSongListService.getAlbumList2(subsonic.getParams(), type, size, offset, fromYear, toYear, Preferences.getActiveMusicFolderId());
+    }
+
+    // Finsuma Auto DJ (albums mode): random albums of one genre.
+    public Call<ApiResponse> getAlbumList2ByGenre(String genre, int size) {
+        Log.d(TAG, "getAlbumList2ByGenre()");
+        return albumSongListService.getAlbumList2ByGenre(subsonic.getParams(), "byGenre", size, genre, Preferences.getActiveMusicFolderId());
+    }
+
+    public Call<ApiResponse> getRandomSongs(int size, Integer fromYear, Integer toYear) {
+        Log.d(TAG, "getRandomSongs()");
+        return albumSongListService.getRandomSongs(subsonic.getParams(), size, fromYear, toYear, Preferences.getActiveMusicFolderId());
+    }
+
+    public Call<ApiResponse> getRandomSongs(int size, Integer fromYear, Integer toYear, String genre) {
+        Log.d(TAG, "getRandomSongs()");
+        return albumSongListService.getRandomSongs(subsonic.getParams(), size, fromYear, toYear, genre, Preferences.getActiveMusicFolderId());
+    }
+
+    public Call<ApiResponse> getSongsByGenre(String genre, int count, int offset) {
+        Log.d(TAG, "getSongsByGenre()");
+        return albumSongListService.getSongsByGenre(subsonic.getParams(), genre, count, offset, Preferences.getActiveMusicFolderId());
+    }
+
+    public Call<ApiResponse> getNowPlaying() {
+        Log.d(TAG, "getNowPlaying()");
+        return albumSongListService.getNowPlaying(subsonic.getParams());
+    }
+
+    public Call<ApiResponse> getStarred() {
+        Log.d(TAG, "getStarred()");
+        return albumSongListService.getStarred(subsonic.getParams());
+    }
+
+    public Call<ApiResponse> getStarred2() {
+        Log.d(TAG, "getStarred2()");
+        return albumSongListService.getStarred2(subsonic.getParams());
+    }
+}

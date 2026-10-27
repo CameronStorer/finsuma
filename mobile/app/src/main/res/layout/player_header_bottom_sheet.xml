@@ -116,6 +116,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/player_header_play_random_button"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/play_random"
+            app:srcCompat="@drawable/ic_play_random" />
+
+        <ImageButton
             android:id="@+id/player_header_auto_dj_button"
             android:layout_width="44dp"
             android:layout_height="44dp"

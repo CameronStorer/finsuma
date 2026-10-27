@@ -51,7 +51,7 @@ export const PlayerbarWaveform = () => {
     });
 
     const { color } = useAppThemeColors();
-    const primaryColor = (color['--theme-colors-primary'] as string) || 'rgb(53, 116, 252)';
+    const primaryColor = (color['--theme-colors-primary'] as string) || 'rgb(255, 140, 0)';
 
     const colorScheme = useColorScheme();
 
