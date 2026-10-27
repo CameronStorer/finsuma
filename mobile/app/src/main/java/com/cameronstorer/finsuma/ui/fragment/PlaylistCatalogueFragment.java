@@ -255,6 +255,9 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
         sortItems.put(Constants.PLAYLIST_ORDER_BY_LAST_PLAYED, R.id.menu_playlist_sort_last_played);
         sortItems.put(Constants.PLAYLIST_ORDER_BY_LAST_UPDATED, R.id.menu_playlist_sort_last_updated);
         sortItems.put(Constants.PLAYLIST_ORDER_BY_BOTH, R.id.menu_playlist_sort_both);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_NAME_DESC, R.id.menu_playlist_sort_name_desc);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_DURATION, R.id.menu_playlist_sort_duration);
+        sortItems.put(Constants.PLAYLIST_ORDER_BY_OLDEST, R.id.menu_playlist_sort_oldest);
         com.cameronstorer.finsuma.util.FinsumaTabBar.checkSort(popup.getMenu(), sortItems.get(current));
 
         popup.setOnMenuItemClickListener(menuItem -> {
@@ -273,6 +276,12 @@ public class PlaylistCatalogueFragment extends Fragment implements ClickCallback
                 playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_LAST_PLAYED);
             } else if (id == R.id.menu_playlist_sort_last_updated) {
                 playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_LAST_UPDATED);
+            } else if (id == R.id.menu_playlist_sort_name_desc) {
+                playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_NAME_DESC);
+            } else if (id == R.id.menu_playlist_sort_duration) {
+                playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_DURATION);
+            } else if (id == R.id.menu_playlist_sort_oldest) {
+                playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_OLDEST);
             } else if (id == R.id.menu_playlist_sort_both) {
                 playlistCatalogueViewModel.setSortOrder(Constants.PLAYLIST_ORDER_BY_BOTH);
             }

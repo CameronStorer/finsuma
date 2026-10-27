@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
     <item
         android:id="@+id/menu_song_sort_name"
         android:title="@string/menu_sort_name" />
@@ -27,4 +28,14 @@
     <item
         android:id="@+id/menu_song_sort_rating"
         android:title="@string/finsuma_sort_rating" />
+    <item
+        android:id="@+id/menu_song_sort_duration"
+        android:title="@string/finsuma_sort_duration" />
+    <item
+        android:id="@+id/menu_song_sort_genre"
+        android:title="@string/finsuma_sort_genre" />
+    <item
+        android:id="@+id/menu_song_sort_random"
+        android:title="@string/menu_sort_random" />
+    </group>
 </menu>

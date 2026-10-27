@@ -211,6 +211,10 @@ public class AlbumCatalogueFragment extends Fragment implements ClickCallback {
                 return getString(R.string.menu_sort_recently_played);
             case Constants.ALBUM_ORDER_BY_MOST_PLAYED:
                 return getString(R.string.menu_sort_most_played);
+            case Constants.ALBUM_ORDER_BY_SONG_COUNT:
+                return getString(R.string.menu_sort_song_count);
+            case Constants.ALBUM_ORDER_BY_DURATION:
+                return getString(R.string.finsuma_sort_duration);
             default:
                 return "";
         }
@@ -285,6 +289,10 @@ public class AlbumCatalogueFragment extends Fragment implements ClickCallback {
                 newSortOrder = Constants.ALBUM_ORDER_BY_RECENTLY_PLAYED;
             } else if (menuItem.getItemId() == R.id.menu_album_sort_most_played) {
                 newSortOrder = Constants.ALBUM_ORDER_BY_MOST_PLAYED;
+            } else if (menuItem.getItemId() == R.id.menu_album_sort_song_count) {
+                newSortOrder = Constants.ALBUM_ORDER_BY_SONG_COUNT;
+            } else if (menuItem.getItemId() == R.id.menu_album_sort_duration) {
+                newSortOrder = Constants.ALBUM_ORDER_BY_DURATION;
             }
 
             if (newSortOrder != null) {
@@ -312,6 +320,8 @@ public class AlbumCatalogueFragment extends Fragment implements ClickCallback {
             case Constants.ALBUM_ORDER_BY_RECENTLY_ADDED: return R.id.menu_album_sort_recently_added;
             case Constants.ALBUM_ORDER_BY_RECENTLY_PLAYED: return R.id.menu_album_sort_recently_played;
             case Constants.ALBUM_ORDER_BY_MOST_PLAYED: return R.id.menu_album_sort_most_played;
+            case Constants.ALBUM_ORDER_BY_SONG_COUNT: return R.id.menu_album_sort_song_count;
+            case Constants.ALBUM_ORDER_BY_DURATION: return R.id.menu_album_sort_duration;
             default: return 0;
         }
     }

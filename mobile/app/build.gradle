@@ -15,8 +15,8 @@ android {
         //noinspection OldTargetApi
         targetSdk = 37
 
-        versionCode 53
-        versionName '1.1.0'
+        versionCode 54
+        versionName '1.1.1'
 
         // Finsuma: the Google Play build (-PfinsumaPlay) leaves out the YouTube/SoundCloud
         // downloader, which Play policy does not allow.

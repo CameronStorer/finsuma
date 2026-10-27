@@ -12,7 +12,13 @@ import android.os.PowerManager
  */
 object EnergyGate {
     @JvmStatic
-    fun allowed(context: Context): Boolean {
+    fun allowed(context: Context): Boolean = try {
+        check(context)
+    } catch (t: Throwable) {
+        true // never let a failed check break the feature that asked
+    }
+
+    private fun check(context: Context): Boolean {
         val app = context.applicationContext
         if (Preferences.isSkipOnBatterySaver() && app.getSystemService(PowerManager::class.java).isPowerSaveMode) {
             return false

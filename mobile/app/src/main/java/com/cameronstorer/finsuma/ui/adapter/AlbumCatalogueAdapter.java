@@ -179,7 +179,7 @@ public class AlbumCatalogueAdapter extends RecyclerView.Adapter<AlbumCatalogueAd
                 ).thenComparing(AlbumID3::getYear));
                 break;
             case Constants.ALBUM_ORDER_BY_YEAR:
-                albums.sort(Comparator.comparing(AlbumID3::getYear));
+                albums.sort(Comparator.comparing(AlbumID3::getYear, Comparator.nullsLast(Comparator.naturalOrder())));
                 break;
             case Constants.ALBUM_ORDER_BY_RANDOM:
                 Collections.shuffle(albums, new java.util.Random(randomSeed));
@@ -203,6 +203,18 @@ public class AlbumCatalogueAdapter extends RecyclerView.Adapter<AlbumCatalogueAd
                     album -> album.getPlayCount() != null ? album.getPlayCount() : 0L
                 ));
                 Collections.reverse(albums);
+                break;
+            case Constants.ALBUM_ORDER_BY_SONG_COUNT:
+                albums.sort(Comparator.comparing(
+                    album -> album.getSongCount() != null ? album.getSongCount() : 0,
+                    Comparator.reverseOrder()
+                ));
+                break;
+            case Constants.ALBUM_ORDER_BY_DURATION:
+                albums.sort(Comparator.comparing(
+                    album -> album.getDuration() != null ? album.getDuration() : 0,
+                    Comparator.reverseOrder()
+                ));
                 break;
         }
 

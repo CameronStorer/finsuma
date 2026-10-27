@@ -73,6 +73,9 @@ public interface PlaylistDao {
        "CASE WHEN :sortMethod = 'ORDER_BY_RANDOM' THEN RANDOM() END ASC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_PINNED' THEN pp.playlistId IS NOT NULL END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_NAME' THEN p.name END ASC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_NAME_DESC' THEN p.name END DESC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_DURATION' THEN p.duration END DESC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_OLDEST' THEN p.created END ASC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_DATE' THEN p.created END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_SONGS' THEN p.songCount END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_LAST_PLAYED' THEN p.lastPlayed END DESC, " +
@@ -91,6 +94,9 @@ public interface PlaylistDao {
        "CASE WHEN :sortMethod = 'ORDER_BY_RANDOM' THEN RANDOM() END ASC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_PINNED' THEN pp.playlistId IS NOT NULL END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_NAME' THEN p.name END ASC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_NAME_DESC' THEN p.name END DESC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_DURATION' THEN p.duration END DESC, " +
+       "CASE WHEN :sortMethod = 'ORDER_BY_OLDEST' THEN p.created END ASC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_DATE' THEN p.created END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_SONGS' THEN p.songCount END DESC, " +
        "CASE WHEN :sortMethod = 'ORDER_BY_LAST_PLAYED' THEN p.lastPlayed END DESC, " +

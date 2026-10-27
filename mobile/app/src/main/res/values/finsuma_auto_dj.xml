@@ -70,4 +70,8 @@
     <string name="settings_metadata_fill_now_summary">Ask the Finsuma server to scan its downloaded songs</string>
     <string name="metadata_fill_started">The Finsuma server is filling in missing artists and covers</string>
     <string name="metadata_fill_running">The server is already working on it</string>
+    <string name="finsuma_sort_duration">Length</string>
+    <string name="finsuma_sort_genre">Genre</string>
+    <string name="finsuma_sort_name_desc">Name (Z-A)</string>
+    <string name="finsuma_sort_oldest">Oldest first</string>
 </resources>

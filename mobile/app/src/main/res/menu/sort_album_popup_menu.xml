@@ -22,5 +22,11 @@
     <item
         android:id="@+id/menu_album_sort_most_played"
         android:title="@string/menu_sort_most_played" />
+    <item
+        android:id="@+id/menu_album_sort_song_count"
+        android:title="@string/menu_sort_song_count" />
+    <item
+        android:id="@+id/menu_album_sort_duration"
+        android:title="@string/finsuma_sort_duration" />
     </group>
 </menu>

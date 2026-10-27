@@ -409,7 +409,7 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
         List<Child> sortedList = new ArrayList<>(differ.getCurrentList());
         switch (order) {
             case Constants.MEDIA_BY_TITLE:
-                sortedList.sort(Comparator.comparing(Child::getTitle));
+                sortedList.sort(Comparator.comparing(Child::getTitle, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
                 break;
             case Constants.MEDIA_MOST_RECENTLY_STARRED:
                 sortedList.sort(Comparator.comparing(Child::getStarred, Comparator.nullsLast(Comparator.reverseOrder())));
@@ -432,6 +432,15 @@ public class SongHorizontalAdapter extends RecyclerView.Adapter<SongHorizontalAd
                 break;
             case Constants.SORT_SONG_MOST_PLAYED:
                 sortedList.sort(Comparator.comparing(Child::getPlayCount, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
+            case Constants.SORT_SONG_DURATION:
+                sortedList.sort(Comparator.comparing(Child::getDuration, Comparator.nullsLast(Comparator.reverseOrder())));
+                break;
+            case Constants.SORT_SONG_GENRE:
+                sortedList.sort(Comparator.comparing(Child::getGenre, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
+                break;
+            case Constants.SORT_SONG_RANDOM:
+                java.util.Collections.shuffle(sortedList);
                 break;
             case Constants.SORT_SONG_RATING:
                 sortedList.sort(Comparator.comparing(Child::getUserRating, Comparator.nullsLast(Comparator.reverseOrder())));

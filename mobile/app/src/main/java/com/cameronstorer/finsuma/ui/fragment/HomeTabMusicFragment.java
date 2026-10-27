@@ -215,6 +215,9 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
             }, 1200);
         });
 
+        bind.homePlayRandomButton.setOnClickListener(v ->
+                com.cameronstorer.finsuma.ui.dialog.PlayRandomDialog.show(requireActivity(), mediaBrowserListenableFuture));
+
         bind.discoveryTextViewRefreshable.setOnLongClickListener(v -> {
             homeViewModel.refreshDiscoverySongSample(getViewLifecycleOwner());
             return true;
@@ -1351,6 +1354,7 @@ public class HomeTabMusicFragment extends Fragment implements ClickCallback {
 
     private ArrayList<View> buildDesiredOrder() {
         ArrayList<View> desired = new ArrayList<>();
+        desired.add(bind.homePlayRandomButton);
 
         if (bind.homeSyncStarredCard.getVisibility() == View.VISIBLE) {
             desired.add(bind.homeSyncStarredCard);

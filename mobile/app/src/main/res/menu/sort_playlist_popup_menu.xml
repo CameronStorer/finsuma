@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
     <item
         android:id="@+id/menu_playlist_sort_name"
         android:title="@string/menu_sort_name" />
@@ -24,4 +25,14 @@
     <item
         android:id="@+id/menu_playlist_sort_both"
         android:title="@string/playlist_sort_both" />
+    <item
+        android:id="@+id/menu_playlist_sort_name_desc"
+        android:title="@string/finsuma_sort_name_desc" />
+    <item
+        android:id="@+id/menu_playlist_sort_duration"
+        android:title="@string/finsuma_sort_duration" />
+    <item
+        android:id="@+id/menu_playlist_sort_oldest"
+        android:title="@string/finsuma_sort_oldest" />
+    </group>
 </menu>

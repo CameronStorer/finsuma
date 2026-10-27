@@ -353,6 +353,9 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
         SORT_ITEMS.put(Constants.SORT_SONG_RECENTLY_ADDED, R.id.menu_song_sort_recently_added);
         SORT_ITEMS.put(Constants.SORT_SONG_MOST_PLAYED, R.id.menu_song_sort_most_played);
         SORT_ITEMS.put(Constants.SORT_SONG_RATING, R.id.menu_song_sort_rating);
+        SORT_ITEMS.put(Constants.SORT_SONG_DURATION, R.id.menu_song_sort_duration);
+        SORT_ITEMS.put(Constants.SORT_SONG_GENRE, R.id.menu_song_sort_genre);
+        SORT_ITEMS.put(Constants.SORT_SONG_RANDOM, R.id.menu_song_sort_random);
     }
 
     private String sortKey() {
@@ -403,6 +406,15 @@ public class SongListPageFragment extends Fragment implements ClickCallback {
                 return true;
             } else if (menuItem.getItemId() == R.id.menu_song_sort_rating) {
                 applySort(Constants.SORT_SONG_RATING);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_duration) {
+                applySort(Constants.SORT_SONG_DURATION);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_genre) {
+                applySort(Constants.SORT_SONG_GENRE);
+                return true;
+            } else if (menuItem.getItemId() == R.id.menu_song_sort_random) {
+                applySort(Constants.SORT_SONG_RANDOM);
                 return true;
             }
 
